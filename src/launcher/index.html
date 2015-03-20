@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html ng-app="Application">
+<head>
+    <title>Test</title>
+
+    <!--styles-->
+    <link rel="stylesheet/less" href="resources/themes/base/library.less" />
+    <link rel="stylesheet/less" href="resources/themes/dracula/library.less" />
+
+    <!--thirdparty-->
+    <script src="resources/thirdparty/less/dist/less.js"></script>
+    <script src="resources/thirdparty/jquery/dist/jquery.js"></script>
+    <script src="resources/thirdparty/requirejs/require.js"></script>
+    <script src="resources/thirdparty/angularjs/angular.js"></script>
+    <script src="resources/thirdparty/angularjs/angular-route.js"></script>
+
+    <!--source-->
+    <script src="resources/core.js"></script>
+</head>
+<body ng-controller="sap.sbo.ng4c.app.BodyCtrl">
+    <header ng-controller="sap.sbo.ng4c.header.Header" ng-include="template" ng-class="className"></header>
+    <section ng-controller="sap.sbo.ng4c.launchpad.Launchpad" ng-class="className">
+        <div class="content" style="left:{{asideWidth}}em">
+            <ng-view></ng-view>
+        </div>
+        <div class="aside" style="width:{{asideWidth}}em">
+            <div ng-controller="sap.sbo.ng4c.launchpad.aside.Aside" ng-include="template" ng-class="className"></div>
+        </div>
+    </section>
+    <footer ng-controller="sap.sbo.ng4c.footer.Footer" ng-class="className"></footer>
+</body>
+</html>

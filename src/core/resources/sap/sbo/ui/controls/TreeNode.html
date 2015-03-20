@@ -1,0 +1,9 @@
+﻿<div class="node" ng-click="logoClickHandler()">
+    <div class="logo {{isFolder ? 'folder' : 'leaf'}} {{isFolder ? (expand ? 'expand' : 'fold') : '' }}"></div>
+    <div class="name">{{name}}</div>
+</div>
+<div class="children">
+    <ul ng-show="expand">
+        <li ng-repeat="data in nodes" ng-controller="sap.sbo.ui.controls.TreeNode" ng-class="className" ng-include="template"></li>
+    </ul>
+</div>

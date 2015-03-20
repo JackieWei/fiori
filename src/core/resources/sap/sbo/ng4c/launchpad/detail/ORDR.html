@@ -1,0 +1,1096 @@
+﻿<div>
+
+    <div class="sapUiFioriObjectPage"
+          title="Sales Order"
+          shownavbutton="true"
+          navbuttonpress="handleNavBack">
+
+        <div>
+            <ng4c-Button icon="sap-icon://arrow-left" />
+            <ng4c-Button icon="sap-icon://arrow-right" />
+            <ng4c-Button icon="sap-icon://action-settings" />
+        </div>
+        <!-- header -->
+        <div defaultspan="L12 M12 S12"
+                width="auto">
+            <div>
+
+                <div minwidth="800"
+                                 maxcontainercols="2"
+                                 editable="true"
+                                 labelspanl="3"
+                                 labelspanm="3"
+                                 emptyspanl="4"
+                                 emptyspanm="4"
+                                 columnsl="1"
+                                 columnsm="1"
+                                 layout="ResponsiveGridLayout"
+                                 class="editableForm">
+                    <div>
+                        <!--  -->
+                        <div>
+                            <!--  -->
+                            <!-- Linked.panel -->
+                            <ng4c-Label textalign="Right"
+                                      text="Customer"
+                                      width="29%"
+                                      visible="{path:'/data/CardCode/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                            <ng4c-LinkedInput width="69%"
+                                            press="onLinkPress"
+                                            open="onLinkOpen"
+                                            change="onAutoComplete"
+                                            placeholder=""
+                                            link="ORDR.CardCode.OCRD"
+                                            value="{/data/CardCode/desc}"
+                                            data="{/data/CardCode/value}"
+                                            enabled="{path:'/data/CardCode/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                            visible="{path:'/data/CardCode/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                            <!--  -->
+                            <!-- Input.panel -->
+                            <ng4c-Label textalign="Right"
+                                      text="Name"
+                                      width="29%"
+                                      visible="{path:'/data/CardName/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                            <ng4c-Input width="69%"
+                                      value="{/data/CardName/value}"
+                                      change=""
+                                      maxlength="100"
+                                      enabled="{path:'/data/CardName/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                      visible="{path:'/data/CardName/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                            <!--  -->
+                            <!-- Linked.panel -->
+                            <ng4c-Label textalign="Right"
+                                      text="Contact Person"
+                                      width="29%"
+                                      visible="{path:'/data/CntctCode/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                            <ng4c-LinkedInput width="69%"
+                                            press="onLinkPress"
+                                            open="onLinkOpen"
+                                            change="onAutoComplete"
+                                            placeholder=""
+                                            link="ORDR.CntctCode.OCPR"
+                                            value="{/data/CntctCode/desc}"
+                                            data="{/data/CntctCode/value}"
+                                            enabled="{path:'/data/CntctCode/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                            visible="{path:'/data/CntctCode/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                            <!--  -->
+                            <!-- Input.panel -->
+                            <ng4c-Label textalign="Right"
+                                      text="Customer Ref. No"
+                                      width="29%"
+                                      visible="{path:'/data/NumAtCard/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                            <ng4c-Input width="69%"
+                                      value="{/data/NumAtCard/value}"
+                                      change=""
+                                      maxlength="100"
+                                      enabled="{path:'/data/NumAtCard/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                      visible="{path:'/data/NumAtCard/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                            <!--  -->
+                            <!-- Dropdown.panel -->
+                            <ng4c-Label textalign="Right"
+                                      text="Currency"
+                                      width="29%"
+                                      visible="{path:'/data/CurSource/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                            <ng4c-Select width="69%"
+                                       change="onAutoComplete"
+                                       beforeopen=""
+                                       refresh="false"
+                                       selectedkey="{/data/CurSource/value}"
+                                       selectedtext="{/data/CurSource/desc}"
+                                       enabled="{path:'/data/CurSource/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                       visible="{path:'/data/CurSource/status',formatter:'sap.businessone.m.formatter.Visible'}">
+                            </ng4c-Select>
+                            <!--  -->
+                            <!-- Dropdown.panel -->
+                            <ng4c-Label textalign="Right"
+                                      text="Item/Service Type"
+                                      width="29%"
+                                      visible="{path:'/data/DocType/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                            <ng4c-Select width="69%"
+                                       change="onAutoComplete"
+                                       beforeopen=""
+                                       refresh="false"
+                                       selectedkey="{/data/DocType/value}"
+                                       selectedtext="{/data/DocType/desc}"
+                                       enabled="{path:'/data/DocType/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                       visible="{path:'/data/DocType/status',formatter:'sap.businessone.m.formatter.Visible'}">
+                            </ng4c-Select>
+                            <!--  -->
+                        </div>
+                        <!--  -->
+                        <div>
+                            <!--  -->
+                            <!-- Dropdown.panel -->
+                            <ng4c-Label textalign="Right"
+                                      text="No."
+                                      width="29%"
+                                      visible="{path:'/data/Series/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                            <ng4c-Select width="69%"
+                                       change="onAutoComplete"
+                                       beforeopen="onBeforeOpen"
+                                       refresh="true"
+                                       selectedkey="{/data/Series/value}"
+                                       selectedtext="{/data/Series/desc}"
+                                       enabled="{path:'/data/Series/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                       visible="{path:'/data/Series/status',formatter:'sap.businessone.m.formatter.Visible'}">
+                                <b1:items>
+                                    <!--  -->
+                                </b1:items>
+                            </ng4c-Select>
+                            <!--  -->
+                            <!-- Number.panel -->
+                            <ng4c-Label textalign="Right"
+                                      text=""
+                                      width="29%"
+                                      visible="{path:'/data/DocNum/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                            <ng4c-NumberInput width="69%"
+                                            value="{/data/DocNum/value}"
+                                            change=""
+                                            maxlength="11"
+                                            enabled="{path:'/data/DocNum/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                            visible="{path:'/data/DocNum/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                            <!--  -->
+                            <!-- Dropdown.panel -->
+                            <ng4c-Label textalign="Right"
+                                      text="Status"
+                                      width="29%"
+                                      visible="{path:'/data/DocStatus/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                            <ng4c-Select width="69%"
+                                       change=""
+                                       beforeopen=""
+                                       refresh="false"
+                                       selectedkey="{/data/DocStatus/value}"
+                                       selectedtext="{/data/DocStatus/desc}"
+                                       enabled="{path:'/data/DocStatus/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                       visible="{path:'/data/DocStatus/status',formatter:'sap.businessone.m.formatter.Visible'}">
+                                <b1:items>
+                                    <!--  -->
+                                    <core:item key="O" text="Open" />
+                                    <!--  -->
+                                    <core:item key="C" text="Closed" />
+                                    <!--  -->
+                                </b1:items>
+                            </ng4c-Select>
+                            <!--  -->
+                            <!-- Dropdown.panel -->
+                            <ng4c-Label textalign="Right"
+                                      text="Cancelled"
+                                      width="29%"
+                                      visible="{path:'/data/CANCELED/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                            <ng4c-Select width="69%"
+                                       change=""
+                                       beforeopen=""
+                                       refresh="false"
+                                       selectedkey="{/data/CANCELED/value}"
+                                       selectedtext="{/data/CANCELED/desc}"
+                                       enabled="{path:'/data/CANCELED/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                       visible="{path:'/data/CANCELED/status',formatter:'sap.businessone.m.formatter.Visible'}">
+                                <b1:items>
+                                    <!--  -->
+                                    <core:item key="Y" text="Yes" />
+                                    <!--  -->
+                                    <core:item key="N" text="No" />
+                                    <!--  -->
+                                </b1:items>
+                            </ng4c-Select>
+                            <!--  -->
+                            <!-- DateTime.panel -->
+                            <ng4c-Label textalign="Right"
+                                      text="Posting Date"
+                                      width="29%"
+                                      visible="{path:'/data/DocDate/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                            <ng4c-DatePicker width="69%"
+                                           change=""
+                                           type="Date"
+                                           displayformat="yyyy-MM-dd"
+                                           valueformat="yyyy-MM-dd"
+                                           value="{/data/DocDate/value}"
+                                           enabled="{path:'/data/DocDate/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                           visible="{path:'/data/DocDate/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                            <!--  -->
+                            <!-- DateTime.panel -->
+                            <ng4c-Label textalign="Right"
+                                      text="Delivery Date"
+                                      width="29%"
+                                      visible="{path:'/data/DocDueDate/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                            <ng4c-DatePicker width="69%"
+                                           change=""
+                                           type="Date"
+                                           displayformat="yyyy-MM-dd"
+                                           valueformat="yyyy-MM-dd"
+                                           value="{/data/DocDueDate/value}"
+                                           enabled="{path:'/data/DocDueDate/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                           visible="{path:'/data/DocDueDate/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                            <!--  -->
+                            <!-- DateTime.panel -->
+                            <ng4c-Label textalign="Right"
+                                      text="Document Date"
+                                      width="29%"
+                                      visible="{path:'/data/TaxDate/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                            <ng4c-DatePicker width="69%"
+                                           change=""
+                                           type="Date"
+                                           displayformat="yyyy-MM-dd"
+                                           valueformat="yyyy-MM-dd"
+                                           value="{/data/TaxDate/value}"
+                                           enabled="{path:'/data/TaxDate/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                           visible="{path:'/data/TaxDate/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                            <!--  -->
+                        </div>
+                        <!--  -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- groups (tabs) -->
+        <!--  -->
+        <div expanded="true">
+            <items>
+
+                <!--  -->
+                <div text="Contents">
+                    <div defaultspan="L12 M12 S12"
+                            width="auto">
+                        <div>
+                            <div minwidth="800"
+                                             maxcontainercols="2"
+                                             editable="true"
+                                             labelspanl="3"
+                                             labelspanm="3"
+                                             emptyspanl="4"
+                                             emptyspanm="4"
+                                             columnsl="1"
+                                             columnsm="1"
+                                             layout="ResponsiveGridLayout"
+                                             class="editableForm">
+                                <div>
+                                    <!--  -->
+                                    <div>
+                                        <b1:layoutdata>
+                                            <divdata spanm="12" spanl="12" spans="12" />
+                                        </b1:layoutdata>
+                                        <div id="gridRDR1"
+                                                 autofocuslasttr="true"
+                                                 rows="{/data/RDR1}"
+                                                 rowselectionchange="onItemRowSelect"
+                                                 selectionmode="Single"
+                                                 navigationmode="Paginator"
+                                                 nodatatext="no data"
+                                                 visiblerowcount="7"
+                                                 firstvisiblerow="3"
+                                                 fixedcolumncount="2">
+                                            <div>
+                                                <toolbar>
+                                                    <label text="Details" />
+                                                    <toolbarspacer />
+                                                    <ng4c-Button icon="sap-icon://drop-down-list" type="Transparent" press="" />
+                                                    <ng4c-Button icon="sap-icon://action-settings" type="Transparent" press="" />
+                                                    <ng4c-Button icon="sap-icon://add" type="Transparent" press="onAddRDR1" />
+                                                </toolbar>
+                                            </div>
+                                            <div>
+
+                                                <!--  -->
+                                                <div width="150px">
+                                                    <label text="#" />
+                                                    <table:template>
+                                                        <!-- Number.grid -->
+                                                        <ng4c-NumberInput value="{LineNum/value}"
+                                                                        change=""
+                                                                        maxlength="11"
+                                                                        enabled="{path:'LineNum/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                                        visible="{path:'LineNum/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                                                    </table:template>
+                                                </div>
+                                                <!--  -->
+                                                <div width="150px">
+                                                    <label text="Item No." />
+                                                    <table:template>
+                                                        <!-- Linked.grid -->
+                                                        <ng4c-LinkedInput press="onLinkPress"
+                                                                        open="onLinkOpen"
+                                                                        change=""
+                                                                        placeholder=""
+                                                                        link="RDR1.ItemCode.OITM"
+                                                                        value="{ItemCode/desc}"
+                                                                        data="{ItemCode/value}"
+                                                                        enabled="{path:'ItemCode/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                                        visible="{path:'ItemCode/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                                                    </table:template>
+                                                </div>
+                                                <!--  -->
+                                                <div width="150px">
+                                                    <label text="Quantity" />
+                                                    <table:template>
+                                                        <!-- Decimal.grid -->
+                                                        <b1:decimalinput value="{Quantity/value}"
+                                                                         change="onAutoComplete"
+                                                                         maxlength="20"
+                                                                         enabled="{path:'Quantity/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                                         visible="{path:'Quantity/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                                                    </table:template>
+                                                </div>
+                                                <!--  -->
+                                                <div width="150px">
+                                                    <label text="Unit Price" />
+                                                    <table:template>
+                                                        <!-- Decimal.grid -->
+                                                        <b1:decimalinput value="{Price/value}"
+                                                                         change="onAutoComplete"
+                                                                         maxlength="20"
+                                                                         enabled="{path:'Price/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                                         visible="{path:'Price/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                                                    </table:template>
+                                                </div>
+                                                <!--  -->
+                                                <div width="150px">
+                                                    <label text="Discount %" />
+                                                    <table:template>
+                                                        <!-- Decimal.grid -->
+                                                        <b1:decimalinput value="{DiscPrcnt/value}"
+                                                                         change="onAutoComplete"
+                                                                         maxlength="20"
+                                                                         enabled="{path:'DiscPrcnt/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                                         visible="{path:'DiscPrcnt/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                                                    </table:template>
+                                                </div>
+                                                <!--  -->
+                                                <div width="150px">
+                                                    <label text="Tax Code" />
+                                                    <table:template>
+                                                        <!-- Linked.grid -->
+                                                        <ng4c-LinkedInput press="onLinkPress"
+                                                                        open="onLinkOpen"
+                                                                        change=""
+                                                                        placeholder=""
+                                                                        link="RDR1.TaxCode.OSTC"
+                                                                        value="{TaxCode/desc}"
+                                                                        data="{TaxCode/value}"
+                                                                        enabled="{path:'TaxCode/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                                        visible="{path:'TaxCode/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                                                    </table:template>
+                                                </div>
+                                                <!--  -->
+                                                <div width="150px">
+                                                    <label text="Total (LC)" />
+                                                    <table:template>
+                                                        <!-- Decimal.grid -->
+                                                        <b1:decimalinput value="{LineTotal/value}"
+                                                                         change=""
+                                                                         maxlength="20"
+                                                                         enabled="{path:'LineTotal/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                                         visible="{path:'LineTotal/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                                                    </table:template>
+                                                </div>
+                                                <!--  -->
+                                                <!-- fixed column for deletion operation -->
+                                                <div width="50px">
+                                                    <label text="" />
+                                                    <table:template>
+                                                        <b1:button icon="sap-icon://edit" type="Transparent" press="onNaviRDR1" tabindex="false" />
+                                                    </table:template>
+                                                </div>
+                                                <div width="50px">
+                                                    <label text="" />
+                                                    <table:template>
+                                                        <b1:button icon="sap-icon://sys-cancel" type="Transparent" press="onDeleteRDR1" tabindex="false" />
+                                                    </table:template>
+                                                </div>
+
+                                            </div>
+                                            <b1:footer>
+                                                <divfooter icon="sap-icon://add" press="onAddRDR1" />
+                                            </b1:footer>
+                                        </div>
+                                    </div>
+                                    <!--  -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--  -->
+                <div text="Logistics">
+                    <div defaultspan="L12 M12 S12"
+                            width="auto">
+                        <div>
+                            <div minwidth="800"
+                                             maxcontainercols="2"
+                                             editable="true"
+                                             labelspanl="3"
+                                             labelspanm="3"
+                                             emptyspanl="4"
+                                             emptyspanm="4"
+                                             columnsl="1"
+                                             columnsm="1"
+                                             layout="ResponsiveGridLayout"
+                                             class="editableForm">
+                                <div>
+                                    <!--  -->
+                                    <div>
+                                        <b1:layoutdata>
+                                            <divdata spanm="6" spanl="6" spans="12">
+                                            </divdata>
+                                        </b1:layoutdata>
+                                        <!--  -->
+                                        <!-- Dropdown.panel -->
+                                        <ng4c-Label textalign="Right"
+                                                  text="Ship to"
+                                                  width="29%"
+                                                  visible="{path:'/data/ShipToCode/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                                        <ng4c-Select width="69%"
+                                                   change="onAutoComplete"
+                                                   beforeopen="onBeforeOpen"
+                                                   refresh="true"
+                                                   selectedkey="{/data/ShipToCode/value}"
+                                                   selectedtext="{/data/ShipToCode/desc}"
+                                                   enabled="{path:'/data/ShipToCode/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                   visible="{path:'/data/ShipToCode/status',formatter:'sap.businessone.m.formatter.Visible'}">
+                                            <b1:items>
+                                                <!--  -->
+                                            </b1:items>
+                                        </ng4c-Select>
+                                        <!--  -->
+                                        <!-- Input.panel -->
+                                        <ng4c-Label textalign="Right"
+                                                  text="Ship to Address"
+                                                  width="29%"
+                                                  visible="{path:'/data/Address2/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                                        <ng4c-Input width="69%"
+                                                  value="{/data/Address2/value}"
+                                                  change=""
+                                                  maxlength="254"
+                                                  enabled="{path:'/data/Address2/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                  visible="{path:'/data/Address2/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                                        <!--  -->
+                                        <!-- Dropdown.panel -->
+                                        <ng4c-Label textalign="Right"
+                                                  text="Bill to"
+                                                  width="29%"
+                                                  visible="{path:'/data/PayToCode/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                                        <ng4c-Select width="69%"
+                                                   change="onAutoComplete"
+                                                   beforeopen="onBeforeOpen"
+                                                   refresh="true"
+                                                   selectedkey="{/data/PayToCode/value}"
+                                                   selectedtext="{/data/PayToCode/desc}"
+                                                   enabled="{path:'/data/PayToCode/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                   visible="{path:'/data/PayToCode/status',formatter:'sap.businessone.m.formatter.Visible'}">
+                                            <b1:items>
+                                                <!--  -->
+                                            </b1:items>
+                                        </ng4c-Select>
+                                        <!--  -->
+                                        <!-- Input.panel -->
+                                        <ng4c-Label textalign="Right"
+                                                  text="Bill to Address"
+                                                  width="29%"
+                                                  visible="{path:'/data/Address/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                                        <ng4c-Input width="69%"
+                                                  value="{/data/Address/value}"
+                                                  change=""
+                                                  maxlength="254"
+                                                  enabled="{path:'/data/Address/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                  visible="{path:'/data/Address/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                                        <!--  -->
+                                    </div>
+                                    <!--  -->
+                                    <div>
+                                        <b1:layoutdata>
+                                            <divdata spanm="6" spanl="6" spans="12">
+                                            </divdata>
+                                        </b1:layoutdata>
+                                        <!--  -->
+                                        <!-- Dropdown.panel -->
+                                        <ng4c-Label textalign="Right"
+                                                  text="Print Picking Sheet"
+                                                  width="29%"
+                                                  visible="{path:'/data/Pick/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                                        <ng4c-Select width="69%"
+                                                   change=""
+                                                   beforeopen=""
+                                                   refresh="false"
+                                                   selectedkey="{/data/Pick/value}"
+                                                   selectedtext="{/data/Pick/desc}"
+                                                   enabled="{path:'/data/Pick/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                   visible="{path:'/data/Pick/status',formatter:'sap.businessone.m.formatter.Visible'}">
+                                            <b1:items>
+                                                <!--  -->
+                                                <core:item key="Y" text="Yes" />
+                                                <!--  -->
+                                                <core:item key="N" text="No" />
+                                                <!--  -->
+                                            </b1:items>
+                                        </ng4c-Select>
+                                        <!--  -->
+                                        <!-- Dropdown.panel -->
+                                        <ng4c-Label textalign="Right"
+                                                  text="Procurement Document"
+                                                  width="29%"
+                                                  visible="{path:'/data/PoPrss/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                                        <ng4c-Select width="69%"
+                                                   change=""
+                                                   beforeopen=""
+                                                   refresh="false"
+                                                   selectedkey="{/data/PoPrss/value}"
+                                                   selectedtext="{/data/PoPrss/desc}"
+                                                   enabled="{path:'/data/PoPrss/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                   visible="{path:'/data/PoPrss/status',formatter:'sap.businessone.m.formatter.Visible'}">
+                                            <b1:items>
+                                                <!--  -->
+                                                <core:item key="Y" text="Yes" />
+                                                <!--  -->
+                                                <core:item key="N" text="No" />
+                                                <!--  -->
+                                            </b1:items>
+                                        </ng4c-Select>
+                                        <!--  -->
+                                        <!-- Dropdown.panel -->
+                                        <ng4c-Label textalign="Right"
+                                                  text="Approved"
+                                                  width="29%"
+                                                  visible="{path:'/data/Confirmed/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                                        <ng4c-Select width="69%"
+                                                   change=""
+                                                   beforeopen=""
+                                                   refresh="false"
+                                                   selectedkey="{/data/Confirmed/value}"
+                                                   selectedtext="{/data/Confirmed/desc}"
+                                                   enabled="{path:'/data/Confirmed/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                   visible="{path:'/data/Confirmed/status',formatter:'sap.businessone.m.formatter.Visible'}">
+                                            <b1:items>
+                                                <!--  -->
+                                                <core:item key="Y" text="Yes" />
+                                                <!--  -->
+                                                <core:item key="N" text="No" />
+                                                <!--  -->
+                                            </b1:items>
+                                        </ng4c-Select>
+                                        <!--  -->
+                                        <!-- Dropdown.panel -->
+                                        <ng4c-Label textalign="Right"
+                                                  text="Allow Partial Delivery"
+                                                  width="29%"
+                                                  visible="{path:'/data/PartSupply/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                                        <ng4c-Select width="69%"
+                                                   change=""
+                                                   beforeopen=""
+                                                   refresh="false"
+                                                   selectedkey="{/data/PartSupply/value}"
+                                                   selectedtext="{/data/PartSupply/desc}"
+                                                   enabled="{path:'/data/PartSupply/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                   visible="{path:'/data/PartSupply/status',formatter:'sap.businessone.m.formatter.Visible'}">
+                                            <b1:items>
+                                                <!--  -->
+                                                <core:item key="Y" text="Yes" />
+                                                <!--  -->
+                                                <core:item key="N" text="No" />
+                                                <!--  -->
+                                            </b1:items>
+                                        </ng4c-Select>
+                                        <!--  -->
+                                        <!-- Input.panel -->
+                                        <ng4c-Label textalign="Right"
+                                                  text="Pick and Pack Remarks"
+                                                  width="29%"
+                                                  visible="{path:'/data/PickRmrk/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                                        <ng4c-Input width="69%"
+                                                  value="{/data/PickRmrk/value}"
+                                                  change=""
+                                                  maxlength="254"
+                                                  enabled="{path:'/data/PickRmrk/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                  visible="{path:'/data/PickRmrk/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                                        <!--  -->
+                                        <!-- Linked.panel -->
+                                        <ng4c-Label textalign="Right"
+                                                  text="BP Channel Name"
+                                                  width="29%"
+                                                  visible="{path:'/data/BPChCode/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                                        <ng4c-LinkedInput width="69%"
+                                                        press="onLinkPress"
+                                                        open="onLinkOpen"
+                                                        change=""
+                                                        placeholder=""
+                                                        link="ORDR.BPChCode.OCRD"
+                                                        value="{/data/BPChCode/desc}"
+                                                        data="{/data/BPChCode/value}"
+                                                        enabled="{path:'/data/BPChCode/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                        visible="{path:'/data/BPChCode/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                                        <!--  -->
+                                        <!-- Linked.panel -->
+                                        <ng4c-Label textalign="Right"
+                                                  text="BP Channel Contact"
+                                                  width="29%"
+                                                  visible="{path:'/data/BPChCntc/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                                        <ng4c-LinkedInput width="69%"
+                                                        press="onLinkPress"
+                                                        open="onLinkOpen"
+                                                        change=""
+                                                        placeholder=""
+                                                        link="ORDR.BPChCntc.OCPR"
+                                                        value="{/data/BPChCntc/desc}"
+                                                        data="{/data/BPChCntc/value}"
+                                                        enabled="{path:'/data/BPChCntc/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                        visible="{path:'/data/BPChCntc/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                                        <!--  -->
+                                    </div>
+                                    <!--  -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--  -->
+                <div text="Accounting">
+                    <div defaultspan="L12 M12 S12"
+                            width="auto">
+                        <div>
+                            <div minwidth="800"
+                                             maxcontainercols="2"
+                                             editable="true"
+                                             labelspanl="3"
+                                             labelspanm="3"
+                                             emptyspanl="4"
+                                             emptyspanm="4"
+                                             columnsl="1"
+                                             columnsm="1"
+                                             layout="ResponsiveGridLayout"
+                                             class="editableForm">
+                                <div>
+                                    <!--  -->
+                                    <div>
+                                        <b1:layoutdata>
+                                            <divdata spanm="6" spanl="6" spans="12">
+                                            </divdata>
+                                        </b1:layoutdata>
+                                        <!--  -->
+                                        <!-- Input.panel -->
+                                        <ng4c-Label textalign="Right"
+                                                  text="Journal Remark"
+                                                  width="29%"
+                                                  visible="{path:'/data/JrnlMemo/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                                        <ng4c-Input width="69%"
+                                                  value="{/data/JrnlMemo/value}"
+                                                  change=""
+                                                  maxlength="50"
+                                                  enabled="{path:'/data/JrnlMemo/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                  visible="{path:'/data/JrnlMemo/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                                        <!--  -->
+                                        <!-- Linked.panel -->
+                                        <ng4c-Label textalign="Right"
+                                                  text="Payment Terms"
+                                                  width="29%"
+                                                  visible="{path:'/data/GroupNum/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                                        <ng4c-LinkedInput width="69%"
+                                                        press="onLinkPress"
+                                                        open="onLinkOpen"
+                                                        change=""
+                                                        placeholder=""
+                                                        link="ORDR.GroupNum.OCTG"
+                                                        value="{/data/GroupNum/desc}"
+                                                        data="{/data/GroupNum/value}"
+                                                        enabled="{path:'/data/GroupNum/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                        visible="{path:'/data/GroupNum/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                                        <!--  -->
+                                        <!-- Linked.panel -->
+                                        <ng4c-Label textalign="Right"
+                                                  text="Payment Method"
+                                                  width="29%"
+                                                  visible="{path:'/data/PeyMethod/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                                        <ng4c-LinkedInput width="69%"
+                                                        press="onLinkPress"
+                                                        open="onLinkOpen"
+                                                        change=""
+                                                        placeholder=""
+                                                        link="ORDR.PeyMethod.OPYM"
+                                                        value="{/data/PeyMethod/desc}"
+                                                        data="{/data/PeyMethod/value}"
+                                                        enabled="{path:'/data/PeyMethod/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                        visible="{path:'/data/PeyMethod/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                                        <!--  -->
+                                        <!-- Linked.panel -->
+                                        <ng4c-Label textalign="Right"
+                                                  text="Central Bank Ind."
+                                                  width="29%"
+                                                  visible="{path:'/data/CntrlBnk/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                                        <ng4c-LinkedInput width="69%"
+                                                        press="onLinkPress"
+                                                        open="onLinkOpen"
+                                                        change=""
+                                                        placeholder=""
+                                                        link="ORDR.CntrlBnk.OCBI"
+                                                        value="{/data/CntrlBnk/desc}"
+                                                        data="{/data/CntrlBnk/value}"
+                                                        enabled="{path:'/data/CntrlBnk/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                        visible="{path:'/data/CntrlBnk/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                                        <!--  -->
+                                        <!-- Dropdown.panel -->
+                                        <ng4c-Label textalign="Right"
+                                                  text="Manually Recalculate Due Date"
+                                                  width="29%"
+                                                  visible="{path:'/data/PayDuMonth/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                                        <ng4c-Select width="69%"
+                                                   change=""
+                                                   beforeopen=""
+                                                   refresh="false"
+                                                   selectedkey="{/data/PayDuMonth/value}"
+                                                   selectedtext="{/data/PayDuMonth/desc}"
+                                                   enabled="{path:'/data/PayDuMonth/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                   visible="{path:'/data/PayDuMonth/status',formatter:'sap.businessone.m.formatter.Visible'}">
+                                            <b1:items>
+                                                <!--  -->
+                                                <core:item key="E" text="Month End" />
+                                                <!--  -->
+                                                <core:item key="H" text="Half Month" />
+                                                <!--  -->
+                                                <core:item key="Y" text="Month Start" />
+                                                <!--  -->
+                                                <core:item key="N" text="" />
+                                                <!--  -->
+                                            </b1:items>
+                                        </ng4c-Select>
+                                        <!--  -->
+                                        <!-- Number.panel -->
+                                        <ng4c-Label textalign="Right"
+                                                  text="+ Month"
+                                                  width="29%"
+                                                  visible="{path:'/data/ExtraMonth/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                                        <ng4c-NumberInput width="69%"
+                                                        value="{/data/ExtraMonth/value}"
+                                                        change=""
+                                                        maxlength="6"
+                                                        enabled="{path:'/data/ExtraMonth/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                        visible="{path:'/data/ExtraMonth/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                                        <!--  -->
+                                        <!-- Number.panel -->
+                                        <ng4c-Label textalign="Right"
+                                                  text="+ Days"
+                                                  width="29%"
+                                                  visible="{path:'/data/ExtraDays/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                                        <ng4c-NumberInput width="69%"
+                                                        value="{/data/ExtraDays/value}"
+                                                        change=""
+                                                        maxlength="6"
+                                                        enabled="{path:'/data/ExtraDays/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                        visible="{path:'/data/ExtraDays/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                                        <!--  -->
+                                        <!-- Number.panel -->
+                                        <ng4c-Label textalign="Right"
+                                                  text="Cash Discount Date Offset"
+                                                  width="29%"
+                                                  visible="{path:'/data/CdcOffset/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                                        <ng4c-NumberInput width="69%"
+                                                        value="{/data/CdcOffset/value}"
+                                                        change=""
+                                                        maxlength="6"
+                                                        enabled="{path:'/data/CdcOffset/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                        visible="{path:'/data/CdcOffset/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                                        <!--  -->
+                                    </div>
+                                    <!--  -->
+                                    <div>
+                                        <b1:layoutdata>
+                                            <divdata spanm="6" spanl="6" spans="12">
+                                            </divdata>
+                                        </b1:layoutdata>
+                                        <!--  -->
+                                        <!-- Linked.panel -->
+                                        <ng4c-Label textalign="Right"
+                                                  text="Project"
+                                                  width="29%"
+                                                  visible="{path:'/data/Project/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                                        <ng4c-LinkedInput width="69%"
+                                                        press="onLinkPress"
+                                                        open="onLinkOpen"
+                                                        change=""
+                                                        placeholder=""
+                                                        link="ORDR.Project.OPRJ"
+                                                        value="{/data/Project/desc}"
+                                                        data="{/data/Project/value}"
+                                                        enabled="{path:'/data/Project/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                        visible="{path:'/data/Project/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                                        <!--  -->
+                                        <!-- DateTime.panel -->
+                                        <ng4c-Label textalign="Right"
+                                                  text="Cancellation Date"
+                                                  width="29%"
+                                                  visible="{path:'/data/CancelDate/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                                        <ng4c-DatePicker width="69%"
+                                                       change=""
+                                                       type="Date"
+                                                       displayformat="yyyy-MM-dd"
+                                                       valueformat="yyyy-MM-dd"
+                                                       value="{/data/CancelDate/value}"
+                                                       enabled="{path:'/data/CancelDate/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                       visible="{path:'/data/CancelDate/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                                        <!--  -->
+                                        <!-- DateTime.panel -->
+                                        <ng4c-Label textalign="Right"
+                                                  text="Require Date"
+                                                  width="29%"
+                                                  visible="{path:'/data/ReqDate/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                                        <ng4c-DatePicker width="69%"
+                                                       change=""
+                                                       type="Date"
+                                                       displayformat="yyyy-MM-dd"
+                                                       valueformat="yyyy-MM-dd"
+                                                       value="{/data/ReqDate/value}"
+                                                       enabled="{path:'/data/ReqDate/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                       visible="{path:'/data/ReqDate/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                                        <!--  -->
+                                        <!-- Linked.panel -->
+                                        <ng4c-Label textalign="Right"
+                                                  text="Indicator"
+                                                  width="29%"
+                                                  visible="{path:'/data/Indicator/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                                        <ng4c-LinkedInput width="69%"
+                                                        press="onLinkPress"
+                                                        open="onLinkOpen"
+                                                        change=""
+                                                        placeholder=""
+                                                        link="ORDR.Indicator.OIDC"
+                                                        value="{/data/Indicator/desc}"
+                                                        data="{/data/Indicator/value}"
+                                                        enabled="{path:'/data/Indicator/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                        visible="{path:'/data/Indicator/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                                        <!--  -->
+                                        <!-- Input.panel -->
+                                        <ng4c-Label textalign="Right"
+                                                  text="Federal Tax ID"
+                                                  width="29%"
+                                                  visible="{path:'/data/LicTradNum/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                                        <ng4c-Input width="69%"
+                                                  value="{/data/LicTradNum/value}"
+                                                  change=""
+                                                  maxlength="32"
+                                                  enabled="{path:'/data/LicTradNum/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                  visible="{path:'/data/LicTradNum/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                                        <!--  -->
+                                        <!-- Number.panel -->
+                                        <ng4c-Label textalign="Right"
+                                                  text="Order Number"
+                                                  width="29%"
+                                                  visible="{path:'/data/ImportEnt/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                                        <ng4c-NumberInput width="69%"
+                                                        value="{/data/ImportEnt/value}"
+                                                        change=""
+                                                        maxlength="11"
+                                                        enabled="{path:'/data/ImportEnt/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                                        visible="{path:'/data/ImportEnt/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                                        <!--  -->
+                                    </div>
+                                    <!--  -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--  -->
+                <div text="Attachment">
+                    <div defaultspan="L12 M12 S12"
+                            width="auto">
+                        <div>
+                            <div minwidth="800"
+                                             maxcontainercols="2"
+                                             editable="true"
+                                             labelspanl="3"
+                                             labelspanm="3"
+                                             emptyspanl="4"
+                                             emptyspanm="4"
+                                             columnsl="1"
+                                             columnsm="1"
+                                             layout="ResponsiveGridLayout"
+                                             class="editableForm">
+                                <div>
+                                    <!--  -->
+                                    <div>
+                                        <b1:layoutdata>
+                                            <divdata spanm="6" spanl="6" spans="12">
+                                            </divdata>
+                                        </b1:layoutdata>
+                                        <!--  -->
+                                    </div>
+                                    <!--  -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--  -->
+
+            </items>
+        </div>
+        <!--  -->
+        <!-- footer -->
+        <div defaultspan="L12 M12 S12"
+                width="auto">
+            <div>
+
+                <div minwidth="800"
+                                 maxcontainercols="2"
+                                 editable="true"
+                                 labelspanl="3"
+                                 labelspanm="3"
+                                 emptyspanl="4"
+                                 emptyspanm="4"
+                                 columnsl="1"
+                                 columnsm="1"
+                                 layout="ResponsiveGridLayout"
+                                 class="editableForm">
+                    <div>
+                        <!--  -->
+                        <div>
+                            <b1:layoutdata>
+                                <divdata spanm="6" spanl="6" spans="12">
+                                </divdata>
+                            </b1:layoutdata>
+                            <!--  -->
+                            <!-- Linked.panel -->
+                            <ng4c-Label textalign="Right"
+                                      text="Sales Employee"
+                                      width="29%"
+                                      visible="{path:'/data/SlpCode/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                            <ng4c-LinkedInput width="69%"
+                                            press="onLinkPress"
+                                            open="onLinkOpen"
+                                            change=""
+                                            placeholder=""
+                                            link="ORDR.SlpCode.OSLP"
+                                            value="{/data/SlpCode/desc}"
+                                            data="{/data/SlpCode/value}"
+                                            enabled="{path:'/data/SlpCode/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                            visible="{path:'/data/SlpCode/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                            <!--  -->
+                            <!-- Linked.panel -->
+                            <ng4c-Label textalign="Right"
+                                      text="Owner"
+                                      width="29%"
+                                      visible="{path:'/data/OwnerCode/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                            <ng4c-LinkedInput width="69%"
+                                            press="onLinkPress"
+                                            open="onLinkOpen"
+                                            change=""
+                                            placeholder=""
+                                            link="ORDR.OwnerCode.OHEM"
+                                            value="{/data/OwnerCode/desc}"
+                                            data="{/data/OwnerCode/value}"
+                                            enabled="{path:'/data/OwnerCode/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                            visible="{path:'/data/OwnerCode/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                            <!--  -->
+                            <!-- TextArea.panel -->
+                            <ng4c-Label textalign="Right"
+                                      text="Remarks"
+                                      width="29%"
+                                      visible="{path:'/data/Comments/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                            <b1:textarea width="69%"
+                                         value="{/data/Comments/value}"
+                                         change=""
+                                         maxlength="254"
+                                         enabled="{path:'/data/Comments/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                         visible="{path:'/data/Comments/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                            <!--  -->
+                        </div>
+                        <!--  -->
+                        <div>
+                            <b1:layoutdata>
+                                <divdata spanm="6" spanl="6" spans="12">
+                                </divdata>
+                            </b1:layoutdata>
+                            <!--  -->
+                            <!-- Decimal.panel -->
+                            <ng4c-Label textalign="Right"
+                                      text="Discount %"
+                                      width="29%"
+                                      visible="{path:'/data/DiscPrcnt/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                            <!-- value="{parts:[{path:'/data/DiscPrcnt/value'}], formatter:'sap.businessone.launcher.utils.CommonUtil.formatNumber'}" -->
+                            <b1:decimalinput width="69%"
+                                             value="{/data/DiscPrcnt/value}"
+                                             change=""
+                                             maxlength="20"
+                                             enabled="{path:'/data/DiscPrcnt/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                             visible="{path:'/data/DiscPrcnt/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                            <!--  -->
+                            <!-- Decimal.panel -->
+                            <ng4c-Label textalign="Right"
+                                      text="Total"
+                                      width="29%"
+                                      visible="{path:'/data/DocTotal/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+
+                            <!-- value="{parts:[{path:'/data/DocTotal/value'}], formatter:'sap.businessone.launcher.utils.CommonUtil.formatNumber'}" -->
+                            <b1:decimalinput width="69%"
+                                             value="{/data/DocTotal/value}"
+                                             change=""
+                                             maxlength="20"
+                                             enabled="{path:'/data/DocTotal/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                                             visible="{path:'/data/DocTotal/status',formatter:'sap.businessone.m.formatter.Visible'}" />
+                            <!--  -->
+                        </div>
+                        <!--  -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- actions -->
+        <footer>
+            <div>
+                <div>
+                    <!--  -->
+                    <ng4c-Button text="Cancel" press="onActionCancel" />
+                    <!--  -->
+                    <ng4c-Button text="Close" press="onActionClose" />
+                    <!--  -->
+                    <ng4c-Button icon="sap-icon://sys-enter-2" type="Emphasized" press="onSave"></ng4c-Button>
+                    <ng4c-Button icon="sap-icon://undo" press="onCancel"></ng4c-Button>
+                    <ng4c-Button icon="sap-icon://overflow" press=""></ng4c-Button>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+</div>

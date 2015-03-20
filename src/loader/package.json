@@ -1,0 +1,17 @@
+{
+  "name": "loader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "http-proxy": "^1.8.1",
+    "http-server": "^0.7.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"no test specified\"",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "MIT"
+}

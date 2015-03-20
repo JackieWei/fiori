@@ -1,0 +1,90 @@
+﻿
+@scrollbar_horizontal_width: 0.66em;
+@scrollbar_horizontal_min_height: 0.66em;
+@scrollbar_vertical_width: 0.66em;
+@scrollbar_vertical_min_height: 0.66em;
+@scrollbar_thumb_color: #B0B0B0;
+@scrollbar_thumb_hover_color: #909090;
+
+
+
+@font-face {
+    font-family: 'SAP-icons';
+    src: url('fonts/SAP-icons.eot');
+    src: url('fonts/SAP-icons.eot?#iefix') format('embedded-opentype'),url('fonts/SAP-icons.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: "rei";
+    src: url("fonts/rei.eot?20140606");
+    src: url("fonts/rei.eot?20140606#iefix") format("embedded-opentype"), url("fonts/rei.woff?20140606") format("woff"), url("fonts/rei.ttf?20140606") format("truetype");
+}
+
+.SAP-icons {
+    font-family: 'SAP-icons';
+    font-size: 1em;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+    cursor: default;
+}
+
+::-webkit-scrollbar-track-piece {
+    -webkit-border-radius: 0;
+}
+
+::-webkit-scrollbar-track {
+    display: none;
+}
+
+::-webkit-scrollbar-thumb:active {
+    height: 8px;
+    background-color: @scrollbar_thumb_hover_color;
+    border-color: @scrollbar_thumb_hover_color;
+}
+
+::-webkit-scrollbar {
+    width: @scrollbar_horizontal_width;
+    height: @scrollbar_horizontal_min_height;
+    border: none;
+}
+
+::-webkit-scrollbar-thumb {
+    height: @scrollbar_horizontal_min_height;
+    background-color: @scrollbar_thumb_color;
+    border-radius: 0.33em;
+    border: 2px solid @scrollbar_thumb_color;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    height: 0.66em;
+    background-color: @scrollbar_thumb_hover_color;
+    border-color: @scrollbar_thumb_hover_color;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-color: #f2f2f2;
+    color: #000000;
+    font-family: '微软雅黑', Arial,Helvetica,sans-serif;
+    font-size: 0.75rem;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-tap-highlight-color: transparent;
+    background-color: #f2f2f2;
+    background-image: -moz-linear-gradient(top,#dff2f3 0,#dcecf0 50%,#dde4eb 100%);
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#dff2f3),color-stop(50%,#dcecf0),color-stop(100%,#dde4eb));
+    background-image: -webkit-linear-gradient(top,#dff2f3 0,#dcecf0 50%,#dde4eb 100%);
+    background-image: -ms-linear-gradient(top,#dff2f3 0,#dcecf0 50%,#dde4eb 100%);
+    background-image: linear-gradient(to bottom,#dff2f3 0,#dcecf0 50%,#dde4eb 100%);
+}

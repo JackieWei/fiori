@@ -1,0 +1,24 @@
+﻿<div ng-controller="sap.sbo.ng4c.launchpad.aside.Menu" ng-class="className" style="display:{{liteMode ? 'none' : 'block'}}">
+    <div ng-controller="sap.sbo.ng4c.launchpad.aside.Tab" ng-class="className">
+        <div class="tab">
+            <a href="" ng-click="showTab(0)" style="background-color: {{currentIndex===0? '#007cc0' : '#333333'}}"><div>Modules</div></a>
+            <a href="" ng-click="showTab(1)" style="background-color: {{currentIndex===1? '#007cc0' : '#333333'}}"><div>My Menu</div></a>
+        </div>
+        <div class="content">
+            <div style="display:{{currentIndex===0? 'block' : 'none'}}" ng-controller="sap.sbo.ng4c.launchpad.aside.Modules" ng-class="className">
+                <div ng-controller="sap.sbo.ng4c.launchpad.aside.SearchBar" ng-include="template" ng-class="className">
+                    SearchBar
+                </div>
+                <ng4c-tree ng-menuurl="resources/sap/sbo/ui/controls/Modules.json" ng-leafclick="menuItemClick"></ng4c-tree>
+            </div>
+            <div style="display:{{currentIndex===1? 'block' : 'none'}}" ng-controller="sap.sbo.ng4c.launchpad.aside.MyMenu" ng-class="className">
+                <ng4c-tree ng-menuurl="resources/sap/sbo/ui/controls/MyMenu.json" ng-leafclick="menuItemClick"></ng4c-tree>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-controller="sap.sbo.ng4c.launchpad.aside.LightAccess" ng-class="className" style="display:{{liteMode ? 'block' : 'none'}}">
+    <div>Home Icon</div>
+    <div>Search</div>
+    <div>List</div>
+</div>

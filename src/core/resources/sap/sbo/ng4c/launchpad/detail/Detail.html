@@ -1,0 +1,59 @@
+﻿<header>
+    <div class="left">
+        <ng4c-button icon="sap-icon://nav-back" />
+    </div>
+    <div class="center">
+        <span>Sales Order</span>
+    </div>
+    <div class="right">
+        <ng4c-button icon="sap-icon://arrow-left" />
+        <ng4c-button icon="sap-icon://arrow-right" />
+        <ng4c-button icon="sap-icon://action-settings" />
+    </div>
+</header>
+<section>
+    <section class="grid">
+        <div class="left panel">
+            <ng4c-label ng-text="Customer"></ng4c-label>
+            <ng4c-linked-input ng-value="C20000"></ng4c-linked-input>
+            <ng4c-label ng-text="Name"></ng4c-label>
+            <ng4c-input ng-value="Maxi-Teq"></ng4c-input>
+            <ng4c-label ng-text="Contact Person"></ng4c-label>
+            <ng4c-linked-input ng-value="Maxi-Teq"></ng4c-linked-input>
+            <ng4c-label ng-text="Cusomer Ref No"></ng4c-label>
+            <ng4c-input ng-value=""></ng4c-input>
+            <ng4c-label ng-text="Item/Service Type"></ng4c-label>
+            <ng4c-select></ng4c-select>
+        </div>
+        <div class="right panel">
+            <ng4c-label ng-text="No.:"></ng4c-label>
+            <ng4c-select ng-value="Primary"></ng4c-select>
+            <ng4c-label ng-text=""></ng4c-label>
+            <ng4c-input ng-value="-100"></ng4c-input>
+            <ng4c-label ng-text="Status:"></ng4c-label>
+            <ng4c-select></ng4c-select>
+            <ng4c-label ng-text="Cancelled:"></ng4c-label>
+            <ng4c-select></ng4c-select>
+            <ng4c-label ng-text="Posting Date:"></ng4c-label>
+            <ng4c-date-picker></ng4c-date-picker>
+            <ng4c-label ng-text="Delivery Date:"></ng4c-label>
+            <ng4c-date-picker></ng4c-date-picker>
+            <ng4c-label ng-text="Document Date:"></ng4c-label>
+            <ng4c-date-picker></ng4c-date-picker>
+        </div>
+    </section>
+    <section class="table">
+        <div class="tab">
+            <div>Contents</div>
+            <div>Logistics</div>
+            <div>Accounting</div>
+            <div>Attachment</div>
+        </div>
+        <div class="content">
+            <table></table>
+            <table></table>
+            <table></table>
+            <table></table>
+        </div>
+    </section>
+</section>

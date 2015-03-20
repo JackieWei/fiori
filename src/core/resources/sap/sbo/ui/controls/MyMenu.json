@@ -1,0 +1,246 @@
+﻿{
+    "menu": [
+        {
+            "id": "94AF201E-A805-4CFA-8840-D09362866D4C",
+            "name": "Financials",
+            "create": true,
+            "showListview": false,
+            "nodes": [
+                {
+                    "id": "C0B4DACF-A17F-4201-B88D-03CFA5402FAE",
+                    "name": "Chart of Accounts",
+                    "action": "OACT",
+                    "create": true,
+                    "showListview": true
+                },
+                {
+                    "id": "6B81D6EE-99F8-4248-922D-7B691B3266BA",
+                    "name": "Journal Entry",
+                    "action": "OJDT",
+                    "create": true,
+                    "showListview": true
+                },
+                {
+                    "id": "1F0773FB-4413-4371-9B1A-3251409E7717",
+                    "name": "Journal Vouchers",
+                    "action": "OBTD",
+                    "create": true,
+                    "showListview": true
+                },
+                {
+                    "id": "74C12446-AE6B-4643-A015-78423A5A9467",
+                    "name": "Posting Templates",
+                    "action": "OTRT",
+                    "create": true,
+                    "showListview": true
+                },
+                {
+                    "id": "491c2161-30df-4012-ab34-4aeb19f9abdd",
+                    "name": "Recurring Postings",
+                    "action": "ORCR",
+                    "create": true,
+                    "showListview": true
+                },
+                {
+                    "id": "7f708511-0a2c-48a6-8618-ce84e82f593e",
+                    "name": "Reverse Transactions",
+                    "action": "OSES",
+                    "create": true,
+                    "showListview": true
+                },
+                {
+                    "id": "8a4429fe-22dd-4eae-9019-77f33665630a",
+                    "name": "Document Printing",
+                    "action": "OSES",
+                    "create": true,
+                    "showListview": true
+                },
+                {
+                    "id": "81ec0149-01cc-4ef3-ae45-6324035e33f8",
+                    "name": "Internal Reconciliations",
+                    "create": true,
+                    "showListview": false,
+                    "nodes": [
+                        {
+                            "id": "9b16b515-742c-40fc-a201-583dfb3d1eff",
+                            "name": "Manage Previous Reconciliations",
+                            "action": "OITR",
+                            "create": true,
+                            "showListview": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "327A888F-FC47-4E53-8568-03EFC542147B",
+            "name": "Sales - A/R",
+            "create": true,
+            "showListview": false,
+            "nodes": [
+                {
+                    "id": "fd0214fa-488c-4163-899e-bfdd6edb3641",
+                    "name": "Sales Quotation",
+                    "action": "OQUT",
+                    "create": true,
+                    "showListview": true
+                },
+                {
+                    "id": "D69DADFA-6A5F-437F-88CC-A9889EB9BEA9",
+                    "name": "Sales Order",
+                    "action": "ORDR",
+                    "create": true,
+                    "showListview": true
+                },
+                {
+                    "id": "c5e8c808-2cd7-46ef-bf6b-0dc3bf9b4413",
+                    "name": "A/R Invoice",
+                    "action": "OINV",
+                    "create": true,
+                    "showListview": true
+                },
+                {
+                    "id": "2df68476-b316-4f28-9527-c8cb3f7ab2d5",
+                    "name": "A/R Credit Memo",
+                    "action": "ORIN",
+                    "create": true,
+                    "showListview": true
+                }
+            ]
+        },
+        {
+            "id": "2CFFC7F5-A894-4C8A-A05D-9FB3ABD4DFA8",
+            "name": "Purchasing - A/P",
+            "create": true,
+            "showListview": false,
+            "nodes": [
+                {
+                    "id": "c8ce3303-b321-4125-a4b1-0adf8464e168",
+                    "name": "A/P Invoice",
+                    "action": "OPCH",
+                    "create": true,
+                    "showListview": true
+                },
+                {
+                    "id": "4dfea40f-4032-40d4-8819-67fbb991748c",
+                    "name": "A/P Credit Memo",
+                    "action": "ORPC",
+                    "create": true,
+                    "showListview": true
+                }
+            ]
+        },
+        {
+            "id": "6E3D6B4A-44B6-407A-AC8A-C7A33BFCD30F",
+            "name": "Business Partners",
+            "create": true,
+            "showListview": false,
+            "nodes": [
+                {
+                    "id": "073B8584-19E0-40CB-9DFE-60E43F3CB5F3",
+                    "name": "Business Partners Master Data",
+                    "action": "OCRD",
+                    "create": true,
+                    "showListview": true
+                }
+            ]
+        },
+        {
+            "id": "3EE5F9EE-950A-4040-92F2-97F452DE7D83",
+            "name": "Banking",
+            "create": true,
+            "showListview": false,
+            "nodes": [
+                {
+                    "id": "5b2f3a5e-0320-4eb6-9d3b-c17854eaefb3",
+                    "name": "Incoming Payment",
+                    "create": true,
+                    "showListview": false,
+                    "nodes": [
+                        {
+                            "id": "48285b81-0e1a-4ab9-8df1-2f6cb798bbe3",
+                            "name": "Incoming Payments",
+                            "action": "ORCT",
+                            "create": true,
+                            "showListview": true
+                        },
+                        {
+                            "id": "f4688c08-33c1-40b7-a073-85c4cbbceda5",
+                            "name": "Check Register",
+                            "action": "OCHH",
+                            "create": true,
+                            "showListview": true
+                        },
+                        {
+                            "id": "cf75f511-2973-4ed3-9929-d8d9056f0715",
+                            "name": "Credit Card Management",
+                            "action": "OCRH",
+                            "create": true,
+                            "showListview": true
+                        }
+                    ]
+                },
+                {
+                    "id": "cca66a63-9f3b-4feb-b517-e3192da6a1a2",
+                    "name": "Deposit",
+                    "create": true,
+                    "showListview": false,
+                    "nodes": [
+                        {
+                            "id": "463eb36c-70d1-4089-82a0-abd1e5b5fa20",
+                            "name": "Deposit",
+                            "action": "ODPS",
+                            "create": true,
+                            "showListview": true
+                        }
+                    ]
+                },
+                {
+                    "id": "551b3f1d-a1e0-4b82-a5e0-0fc24a2dce0f",
+                    "name": "Outgoing Payments",
+                    "create": true,
+                    "showListview": false,
+                    "nodes": [
+                        {
+                            "id": "5e68ed97-3459-4173-b718-72da0e04d03b",
+                            "name": "Outgoing Payment",
+                            "action": "OVPM",
+                            "create": true,
+                            "showListview": true
+                        },
+                        {
+                            "id": "4cde815d-2d2c-47d0-a0bb-b817ca31d61e",
+                            "name": "Check for Payment",
+                            "action": "OCHO",
+                            "create": true,
+                            "showListview": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "AE4A7E77-405D-4D9F-9130-6F3D60A46842",
+            "name": "Inventory",
+            "create": true,
+            "showListview": false,
+            "nodes": [
+                {
+                    "id": "4D91DB6D-9B8E-4A04-BFDC-DC9F345C6DC5",
+                    "name": "Item Master Data",
+                    "action": "OITM",
+                    "create": true,
+                    "showListview": true
+                }
+            ]
+        },
+        {
+            "id": "7AAA5EAA-802C-4D45-958E-9DFA73A7309C",
+            "name": "Reports",
+            "create": true,
+            "showListview": false,
+            "nodes": [
+            ]
+        }
+    ]
+}

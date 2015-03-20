@@ -1,0 +1,1257 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<core:View
+	controllerName="sap.pa.ordr.view.Edit"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns:table="sap.ui.table"
+	xmlns:b1="sap.businessone.m"
+	xmlns:common="sap.ui.commons"
+	xmlns="sap.m">
+
+  <Page
+		class="sapUiFioriObjectPage"
+		title="Sales Order"
+		showNavButton="true"
+		navButtonPress="handleNavBack">
+
+    <headerContent>
+      <Button icon="sap-icon://arrow-left" />
+      <Button icon="sap-icon://arrow-right" />
+      <Button icon="sap-icon://action-settings" />
+    </headerContent>
+    <!-- header -->
+    <l:Grid
+			defaultSpan="L12 M12 S12"
+			width="auto">
+      <l:content>
+
+        <form:SimpleForm
+					minWidth="800"
+					maxContainerCols="2"
+					editable="true"
+					labelSpanL="3"
+					labelSpanM="3"
+					emptySpanL="4"
+					emptySpanM="4"
+					columnsL="1"
+					columnsM="1"
+					layout="ResponsiveGridLayout"
+					class="editableForm">
+          <form:content>
+            <!--  -->
+            <b1:Panel>
+              <b1:layoutData>
+                <l:GridData spanM="6" spanL="6" spanS="12">
+                </l:GridData>
+              </b1:layoutData>
+              <!--  -->
+              <!-- Linked.panel -->
+              <b1:Label
+                textAlign="Right"
+                text="Customer"
+                width="29%"
+                visible="{path:'/data/CardCode/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+              <b1:LinkedInput
+                width="69%"
+                press="onLinkPress"
+                open="onLinkOpen"
+                change="onAutoComplete"
+                placeholder=""
+                link="ORDR.CardCode.OCRD"
+                value="{/data/CardCode/desc}"
+                data="{/data/CardCode/value}"
+                enabled="{path:'/data/CardCode/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                visible="{path:'/data/CardCode/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+              <!--  -->
+              <!-- Input.panel -->
+              <b1:Label
+                textAlign="Right"
+                text="Name"
+                width="29%"
+                visible="{path:'/data/CardName/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+              <b1:Input
+                width="69%"
+                value="{/data/CardName/value}"
+                change=""
+                maxLength="100"
+                enabled="{path:'/data/CardName/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                visible="{path:'/data/CardName/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+              <!--  -->
+              <!-- Linked.panel -->
+              <b1:Label
+                textAlign="Right"
+                text="Contact Person"
+                width="29%"
+                visible="{path:'/data/CntctCode/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+              <b1:LinkedInput
+                width="69%"
+                press="onLinkPress"
+                open="onLinkOpen"
+                change="onAutoComplete"
+                placeholder=""
+                link="ORDR.CntctCode.OCPR"
+                value="{/data/CntctCode/desc}"
+                data="{/data/CntctCode/value}"
+                enabled="{path:'/data/CntctCode/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                visible="{path:'/data/CntctCode/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+              <!--  -->
+              <!-- Input.panel -->
+              <b1:Label
+                textAlign="Right"
+                text="Customer Ref. No"
+                width="29%"
+                visible="{path:'/data/NumAtCard/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+              <b1:Input
+                width="69%"
+                value="{/data/NumAtCard/value}"
+                change=""
+                maxLength="100"
+                enabled="{path:'/data/NumAtCard/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                visible="{path:'/data/NumAtCard/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+              <!--  -->
+              <!-- Dropdown.panel -->
+              <b1:Label
+                textAlign="Right"
+                text="Currency"
+                width="29%"
+                visible="{path:'/data/CurSource/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+              <b1:Select
+                width="69%"
+                change="onAutoComplete"
+                beforeOpen=""
+                refresh="false"
+                selectedKey="{/data/CurSource/value}"
+                selectedText="{/data/CurSource/desc}"
+                enabled="{path:'/data/CurSource/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                visible="{path:'/data/CurSource/status',formatter:'sap.businessone.m.formatter.Visible'}"
+    >
+                <b1:items>
+                  <!--  -->
+                  <core:Item key="L" text="Local Currency" />
+                  <!--  -->
+                  <core:Item key="S" text="System Currency" />
+                  <!--  -->
+                  <core:Item key="C" text="BP Currency" />
+                  <!--  -->
+                </b1:items>
+              </b1:Select>
+              <!--  -->
+              <!-- Dropdown.panel -->
+              <b1:Label
+                textAlign="Right"
+                text="Item/Service Type"
+                width="29%"
+                visible="{path:'/data/DocType/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+              <b1:Select
+                width="69%"
+                change="onAutoComplete"
+                beforeOpen=""
+                refresh="false"
+                selectedKey="{/data/DocType/value}"
+                selectedText="{/data/DocType/desc}"
+                enabled="{path:'/data/DocType/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                visible="{path:'/data/DocType/status',formatter:'sap.businessone.m.formatter.Visible'}"
+    >
+                <b1:items>
+                  <!--  -->
+                  <core:Item key="I" text="Item" />
+                  <!--  -->
+                  <core:Item key="S" text="Service" />
+                  <!--  -->
+                </b1:items>
+              </b1:Select>
+              <!--  -->
+            </b1:Panel>
+            <!--  -->
+            <b1:Panel>
+              <b1:layoutData>
+                <l:GridData spanM="6" spanL="6" spanS="12">
+                </l:GridData>
+              </b1:layoutData>
+              <!--  -->
+              <!-- Dropdown.panel -->
+              <b1:Label
+                textAlign="Right"
+                text="No."
+                width="29%"
+                visible="{path:'/data/Series/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+              <b1:Select
+                width="69%"
+                change="onAutoComplete"
+                beforeOpen="onBeforeOpen"
+                refresh="true"
+                selectedKey="{/data/Series/value}"
+                selectedText="{/data/Series/desc}"
+                enabled="{path:'/data/Series/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                visible="{path:'/data/Series/status',formatter:'sap.businessone.m.formatter.Visible'}"
+    >
+                <b1:items>
+                  <!--  -->
+                </b1:items>
+              </b1:Select>
+              <!--  -->
+              <!-- Number.panel -->
+              <b1:Label
+                textAlign="Right"
+                text=""
+                width="29%"
+                visible="{path:'/data/DocNum/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+              <b1:NumberInput
+                width="69%"
+                value="{/data/DocNum/value}"
+                change=""
+                maxLength="11"
+                enabled="{path:'/data/DocNum/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                visible="{path:'/data/DocNum/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+              <!--  -->
+              <!-- Dropdown.panel -->
+              <b1:Label
+                textAlign="Right"
+                text="Status"
+                width="29%"
+                visible="{path:'/data/DocStatus/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+              <b1:Select
+                width="69%"
+                change=""
+                beforeOpen=""
+                refresh="false"
+                selectedKey="{/data/DocStatus/value}"
+                selectedText="{/data/DocStatus/desc}"
+                enabled="{path:'/data/DocStatus/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                visible="{path:'/data/DocStatus/status',formatter:'sap.businessone.m.formatter.Visible'}"
+    >
+                <b1:items>
+                  <!--  -->
+                  <core:Item key="O" text="Open" />
+                  <!--  -->
+                  <core:Item key="C" text="Closed" />
+                  <!--  -->
+                </b1:items>
+              </b1:Select>
+              <!--  -->
+              <!-- Dropdown.panel -->
+              <b1:Label
+                textAlign="Right"
+                text="Cancelled"
+                width="29%"
+                visible="{path:'/data/CANCELED/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+              <b1:Select
+                width="69%"
+                change=""
+                beforeOpen=""
+                refresh="false"
+                selectedKey="{/data/CANCELED/value}"
+                selectedText="{/data/CANCELED/desc}"
+                enabled="{path:'/data/CANCELED/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                visible="{path:'/data/CANCELED/status',formatter:'sap.businessone.m.formatter.Visible'}"
+    >
+                <b1:items>
+                  <!--  -->
+                  <core:Item key="Y" text="Yes" />
+                  <!--  -->
+                  <core:Item key="N" text="No" />
+                  <!--  -->
+                </b1:items>
+              </b1:Select>
+              <!--  -->
+              <!-- DateTime.panel -->
+              <b1:Label
+                textAlign="Right"
+                text="Posting Date"
+                width="29%"
+                visible="{path:'/data/DocDate/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+              <b1:DatePicker
+                width="69%"
+                change=""
+                type="Date"
+                displayFormat="yyyy-MM-dd"
+                valueFormat="yyyy-MM-dd"
+                value="{/data/DocDate/value}"
+                enabled="{path:'/data/DocDate/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                visible="{path:'/data/DocDate/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+              <!--  -->
+              <!-- DateTime.panel -->
+              <b1:Label
+                textAlign="Right"
+                text="Delivery Date"
+                width="29%"
+                visible="{path:'/data/DocDueDate/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+              <b1:DatePicker
+                width="69%"
+                change=""
+                type="Date"
+                displayFormat="yyyy-MM-dd"
+                valueFormat="yyyy-MM-dd"
+                value="{/data/DocDueDate/value}"
+                enabled="{path:'/data/DocDueDate/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                visible="{path:'/data/DocDueDate/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+              <!--  -->
+              <!-- DateTime.panel -->
+              <b1:Label
+                textAlign="Right"
+                text="Document Date"
+                width="29%"
+                visible="{path:'/data/TaxDate/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+              <b1:DatePicker
+                width="69%"
+                change=""
+                type="Date"
+                displayFormat="yyyy-MM-dd"
+                valueFormat="yyyy-MM-dd"
+                value="{/data/TaxDate/value}"
+                enabled="{path:'/data/TaxDate/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                visible="{path:'/data/TaxDate/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+              <!--  -->
+            </b1:Panel>
+            <!--  -->
+          </form:content>
+        </form:SimpleForm>
+
+      </l:content>
+    </l:Grid>
+
+    <!-- groups (tabs) -->
+    <!--  -->
+    <IconTabBar
+			expanded="true" >
+      <items>
+
+        <!--  -->
+        <IconTabFilter
+					text="Contents">
+          <l:Grid
+            defaultSpan="L12 M12 S12"
+            width="auto">
+            <l:content>
+              <form:SimpleForm
+                minWidth="800"
+                maxContainerCols="2"
+                editable="true"
+                labelSpanL="3"
+                labelSpanM="3"
+                emptySpanL="4"
+                emptySpanM="4"
+                columnsL="1"
+                columnsM="1"
+                layout="ResponsiveGridLayout"
+                class="editableForm">
+                <form:content>
+                  <!--  -->
+                  <b1:Panel>
+                    <b1:layoutData>
+                      <l:GridData spanM="12" spanL="12" spanS="12" />
+                    </b1:layoutData>
+                    <b1:Grid
+                      id="gridRDR1"
+                      autoFocusLastTr="true"
+                      rows="{/data/RDR1}"
+                      rowSelectionChange="onItemRowSelect"
+                        selectionMode="Single"
+                        navigationMode="Paginator"
+                        noDataText="no data"
+                        visibleRowCount="7"
+                    firstVisibleRow="3"
+                        fixedColumnCount="2">
+                      <b1:toolbar>
+                        <Toolbar>
+                          <Label text="Details" />
+                          <ToolbarSpacer />
+                          <Button icon="sap-icon://drop-down-list" type="Transparent" press="" />
+                          <Button icon="sap-icon://action-settings" type="Transparent" press="" />
+                          <Button icon="sap-icon://add" type="Transparent" press="onAddRDR1" />
+                        </Toolbar>
+                      </b1:toolbar>
+                      <b1:columns>
+
+                        <!--  -->
+                        <table:Column width="150px">
+                          <Label text="#" />
+                          <table:template>
+                            <!-- Number.grid -->
+                            <b1:NumberInput
+                              value="{LineNum/value}"
+                              change=""
+                              maxLength="11"
+                              enabled="{path:'LineNum/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                              visible="{path:'LineNum/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+                          </table:template>
+                        </table:Column>
+                        <!--  -->
+                        <table:Column width="150px">
+                          <Label text="Item No." />
+                          <table:template>
+                            <!-- Linked.grid -->
+                            <b1:LinkedInput
+                              press="onLinkPress"
+                              open="onLinkOpen"
+                              change=""
+                              placeholder=""
+                              link="RDR1.ItemCode.OITM"
+                              value="{ItemCode/desc}"
+                              data="{ItemCode/value}"
+                              enabled="{path:'ItemCode/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                              visible="{path:'ItemCode/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+                          </table:template>
+                        </table:Column>
+                        <!--  -->
+                        <table:Column width="150px">
+                          <Label text="Quantity" />
+                          <table:template>
+                            <!-- Decimal.grid -->
+                            <b1:DecimalInput
+                              value="{Quantity/value}"
+                              change="onAutoComplete"
+                              maxLength="20"
+                              enabled="{path:'Quantity/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                              visible="{path:'Quantity/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+                          </table:template>
+                        </table:Column>
+                        <!--  -->
+                        <table:Column width="150px">
+                          <Label text="Unit Price" />
+                          <table:template>
+                            <!-- Decimal.grid -->
+                            <b1:DecimalInput
+                              value="{Price/value}"
+                              change="onAutoComplete"
+                              maxLength="20"
+                              enabled="{path:'Price/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                              visible="{path:'Price/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+                          </table:template>
+                        </table:Column>
+                        <!--  -->
+                        <table:Column width="150px">
+                          <Label text="Discount %" />
+                          <table:template>
+                            <!-- Decimal.grid -->
+                            <b1:DecimalInput
+                              value="{DiscPrcnt/value}"
+                              change="onAutoComplete"
+                              maxLength="20"
+                              enabled="{path:'DiscPrcnt/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                              visible="{path:'DiscPrcnt/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+                          </table:template>
+                        </table:Column>
+                        <!--  -->
+                        <table:Column width="150px">
+                          <Label text="Tax Code" />
+                          <table:template>
+                            <!-- Linked.grid -->
+                            <b1:LinkedInput
+                              press="onLinkPress"
+                              open="onLinkOpen"
+                              change=""
+                              placeholder=""
+                              link="RDR1.TaxCode.OSTC"
+                              value="{TaxCode/desc}"
+                              data="{TaxCode/value}"
+                              enabled="{path:'TaxCode/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                              visible="{path:'TaxCode/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+                          </table:template>
+                        </table:Column>
+                        <!--  -->
+                        <table:Column width="150px">
+                          <Label text="Total (LC)" />
+                          <table:template>
+                            <!-- Decimal.grid -->
+                            <b1:DecimalInput
+                              value="{LineTotal/value}"
+                              change=""
+                              maxLength="20"
+                              enabled="{path:'LineTotal/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                              visible="{path:'LineTotal/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+                          </table:template>
+                        </table:Column>
+                        <!--  -->
+
+                        <!-- fixed column for deletion operation -->
+                        <table:Column width="50px">
+                          <Label text="" />
+                          <table:template>
+                            <b1:Button icon="sap-icon://edit" type="Transparent" press="onNaviRDR1" tabindex="false" />
+                          </table:template>
+                        </table:Column>
+                        <table:Column width="50px">
+                          <Label text="" />
+                          <table:template>
+                            <b1:Button icon="sap-icon://sys-cancel" type="Transparent" press="onDeleteRDR1" tabindex="false" />
+                          </table:template>
+                        </table:Column>
+
+                      </b1:columns>
+                      <b1:footer>
+                        <b1:GridFooter icon="sap-icon://add" press="onAddRDR1" />
+                      </b1:footer>
+                    </b1:Grid>
+                  </b1:Panel>
+                  <!--  -->
+                </form:content>
+              </form:SimpleForm>
+            </l:content>
+          </l:Grid>
+        </IconTabFilter>
+        <!--  -->
+        <IconTabFilter
+					text="Logistics">
+          <l:Grid
+            defaultSpan="L12 M12 S12"
+            width="auto">
+            <l:content>
+              <form:SimpleForm
+                minWidth="800"
+                maxContainerCols="2"
+                editable="true"
+                labelSpanL="3"
+                labelSpanM="3"
+                emptySpanL="4"
+                emptySpanM="4"
+                columnsL="1"
+                columnsM="1"
+                layout="ResponsiveGridLayout"
+                class="editableForm">
+                <form:content>
+                  <!--  -->
+                  <b1:Panel>
+                    <b1:layoutData>
+                      <l:GridData spanM="6" spanL="6" spanS="12">
+                      </l:GridData>
+                    </b1:layoutData>
+                    <!--  -->
+                    <!-- Dropdown.panel -->
+                    <b1:Label
+                      textAlign="Right"
+                      text="Ship to"
+                      width="29%"
+                      visible="{path:'/data/ShipToCode/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+                    <b1:Select
+                      width="69%"
+                      change="onAutoComplete"
+                      beforeOpen="onBeforeOpen"
+                      refresh="true"
+                      selectedKey="{/data/ShipToCode/value}"
+                      selectedText="{/data/ShipToCode/desc}"
+                      enabled="{path:'/data/ShipToCode/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                      visible="{path:'/data/ShipToCode/status',formatter:'sap.businessone.m.formatter.Visible'}"
+    >
+                      <b1:items>
+                        <!--  -->
+                      </b1:items>
+                    </b1:Select>
+                    <!--  -->
+                    <!-- Input.panel -->
+                    <b1:Label
+                      textAlign="Right"
+                      text="Ship to Address"
+                      width="29%"
+                      visible="{path:'/data/Address2/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+                    <b1:Input
+                      width="69%"
+                      value="{/data/Address2/value}"
+                      change=""
+                      maxLength="254"
+                      enabled="{path:'/data/Address2/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                      visible="{path:'/data/Address2/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+                    <!--  -->
+                    <!-- Dropdown.panel -->
+                    <b1:Label
+                      textAlign="Right"
+                      text="Bill to"
+                      width="29%"
+                      visible="{path:'/data/PayToCode/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+                    <b1:Select
+                      width="69%"
+                      change="onAutoComplete"
+                      beforeOpen="onBeforeOpen"
+                      refresh="true"
+                      selectedKey="{/data/PayToCode/value}"
+                      selectedText="{/data/PayToCode/desc}"
+                      enabled="{path:'/data/PayToCode/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                      visible="{path:'/data/PayToCode/status',formatter:'sap.businessone.m.formatter.Visible'}"
+    >
+                      <b1:items>
+                        <!--  -->
+                      </b1:items>
+                    </b1:Select>
+                    <!--  -->
+                    <!-- Input.panel -->
+                    <b1:Label
+                      textAlign="Right"
+                      text="Bill to Address"
+                      width="29%"
+                      visible="{path:'/data/Address/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+                    <b1:Input
+                      width="69%"
+                      value="{/data/Address/value}"
+                      change=""
+                      maxLength="254"
+                      enabled="{path:'/data/Address/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                      visible="{path:'/data/Address/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+                    <!--  -->
+                  </b1:Panel>
+                  <!--  -->
+                  <b1:Panel>
+                    <b1:layoutData>
+                      <l:GridData spanM="6" spanL="6" spanS="12">
+                      </l:GridData>
+                    </b1:layoutData>
+                    <!--  -->
+                    <!-- Dropdown.panel -->
+                    <b1:Label
+                      textAlign="Right"
+                      text="Print Picking Sheet"
+                      width="29%"
+                      visible="{path:'/data/Pick/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+                    <b1:Select
+                      width="69%"
+                      change=""
+                      beforeOpen=""
+                      refresh="false"
+                      selectedKey="{/data/Pick/value}"
+                      selectedText="{/data/Pick/desc}"
+                      enabled="{path:'/data/Pick/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                      visible="{path:'/data/Pick/status',formatter:'sap.businessone.m.formatter.Visible'}"
+    >
+                      <b1:items>
+                        <!--  -->
+                        <core:Item key="Y" text="Yes" />
+                        <!--  -->
+                        <core:Item key="N" text="No" />
+                        <!--  -->
+                      </b1:items>
+                    </b1:Select>
+                    <!--  -->
+                    <!-- Dropdown.panel -->
+                    <b1:Label
+                      textAlign="Right"
+                      text="Procurement Document"
+                      width="29%"
+                      visible="{path:'/data/PoPrss/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+                    <b1:Select
+                      width="69%"
+                      change=""
+                      beforeOpen=""
+                      refresh="false"
+                      selectedKey="{/data/PoPrss/value}"
+                      selectedText="{/data/PoPrss/desc}"
+                      enabled="{path:'/data/PoPrss/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                      visible="{path:'/data/PoPrss/status',formatter:'sap.businessone.m.formatter.Visible'}"
+    >
+                      <b1:items>
+                        <!--  -->
+                        <core:Item key="Y" text="Yes" />
+                        <!--  -->
+                        <core:Item key="N" text="No" />
+                        <!--  -->
+                      </b1:items>
+                    </b1:Select>
+                    <!--  -->
+                    <!-- Dropdown.panel -->
+                    <b1:Label
+                      textAlign="Right"
+                      text="Approved"
+                      width="29%"
+                      visible="{path:'/data/Confirmed/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+                    <b1:Select
+                      width="69%"
+                      change=""
+                      beforeOpen=""
+                      refresh="false"
+                      selectedKey="{/data/Confirmed/value}"
+                      selectedText="{/data/Confirmed/desc}"
+                      enabled="{path:'/data/Confirmed/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                      visible="{path:'/data/Confirmed/status',formatter:'sap.businessone.m.formatter.Visible'}"
+    >
+                      <b1:items>
+                        <!--  -->
+                        <core:Item key="Y" text="Yes" />
+                        <!--  -->
+                        <core:Item key="N" text="No" />
+                        <!--  -->
+                      </b1:items>
+                    </b1:Select>
+                    <!--  -->
+                    <!-- Dropdown.panel -->
+                    <b1:Label
+                      textAlign="Right"
+                      text="Allow Partial Delivery"
+                      width="29%"
+                      visible="{path:'/data/PartSupply/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+                    <b1:Select
+                      width="69%"
+                      change=""
+                      beforeOpen=""
+                      refresh="false"
+                      selectedKey="{/data/PartSupply/value}"
+                      selectedText="{/data/PartSupply/desc}"
+                      enabled="{path:'/data/PartSupply/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                      visible="{path:'/data/PartSupply/status',formatter:'sap.businessone.m.formatter.Visible'}"
+    >
+                      <b1:items>
+                        <!--  -->
+                        <core:Item key="Y" text="Yes" />
+                        <!--  -->
+                        <core:Item key="N" text="No" />
+                        <!--  -->
+                      </b1:items>
+                    </b1:Select>
+                    <!--  -->
+                    <!-- Input.panel -->
+                    <b1:Label
+                      textAlign="Right"
+                      text="Pick and Pack Remarks"
+                      width="29%"
+                      visible="{path:'/data/PickRmrk/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+                    <b1:Input
+                      width="69%"
+                      value="{/data/PickRmrk/value}"
+                      change=""
+                      maxLength="254"
+                      enabled="{path:'/data/PickRmrk/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                      visible="{path:'/data/PickRmrk/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+                    <!--  -->
+                    <!-- Linked.panel -->
+                    <b1:Label
+                      textAlign="Right"
+                      text="BP Channel Name"
+                      width="29%"
+                      visible="{path:'/data/BPChCode/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+                    <b1:LinkedInput
+                      width="69%"
+                      press="onLinkPress"
+                      open="onLinkOpen"
+                      change=""
+                      placeholder=""
+                      link="ORDR.BPChCode.OCRD"
+                      value="{/data/BPChCode/desc}"
+                      data="{/data/BPChCode/value}"
+                      enabled="{path:'/data/BPChCode/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                      visible="{path:'/data/BPChCode/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+                    <!--  -->
+                    <!-- Linked.panel -->
+                    <b1:Label
+                      textAlign="Right"
+                      text="BP Channel Contact"
+                      width="29%"
+                      visible="{path:'/data/BPChCntc/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+                    <b1:LinkedInput
+                      width="69%"
+                      press="onLinkPress"
+                      open="onLinkOpen"
+                      change=""
+                      placeholder=""
+                      link="ORDR.BPChCntc.OCPR"
+                      value="{/data/BPChCntc/desc}"
+                      data="{/data/BPChCntc/value}"
+                      enabled="{path:'/data/BPChCntc/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                      visible="{path:'/data/BPChCntc/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+                    <!--  -->
+                  </b1:Panel>
+                  <!--  -->
+                </form:content>
+              </form:SimpleForm>
+            </l:content>
+          </l:Grid>
+        </IconTabFilter>
+        <!--  -->
+        <IconTabFilter
+					text="Accounting">
+          <l:Grid
+            defaultSpan="L12 M12 S12"
+            width="auto">
+            <l:content>
+              <form:SimpleForm
+                minWidth="800"
+                maxContainerCols="2"
+                editable="true"
+                labelSpanL="3"
+                labelSpanM="3"
+                emptySpanL="4"
+                emptySpanM="4"
+                columnsL="1"
+                columnsM="1"
+                layout="ResponsiveGridLayout"
+                class="editableForm">
+                <form:content>
+                  <!--  -->
+                  <b1:Panel>
+                    <b1:layoutData>
+                      <l:GridData spanM="6" spanL="6" spanS="12">
+                      </l:GridData>
+                    </b1:layoutData>
+                    <!--  -->
+                    <!-- Input.panel -->
+                    <b1:Label
+                      textAlign="Right"
+                      text="Journal Remark"
+                      width="29%"
+                      visible="{path:'/data/JrnlMemo/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+                    <b1:Input
+                      width="69%"
+                      value="{/data/JrnlMemo/value}"
+                      change=""
+                      maxLength="50"
+                      enabled="{path:'/data/JrnlMemo/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                      visible="{path:'/data/JrnlMemo/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+                    <!--  -->
+                    <!-- Linked.panel -->
+                    <b1:Label
+                      textAlign="Right"
+                      text="Payment Terms"
+                      width="29%"
+                      visible="{path:'/data/GroupNum/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+                    <b1:LinkedInput
+                      width="69%"
+                      press="onLinkPress"
+                      open="onLinkOpen"
+                      change=""
+                      placeholder=""
+                      link="ORDR.GroupNum.OCTG"
+                      value="{/data/GroupNum/desc}"
+                      data="{/data/GroupNum/value}"
+                      enabled="{path:'/data/GroupNum/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                      visible="{path:'/data/GroupNum/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+                    <!--  -->
+                    <!-- Linked.panel -->
+                    <b1:Label
+                      textAlign="Right"
+                      text="Payment Method"
+                      width="29%"
+                      visible="{path:'/data/PeyMethod/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+                    <b1:LinkedInput
+                      width="69%"
+                      press="onLinkPress"
+                      open="onLinkOpen"
+                      change=""
+                      placeholder=""
+                      link="ORDR.PeyMethod.OPYM"
+                      value="{/data/PeyMethod/desc}"
+                      data="{/data/PeyMethod/value}"
+                      enabled="{path:'/data/PeyMethod/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                      visible="{path:'/data/PeyMethod/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+                    <!--  -->
+                    <!-- Linked.panel -->
+                    <b1:Label
+                      textAlign="Right"
+                      text="Central Bank Ind."
+                      width="29%"
+                      visible="{path:'/data/CntrlBnk/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+                    <b1:LinkedInput
+                      width="69%"
+                      press="onLinkPress"
+                      open="onLinkOpen"
+                      change=""
+                      placeholder=""
+                      link="ORDR.CntrlBnk.OCBI"
+                      value="{/data/CntrlBnk/desc}"
+                      data="{/data/CntrlBnk/value}"
+                      enabled="{path:'/data/CntrlBnk/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                      visible="{path:'/data/CntrlBnk/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+                    <!--  -->
+                    <!-- Dropdown.panel -->
+                    <b1:Label
+                      textAlign="Right"
+                      text="Manually Recalculate Due Date"
+                      width="29%"
+                      visible="{path:'/data/PayDuMonth/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+                    <b1:Select
+                      width="69%"
+                      change=""
+                      beforeOpen=""
+                      refresh="false"
+                      selectedKey="{/data/PayDuMonth/value}"
+                      selectedText="{/data/PayDuMonth/desc}"
+                      enabled="{path:'/data/PayDuMonth/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                      visible="{path:'/data/PayDuMonth/status',formatter:'sap.businessone.m.formatter.Visible'}"
+    >
+                      <b1:items>
+                        <!--  -->
+                        <core:Item key="E" text="Month End" />
+                        <!--  -->
+                        <core:Item key="H" text="Half Month" />
+                        <!--  -->
+                        <core:Item key="Y" text="Month Start" />
+                        <!--  -->
+                        <core:Item key="N" text="" />
+                        <!--  -->
+                      </b1:items>
+                    </b1:Select>
+                    <!--  -->
+                    <!-- Number.panel -->
+                    <b1:Label
+                      textAlign="Right"
+                      text="+ Month"
+                      width="29%"
+                      visible="{path:'/data/ExtraMonth/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+                    <b1:NumberInput
+                      width="69%"
+                      value="{/data/ExtraMonth/value}"
+                      change=""
+                      maxLength="6"
+                      enabled="{path:'/data/ExtraMonth/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                      visible="{path:'/data/ExtraMonth/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+                    <!--  -->
+                    <!-- Number.panel -->
+                    <b1:Label
+                      textAlign="Right"
+                      text="+ Days"
+                      width="29%"
+                      visible="{path:'/data/ExtraDays/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+                    <b1:NumberInput
+                      width="69%"
+                      value="{/data/ExtraDays/value}"
+                      change=""
+                      maxLength="6"
+                      enabled="{path:'/data/ExtraDays/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                      visible="{path:'/data/ExtraDays/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+                    <!--  -->
+                    <!-- Number.panel -->
+                    <b1:Label
+                      textAlign="Right"
+                      text="Cash Discount Date Offset"
+                      width="29%"
+                      visible="{path:'/data/CdcOffset/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+                    <b1:NumberInput
+                      width="69%"
+                      value="{/data/CdcOffset/value}"
+                      change=""
+                      maxLength="6"
+                      enabled="{path:'/data/CdcOffset/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                      visible="{path:'/data/CdcOffset/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+                    <!--  -->
+                  </b1:Panel>
+                  <!--  -->
+                  <b1:Panel>
+                    <b1:layoutData>
+                      <l:GridData spanM="6" spanL="6" spanS="12">
+                      </l:GridData>
+                    </b1:layoutData>
+                    <!--  -->
+                    <!-- Linked.panel -->
+                    <b1:Label
+                      textAlign="Right"
+                      text="Project"
+                      width="29%"
+                      visible="{path:'/data/Project/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+                    <b1:LinkedInput
+                      width="69%"
+                      press="onLinkPress"
+                      open="onLinkOpen"
+                      change=""
+                      placeholder=""
+                      link="ORDR.Project.OPRJ"
+                      value="{/data/Project/desc}"
+                      data="{/data/Project/value}"
+                      enabled="{path:'/data/Project/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                      visible="{path:'/data/Project/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+                    <!--  -->
+                    <!-- DateTime.panel -->
+                    <b1:Label
+                      textAlign="Right"
+                      text="Cancellation Date"
+                      width="29%"
+                      visible="{path:'/data/CancelDate/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+                    <b1:DatePicker
+                      width="69%"
+                      change=""
+                      type="Date"
+                      displayFormat="yyyy-MM-dd"
+                      valueFormat="yyyy-MM-dd"
+                      value="{/data/CancelDate/value}"
+                      enabled="{path:'/data/CancelDate/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                      visible="{path:'/data/CancelDate/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+                    <!--  -->
+                    <!-- DateTime.panel -->
+                    <b1:Label
+                      textAlign="Right"
+                      text="Require Date"
+                      width="29%"
+                      visible="{path:'/data/ReqDate/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+                    <b1:DatePicker
+                      width="69%"
+                      change=""
+                      type="Date"
+                      displayFormat="yyyy-MM-dd"
+                      valueFormat="yyyy-MM-dd"
+                      value="{/data/ReqDate/value}"
+                      enabled="{path:'/data/ReqDate/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                      visible="{path:'/data/ReqDate/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+                    <!--  -->
+                    <!-- Linked.panel -->
+                    <b1:Label
+                      textAlign="Right"
+                      text="Indicator"
+                      width="29%"
+                      visible="{path:'/data/Indicator/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+                    <b1:LinkedInput
+                      width="69%"
+                      press="onLinkPress"
+                      open="onLinkOpen"
+                      change=""
+                      placeholder=""
+                      link="ORDR.Indicator.OIDC"
+                      value="{/data/Indicator/desc}"
+                      data="{/data/Indicator/value}"
+                      enabled="{path:'/data/Indicator/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                      visible="{path:'/data/Indicator/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+                    <!--  -->
+                    <!-- Input.panel -->
+                    <b1:Label
+                      textAlign="Right"
+                      text="Federal Tax ID"
+                      width="29%"
+                      visible="{path:'/data/LicTradNum/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+                    <b1:Input
+                      width="69%"
+                      value="{/data/LicTradNum/value}"
+                      change=""
+                      maxLength="32"
+                      enabled="{path:'/data/LicTradNum/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                      visible="{path:'/data/LicTradNum/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+                    <!--  -->
+                    <!-- Number.panel -->
+                    <b1:Label
+                      textAlign="Right"
+                      text="Order Number"
+                      width="29%"
+                      visible="{path:'/data/ImportEnt/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+                    <b1:NumberInput
+                      width="69%"
+                      value="{/data/ImportEnt/value}"
+                      change=""
+                      maxLength="11"
+                      enabled="{path:'/data/ImportEnt/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                      visible="{path:'/data/ImportEnt/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+                    <!--  -->
+                  </b1:Panel>
+                  <!--  -->
+                </form:content>
+              </form:SimpleForm>
+            </l:content>
+          </l:Grid>
+        </IconTabFilter>
+        <!--  -->
+        <IconTabFilter
+					text="Attachment">
+          <l:Grid
+            defaultSpan="L12 M12 S12"
+            width="auto">
+            <l:content>
+              <form:SimpleForm
+                minWidth="800"
+                maxContainerCols="2"
+                editable="true"
+                labelSpanL="3"
+                labelSpanM="3"
+                emptySpanL="4"
+                emptySpanM="4"
+                columnsL="1"
+                columnsM="1"
+                layout="ResponsiveGridLayout"
+                class="editableForm">
+                <form:content>
+                  <!--  -->
+                  <b1:Panel>
+                    <b1:layoutData>
+                      <l:GridData spanM="6" spanL="6" spanS="12">
+                      </l:GridData>
+                    </b1:layoutData>
+                    <!--  -->
+                  </b1:Panel>
+                  <!--  -->
+                </form:content>
+              </form:SimpleForm>
+            </l:content>
+          </l:Grid>
+        </IconTabFilter>
+        <!--  -->
+
+      </items>
+    </IconTabBar>
+    <!--  -->
+
+
+    <!-- footer -->
+    <l:Grid
+			defaultSpan="L12 M12 S12"
+			width="auto">
+      <l:content>
+
+        <form:SimpleForm
+          minWidth="800"
+          maxContainerCols="2"
+          editable="true"
+          labelSpanL="3"
+          labelSpanM="3"
+          emptySpanL="4"
+          emptySpanM="4"
+          columnsL="1"
+          columnsM="1"
+          layout="ResponsiveGridLayout"
+          class="editableForm">
+          <form:content>
+            <!--  -->
+            <b1:Panel>
+              <b1:layoutData>
+                <l:GridData spanM="6" spanL="6" spanS="12">
+                </l:GridData>
+              </b1:layoutData>
+              <!--  -->
+              <!-- Linked.panel -->
+              <b1:Label
+                textAlign="Right"
+                text="Sales Employee"
+                width="29%"
+                visible="{path:'/data/SlpCode/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+              <b1:LinkedInput
+                width="69%"
+                press="onLinkPress"
+                open="onLinkOpen"
+                change=""
+                placeholder=""
+                link="ORDR.SlpCode.OSLP"
+                value="{/data/SlpCode/desc}"
+                data="{/data/SlpCode/value}"
+                enabled="{path:'/data/SlpCode/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                visible="{path:'/data/SlpCode/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+              <!--  -->
+              <!-- Linked.panel -->
+              <b1:Label
+                textAlign="Right"
+                text="Owner"
+                width="29%"
+                visible="{path:'/data/OwnerCode/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+              <b1:LinkedInput
+                width="69%"
+                press="onLinkPress"
+                open="onLinkOpen"
+                change=""
+                placeholder=""
+                link="ORDR.OwnerCode.OHEM"
+                value="{/data/OwnerCode/desc}"
+                data="{/data/OwnerCode/value}"
+                enabled="{path:'/data/OwnerCode/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                visible="{path:'/data/OwnerCode/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+              <!--  -->
+              <!-- TextArea.panel -->
+              <b1:Label
+                textAlign="Right"
+                text="Remarks"
+                width="29%"
+                visible="{path:'/data/Comments/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+              <b1:TextArea
+                width="69%"
+                value="{/data/Comments/value}"
+                change=""
+                maxLength="254"
+                enabled="{path:'/data/Comments/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                visible="{path:'/data/Comments/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+              <!--  -->
+            </b1:Panel>
+            <!--  -->
+            <b1:Panel>
+              <b1:layoutData>
+                <l:GridData spanM="6" spanL="6" spanS="12">
+                </l:GridData>
+              </b1:layoutData>
+              <!--  -->
+              <!-- Decimal.panel -->
+              <b1:Label
+                textAlign="Right"
+                text="Discount %"
+                width="29%"
+                visible="{path:'/data/DiscPrcnt/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+              <!-- value="{parts:[{path:'/data/DiscPrcnt/value'}], formatter:'sap.businessone.launcher.utils.CommonUtil.formatNumber'}" -->
+              <b1:DecimalInput
+                width="69%"
+                value="{/data/DiscPrcnt/value}"
+                change=""
+                maxLength="20"
+                enabled="{path:'/data/DiscPrcnt/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                visible="{path:'/data/DiscPrcnt/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+              <!--  -->
+              <!-- Decimal.panel -->
+              <b1:Label
+                textAlign="Right"
+                text="Total"
+                width="29%"
+                visible="{path:'/data/DocTotal/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+
+              <!-- value="{parts:[{path:'/data/DocTotal/value'}], formatter:'sap.businessone.launcher.utils.CommonUtil.formatNumber'}" -->
+              <b1:DecimalInput
+                width="69%"
+                value="{/data/DocTotal/value}"
+                change=""
+                maxLength="20"
+                enabled="{path:'/data/DocTotal/status',formatter:'sap.businessone.m.formatter.Editable'}"
+                visible="{path:'/data/DocTotal/status',formatter:'sap.businessone.m.formatter.Visible'}"/>
+              <!--  -->
+            </b1:Panel>
+            <!--  -->
+          </form:content>
+        </form:SimpleForm>
+
+      </l:content>
+    </l:Grid>
+
+    <!-- actions -->
+    <footer>
+      <Bar>
+        <contentRight>
+          <!--  -->
+          <Button text="Cancel" press="onActionCancel"/>
+          <!--  -->
+          <Button text="Close" press="onActionClose"/>
+          <!--  -->
+          <Button icon="sap-icon://sys-enter-2" type="Emphasized" press="onSave"></Button>
+          <Button icon="sap-icon://undo" press="onCancel"></Button>
+          <Button icon="sap-icon://overflow" press=""></Button>
+        </contentRight>
+      </Bar>
+    </footer>
+  </Page>
+
+</core:View>
