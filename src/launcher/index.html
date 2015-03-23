@@ -12,7 +12,7 @@
     <script src="resources/thirdparty/jquery/dist/jquery.js"></script>
     <script src="resources/thirdparty/requirejs/require.js"></script>
     <script src="resources/thirdparty/angularjs/angular.js"></script>
-    <script src="resources/thirdparty/angularjs/angular-route.js"></script>
+    <script src="resources/thirdparty/angular-route/angular-route.js"></script>
 
     <!--source-->
     <script src="resources/core.js"></script>
@@ -20,11 +20,14 @@
 <body ng-controller="sap.sbo.ng4c.app.BodyCtrl">
     <header ng-controller="sap.sbo.ng4c.header.Header" ng-include="template" ng-class="className"></header>
     <section ng-controller="sap.sbo.ng4c.launchpad.Launchpad" ng-class="className">
-        <div class="content" style="left:{{asideWidth}}em">
+        <div class="aside" style="left:{{asideLeft}}%; right:{{asideRight}}%; transform: scaleX({{asideScaleX}})scaleY({{asideScaleY}}); width: {{asideWidth}}%;">
+            <div ng-controller="sap.sbo.ng4c.launchpad.aside.Aside" ng-include="template" ng-class="className"></div>
+        </div>
+        <div class="content" style="left:{{contentLeft}}%; right:{{contentRight}}%; transform: scaleX({{contentScaleX}})scaleY({{contentScaleY}}); width: {{contentWidth}}%;">
             <ng-view></ng-view>
         </div>
-        <div class="aside" style="width:{{asideWidth}}em">
-            <div ng-controller="sap.sbo.ng4c.launchpad.aside.Aside" ng-include="template" ng-class="className"></div>
+        <div class="notice" style="left: {{noticeLeft}}%; right:{{noticeRight}}%; transform: scaleX({{noticeScaleX}})scaleY({{noticeScaleY}}); width: {{noticeWidth}}%;">
+            <div ng-controller="sap.sbo.ng4c.launchpad.notice.Notice" ng-include="template" ng-class="className"></div>
         </div>
     </section>
     <footer ng-controller="sap.sbo.ng4c.footer.Footer" ng-class="className"></footer>

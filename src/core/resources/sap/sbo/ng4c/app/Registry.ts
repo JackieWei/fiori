@@ -1,4 +1,7 @@
-﻿/// <reference path="config.ts" />
+﻿/// <reference path="../launchpad/dashboard/notice.ts" />
+/// <reference path="../launchpad/dashboard/tiles/dynamic.ts" />
+/// <reference path="../launchpad/notice/notice.ts" />
+/// <reference path="config.ts" />
 /// <reference path="appctrl.ts" />
 /// <reference path="listctrl.ts" />
 /// <reference path="eventroute.ts" />
@@ -10,7 +13,7 @@
 /// <reference path="../header/begin.ts" />
 /// <reference path="../footer/footer.ts" />
 /// <reference path="../launchpad/aside/aside.ts" />
-/// <reference path="../launchpad/aside/lightaccess.ts" />
+/// <reference path="../launchpad/aside/User.ts" />
 /// <reference path="../launchpad/aside/modules.ts" />
 /// <reference path="../launchpad/aside/menu.ts" />
 /// <reference path="../launchpad/launchpad.ts" />
@@ -118,16 +121,20 @@ module sap.sbo.ng4c.app {
             //----dashboard
             collection.push({ name: "sap.sbo.ng4c.launchpad.dashboard.Dashboard", controller: sap.sbo.ng4c.launchpad.dashboard.Dashboard });
             collection.push({ name: "sap.sbo.ng4c.launchpad.dashboard.Tile", controller: sap.sbo.ng4c.launchpad.dashboard.Tile });
+            collection.push({ name: "sap.sbo.ng4c.launchpad.dashboard.Notice", controller: sap.sbo.ng4c.launchpad.dashboard.Notice });
             //--------tiles
             collection.push({ name: "sap.sbo.ng4c.launchpad.dashboard.tiles.Kpi", controller: sap.sbo.ng4c.launchpad.dashboard.tiles.Kpi });
+            collection.push({ name: "sap.sbo.ng4c.launchpad.dashboard.tiles.Dynamic", controller: sap.sbo.ng4c.launchpad.dashboard.tiles.Dynamic });
             //----aside
             collection.push({ name: "sap.sbo.ng4c.launchpad.aside.Aside", controller: sap.sbo.ng4c.launchpad.aside.Aside });
-            collection.push({ name: "sap.sbo.ng4c.launchpad.aside.LightAccess", controller: sap.sbo.ng4c.launchpad.aside.LightAccess });
+            collection.push({ name: "sap.sbo.ng4c.launchpad.aside.User", controller: sap.sbo.ng4c.launchpad.aside.User });
             collection.push({ name: "sap.sbo.ng4c.launchpad.aside.Menu", controller: sap.sbo.ng4c.launchpad.aside.Menu });
             collection.push({ name: "sap.sbo.ng4c.launchpad.aside.Modules", controller: sap.sbo.ng4c.launchpad.aside.Modules });
             collection.push({ name: "sap.sbo.ng4c.launchpad.aside.MyMenu", controller: sap.sbo.ng4c.launchpad.aside.MyMenu });
             collection.push({ name: "sap.sbo.ng4c.launchpad.aside.Tab", controller: sap.sbo.ng4c.launchpad.aside.Tab });
             collection.push({ name: "sap.sbo.ng4c.launchpad.aside.SearchBar", controller: sap.sbo.ng4c.launchpad.aside.SearchBar });
+            //--------notice
+            collection.push({ name: "sap.sbo.ng4c.launchpad.notice.Notice", controller: sap.sbo.ng4c.launchpad.notice.Notice });
             //list
             collection.push({ name: "sap.sbo.ng4c.launchpad.list.List", controller: sap.sbo.ng4c.launchpad.list.List });
             //detail

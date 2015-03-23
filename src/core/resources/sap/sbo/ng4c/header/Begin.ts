@@ -1,12 +1,16 @@
 ﻿/// <reference path="../app/storage.ts" />
+/// <reference path="../launchpad/dashboard/dashboard.ts" />
+/// <reference path="../launchpad/aside/aside.ts" />
 /// <reference path="../basecontroller.ts" />
 module sap.sbo.ng4c.header {
     import BaseController = sap.sbo.ng4c.BaseController;
     import Storage = sap.sbo.ng4c.app.Storage;
+    import Aside = sap.sbo.ng4c.launchpad.aside.Aside;
+    import Dashboard = sap.sbo.ng4c.launchpad.dashboard.Dashboard;
 
     export interface BeginScope extends Scope {
-        showOrHideMenu: Function;
-        showOrHideLogo: boolean;
+        focusOnHome: Function;
+        focusOnPersonal: boolean;
     }
 
     export class Begin extends BaseController {
@@ -18,13 +22,16 @@ module sap.sbo.ng4c.header {
             this.scope = <BeginScope>$scope;
             this.storage = storage;
 
-            this.scope.showOrHideLogo = !this.storage.getBoolean("showOrHideMenu", true);
-            this.scope.showOrHideMenu = $.proxy(this.showOrHideMenu, this);
+            this.scope.focusOnHome = $.proxy(this.focusOnHome, this);
+            this.scope.focusOnPersonal = $.proxy(this.focusOnPersonal, this);
         }
 
-        private showOrHideMenu(name): void {
-            this.scope.showOrHideLogo = !this.scope.showOrHideLogo;
-            this.$scope.$emit("showOrHideMenu", this.scope.showOrHideLogo);
+        public focusOnHome(): void {
+            this.$scope.$emit("focusChange", Dashboard.ELEMTNT_INDEX);
+        }
+
+        public focusOnPersonal(): void {
+            this.$scope.$emit("focusChange", Aside.ELEMTNT_INDEX);
         }
     }
 }

@@ -1,24 +1,48 @@
-﻿<div ng-controller="sap.sbo.ng4c.launchpad.aside.Menu" ng-class="className" style="display:{{liteMode ? 'none' : 'block'}}">
-    <div ng-controller="sap.sbo.ng4c.launchpad.aside.Tab" ng-class="className">
-        <div class="tab">
-            <a href="" ng-click="showTab(0)" style="background-color: {{currentIndex===0? '#007cc0' : '#333333'}}"><div>Modules</div></a>
-            <a href="" ng-click="showTab(1)" style="background-color: {{currentIndex===1? '#007cc0' : '#333333'}}"><div>My Menu</div></a>
+﻿<div ng-controller="sap.sbo.ng4c.launchpad.aside.User" ng-class="className">
+    <div class="avatar">
+        <img src="resources/sap/sbo/ng4c/header/avatar.jpg" />
+    </div>
+    <div class="info">
+        <div class="uname">
+            <span>Jackie Wei</span>
         </div>
-        <div class="content">
-            <div style="display:{{currentIndex===0? 'block' : 'none'}}" ng-controller="sap.sbo.ng4c.launchpad.aside.Modules" ng-class="className">
-                <div ng-controller="sap.sbo.ng4c.launchpad.aside.SearchBar" ng-include="template" ng-class="className">
-                    SearchBar
-                </div>
-                <ng4c-tree ng-menuurl="resources/sap/sbo/ui/controls/Modules.json" ng-leafclick="menuItemClick"></ng4c-tree>
-            </div>
-            <div style="display:{{currentIndex===1? 'block' : 'none'}}" ng-controller="sap.sbo.ng4c.launchpad.aside.MyMenu" ng-class="className">
-                <ng4c-tree ng-menuurl="resources/sap/sbo/ui/controls/MyMenu.json" ng-leafclick="menuItemClick"></ng4c-tree>
-            </div>
+        <div class="status">
+            <select>
+                <option>Online</option>
+                <option>Offline</option>
+                <option>Busy</option>
+            </select>
         </div>
     </div>
 </div>
-<div ng-controller="sap.sbo.ng4c.launchpad.aside.LightAccess" ng-class="className" style="display:{{liteMode ? 'block' : 'none'}}">
-    <div>Home Icon</div>
-    <div>Search</div>
-    <div>List</div>
+<div class="tools">
+    <div class="finder">
+        <div>App Finder</div>
+    </div>
+    <div class="help">
+        <div>Help</div>
+    </div>
+    <div class="edit">
+        <div>Edit</div>
+    </div>
+    <div class="setting">
+        <div>Settings</div>
+    </div>
+    <div class="logout">
+        <div>Log Out</div>
+    </div>
+</div>
+<div ng-controller="sap.sbo.ng4c.launchpad.aside.Tab" ng-class="className">
+    <div class="tab">
+        <a href="" ng-click="showTab(0)" style="background-color: {{currentIndex===0? '#007cc0' : '#333333'}}"><div>Lastest on top</div></a>
+        <a href="" ng-click="showTab(1)" style="background-color: {{currentIndex===1? '#007cc0' : '#333333'}}"><div>By Name</div></a>
+    </div>
+    <div class="content">
+        <div style="display:{{currentIndex===0? 'block' : 'none'}}" ng-controller="sap.sbo.ng4c.launchpad.aside.Modules" ng-class="className">
+
+        </div>
+        <div style="display:{{currentIndex===1? 'block' : 'none'}}" ng-controller="sap.sbo.ng4c.launchpad.aside.MyMenu" ng-class="className">
+
+        </div>
+    </div>
 </div>

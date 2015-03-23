@@ -18,7 +18,7 @@ module sap.sbo.ng4c.launchpad.dashboard {
         private scope: TileScope;
         private config: Config;
 
-        public constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes, config:Config) {
+        public constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes, config: Config) {
             super($scope, $element, $attrs, "sap.sbo.ng4c.launchpad.dashboard.Tile");
 
             this.scope = <TileScope>this.$scope;
@@ -34,7 +34,7 @@ module sap.sbo.ng4c.launchpad.dashboard {
             this.scope.width = this.scope.sizeW * this.config.ui.tileBasicWidth;
             this.scope.height = this.scope.sizeH * this.config.ui.tileBasicHeight;
 
-            this.scope.innerTemplate = 'resources/sap/sbo/ng4c/launchpad/dashboard/tiles/KPI.html';
+            this.scope.innerTemplate = 'resources/sap/sbo/ng4c/launchpad/dashboard/tiles/' + this.config.tile.getTileTemplateByName(this.scope.rawData.Type) + '.html';
         }
     }
 } 

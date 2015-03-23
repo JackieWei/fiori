@@ -4,7 +4,20 @@ module sap.sbo.ng4c.launchpad.dashboard {
     import AsideProps = sap.sbo.ng4c.launchpad.aside.AsideProps;
 
     export interface DashboardScope extends Scope {
-        tiles: TileData[];
+        homeTiles: TileData[];
+        salesTiles: TileData[];
+        notices: NoticeData[];
+
+        dashboardWidth: number;
+        noticeWidth: number;
+
+        noticeVisual: string;
+        noticeLeft: string;
+        noticeOpacity: number;
+    }
+
+    export interface NoticeData {
+        entry: number;
     }
 
     export interface PageData {
@@ -23,6 +36,9 @@ module sap.sbo.ng4c.launchpad.dashboard {
 
     export class Dashboard extends BaseController {
 
+        public static ELEMTNT_INDEX: number = 1;
+
+        private token: number;
         private scope: DashboardScope;
 
         public constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes) {
@@ -31,18 +47,69 @@ module sap.sbo.ng4c.launchpad.dashboard {
             this.scope = <DashboardScope>this.$scope;
 
             this.buildScope();
+
+            this.scope.$on("focusChangeBroadcast", $.proxy(this.onShowOrHideMenuBroadcast, this));
         }
 
-        private buildScope():void {
-            $.ajax('resources/sap/sbo/ng4c/launchpad/dashboard/Pages.json', {
+        private buildScope(): void {
+            $.ajax('resources/sap/sbo/ng4c/launchpad/dashboard/home.json', {
                 async: true,
-                success: $.proxy(this.onTilesLoaded, this)
+                success: $.proxy(this.onHomeTilesLoaded, this)
             });
         }
 
-        private onTilesLoaded(data: PageData[]): void {
-            this.scope.tiles = data[0].Tiles;
+        private onHomeTilesLoaded(data: PageData[]): void {
+            this.scope.homeTiles = data[0].Tiles;
+
+            $.ajax('resources/sap/sbo/ng4c/launchpad/dashboard/sales.json', {
+                async: true,
+                success: $.proxy(this.onSalesTilesLoaded, this)
+            });
+        }
+
+        private onSalesTilesLoaded(data: PageData[]): void {
+            this.scope.salesTiles = data[0].Tiles;
+
+            this.scope.notices = [{ entry: 1 }, { entry: 2 }, { entry: 3 }, { entry: 4 }];
+            this.scope.noticeLeft = "100%";
+            this.scope.noticeOpacity = 0;
+            this.focusOnElement(Dashboard.ELEMTNT_INDEX);
+
             this.scope.$applyAsync();
+
+
+        }
+
+        private showNotice(): void {
+            clearTimeout(this.token);
+
+            this.scope.noticeLeft = '0';
+            this.scope.noticeOpacity = 1;
+            this.scope.$applyAsync();
+        }
+
+        private hideNotice(): void {
+            clearTimeout(this.token);
+
+            this.scope.noticeLeft = '100%';
+            this.scope.noticeOpacity = 0;
+            this.scope.$applyAsync();
+        }
+
+        private onShowOrHideMenuBroadcast(event: ng.IAngularEvent, elementIndex: number): void {
+            this.focusOnElement(elementIndex);
+        }
+
+        private focusOnElement(elementIndex: number): void {
+            if (elementIndex === Dashboard.ELEMTNT_INDEX) {
+                this.scope.dashboardWidth = 70;
+                this.scope.noticeWidth = 25;
+                this.token = setTimeout($.proxy(this.showNotice, this), 100);
+            } else {
+                this.scope.dashboardWidth = 100;
+                this.scope.noticeWidth = 0;
+                this.token = setTimeout($.proxy(this.hideNotice, this), 100);
+            }
         }
     }
 } 

@@ -10,10 +10,13 @@ module sap.sbo.ng4c.launchpad.aside {
 
     export class AsideProps {
         public static HIDE_WIDTH: number = 50;
-        public static SHOW_WIDTH: number = 205;
+        public static SHOW_WIDTH: number = 1000;
     }
 
     export class Aside extends BaseController {
+
+        public static ELEMTNT_INDEX: number = 0;
+
         private scope: IAsideScope;
         private storage: Storage;
 
@@ -23,7 +26,7 @@ module sap.sbo.ng4c.launchpad.aside {
             this.scope = <IAsideScope>this.$scope;
             this.storage = storage;
             this.scope.liteMode = this.storage.getBoolean("showOrHideMenu", true);
-            this.scope.width = this.scope.liteMode ? AsideProps.HIDE_WIDTH : AsideProps.SHOW_WIDTH;
+            this.scope.width = AsideProps.SHOW_WIDTH;
         }
 
         private onShowOrHideMenuBroadcast(event: ng.IAngularEvent, showOrHide: boolean) {

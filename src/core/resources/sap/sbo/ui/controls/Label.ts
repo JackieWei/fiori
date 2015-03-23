@@ -34,7 +34,7 @@ module sap.sbo.ui.controls {
     }
 
     export interface LabelAttributes extends ControlAttributes {
-        ngText: string;
+        text: string;
     }
 
     export class Label extends BaseControl {
@@ -49,7 +49,7 @@ module sap.sbo.ui.controls {
         }
 
         public buildScope(): void {
-            this.scope.text = this.attrs.ngText;
+            this.scope.text = this.attrs.text;
         }
     }
 } 

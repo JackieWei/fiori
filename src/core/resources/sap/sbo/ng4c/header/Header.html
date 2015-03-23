@@ -1,27 +1,20 @@
 ﻿<div ng-controller="sap.sbo.ng4c.header.Begin" ng-class="className">
-    <div class="sapUiUfdShellHeadContainer">
-        <a tabindex="0" href="javascript:void(0);" ng-show="showOrHideLogo" class="sapUiUfdShellHeadItm logoWrapper sapUiUfdShellHeadItmSep" title="SAP Business One Next Generation" ng-click="showOrHideMenu()">
-            <div class="logo"></div>
-        </a>
-        <a tabindex="0" href="javascript:void(0);" class="sapUiUfdShellHeadItm sapUiUfdShellHeadItmSep" title="show/hide menu" ng-click="showOrHideMenu()">
-            <span style="font-family: SAP-icons;"></span>
-            <div class="sapUiUfdShellHeadItmMarker"><div></div></div>
-        </a>
+    <div class="container">
+        <div class="avatar" tabindex="0" ng-click="focusOnPersonal()">
+            <img src="resources/sap/sbo/ng4c/header/avatar.jpg" />
+        </div>
+        <div class="home" tabindex="0" ng-click="focusOnHome()"></div>
     </div>
 </div>
 <div ng-controller="sap.sbo.ng4c.header.Center" ng-class="className">
-    <div class="sapUiUfdShellHeadContainer">
+    <div class="container">
+        <div class="title">Me Area</div>
     </div>
 </div>
 <div ng-controller="sap.sbo.ng4c.header.End" ng-class="className">
-    <div class="sapUiUfdShellHeadContainer">
-        <a tabindex="0" href="javascript:void(0);" id="sf" data-sap-ui="sf" class="sapUiUfdShellHeadItm" title="搜索">
-            <span style="font-family: SAP-icons;"></span><div class="sapUiUfdShellHeadItmMarker"><div></div></div>
-        </a>
-        <a tabindex="0" href="javascript:void(0);" class="sapUiUfdShellHeadUsrItm" title="选项">
-            <span id="actionsBtn-img" class="sapUiUfdShellHeadUsrItmImg" style="font-family: SAP-icons;"></span>
-            <span id="actionsBtn-name" class="sapUiUfdShellHeadUsrItmName" title="manager">manager</span>
-            <span class="sapUiUfdShellHeadUsrItmExp"></span>
-        </a>
+    <div class="container">
+        <div class="search" tabindex="0"></div>
+        <div class="setting" tabindex="0"></div>
+        <div class="notice" tabindex="0" ng-click="focusOnNotice()"></div>
     </div>
 </div>

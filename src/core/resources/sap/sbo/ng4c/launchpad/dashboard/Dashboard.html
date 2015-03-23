@@ -1,2 +1,25 @@
-﻿<div ng-repeat="data in tiles" ng-controller="sap.sbo.ng4c.launchpad.dashboard.Tile" ng-include="template" ng-class="className" style="width:{{width}}em;height:{{height}}em">
+﻿<div class="tileContainers" style="width:{{dashboardWidth}}%">
+    <div class="tileContainer">
+        <ng4c-label class="label" text="My Home"></ng4c-label>
+        <div class="container">
+            <div ng-repeat="data in homeTiles" ng-controller="sap.sbo.ng4c.launchpad.dashboard.Tile" ng-include="template"
+                 ng-class="className" style="width:{{width}}em;height:{{height}}em">
+            </div>
+        </div>
+    </div>
+    <div class="tileContainer">
+        <ng4c-label class="label" text="Internal Sales Representative">
+        </ng4c-label>
+        <div class="container">
+            <div ng-repeat="data in salesTiles" ng-controller="sap.sbo.ng4c.launchpad.dashboard.Tile" ng-include="template"
+                 ng-class="className" style="width:{{width}}em;height:{{height}}em">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="notice" style="width:{{noticeWidth}}%; height: 100%;">
+    <div ng-repeat="data in notices" ng-controller="sap.sbo.ng4c.launchpad.dashboard.Notice" ng-include="template"
+         ng-class="className" style="position:absolute; transition: {{0.1 * ($index + 1)}}s;top:{{132 * $index}}px;left: {{noticeLeft}}; opacity: {{noticeOpacity}};">
+    </div>
 </div>

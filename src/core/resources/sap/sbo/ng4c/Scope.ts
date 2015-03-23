@@ -15,5 +15,7 @@
         css: CssProps;
 
         data: any;//raw object
+
+        elementIndex: number;
     }
 } 
