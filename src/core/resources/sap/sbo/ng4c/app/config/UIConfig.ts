@@ -5,5 +5,7 @@
 
         public tileBasicWidth: number = 15;
         public tileBasicHeight: number = 14;
+
+        public tileBasicGap: number = 0.6;
     }
 } 

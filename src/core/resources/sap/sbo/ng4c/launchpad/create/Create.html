@@ -1,0 +1,68 @@
+﻿<div class="tab">
+    <div data-sap-ui-icon-content="" class="add sapMBtnCustomIcon sapMBtnIcon sapUiIcon sapUiIconMirrorInRTL" style="font-family:'SAP-icons'"></div>
+    <div class="draft {{currentIndex === $index ? 'on' : 'off'}}" ng-repeat="data in drafts" ng-click="switchTab($index)">
+        <div class="name">New Sales Order</div>
+        <div class="icon"></div>
+    </div>
+</div>
+<div class="content">
+    <div class="left">
+        <div class="panel" ng-repeat="data in drafts" style="display:{{currentIndex === $index ? 'block' : 'none'}}">
+            <div class="vals">
+                <div class="val">
+                    <div class="number">0.00</div>
+                    <div class="label">Total (USD)</div>
+                </div>
+                <div class="val">
+                    <div class="number">0.00</div>
+                    <div class="label">Shipping (USD)</div>
+                </div>
+                <div class="val">
+                    <div class="number">0.00</div>
+                    <div class="label">Tax (USD)</div>
+                </div>
+                <div class="val">
+                    <div class="number">0.00</div>
+                    <div class="label">Grand Total (USD)</div>
+                </div>
+            </div>
+            <div class="form">
+                <div class="sub">
+                    <div class="title">Customer</div>
+                    <div class="item">
+                        <ng4c-label text="Account"></ng4c-label>
+                        <ng4c-linked-input></ng4c-linked-input>
+                    </div>
+                    <div class="item">
+                        <ng4c-label text="Sales Area"></ng4c-label>
+                        <ng4c-input></ng4c-input>
+                    </div>
+                    <div class="item">
+                        <ng4c-label text="Ship-To Party"></ng4c-label>
+                        <ng4c-linked-input></ng4c-linked-input>
+                    </div>
+                    <div class="item">
+                        <ng4c-label text="Address"></ng4c-label>
+                        <ng4c-input></ng4c-input>
+                    </div>
+                </div>
+                <div class="sub">
+                    <div class="title">Order Details</div>
+                    <div class="item">
+                        <ng4c-label text="Requested Delivery"></ng4c-label>
+                        <ng4c-linked-input></ng4c-linked-input>
+                    </div>
+                    <div class="item">
+                        <ng4c-label text="Single Shipment"></ng4c-label>
+                        <ng4c-checkbox></ng4c-checkbox>
+                    </div>
+                    <div class="item">
+                        <ng4c-label text="Shipping Instructions"></ng4c-label>
+                        <ng4c-text-area></ng4c-text-area>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right"></div>
+</div>

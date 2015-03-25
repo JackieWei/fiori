@@ -1,1 +1,8 @@
-﻿<img src="resources/sap/sbo/ng4c/launchpad/notice/notice.png" />
+﻿<div class="tab">
+    <div class="{{currentIndex === 0 ? 'light' : 'grey'}}" ng-click="switchTab(0)">Lastest on Top</div>
+    <div class="{{currentIndex === 1 ? 'light' : 'grey'}}" ng-click="switchTab(1)">By App</div>
+    <div class="{{currentIndex === 2 ? 'light' : 'grey'}}" ng-click="switchTab(2)">By Priority</div>
+</div>
+<div class="content">
+    <div ng-repeat="data in notices" ng-controller="sap.sbo.ng4c.launchpad.notice.Item" ng-include="template" ng-class="className" style="transition:{{0.1 * ($index + 1)}}s"></div>
+</div>

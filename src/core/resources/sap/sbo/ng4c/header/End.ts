@@ -21,7 +21,11 @@ module sap.sbo.ng4c.header {
         }
 
         private focusOnNotice(): void {
-            this.$scope.$emit("focusChange", Notice.ELEMTNT_INDEX);
+            if (location.hash.length <= 2) {
+                this.$scope.$emit("readyForChange", 2);
+            } else {
+                this.$scope.$emit("focusChange", 2);
+            }
         }
     }
 }

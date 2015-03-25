@@ -1,4 +1,7 @@
-﻿module sap.sbo.ng4c.app {
+﻿/// <reference path="router.ts" />
+module sap.sbo.ng4c.app {
+
+    import Router = sap.sbo.ng4c.app.Router;
 
     export interface DetailScope extends ng.IScope {
         action: string;
@@ -9,9 +12,7 @@
 
         private scope: DetailScope;
 
-        public constructor($scope: ng.IScope, $route: ng.route.IRouteService) {
-            console.log($route.current.params.bo_abbr + "-" + $route.current.params.bo_idx);
-
+        public constructor($scope: ng.IScope, $route: ng.route.IRouteService, router:Router) {
             this.scope = <DetailScope>$scope;
 
             this.scope.action = $route.current.params.bo_abbr;

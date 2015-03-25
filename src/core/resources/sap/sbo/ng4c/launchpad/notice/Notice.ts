@@ -5,6 +5,12 @@ module sap.sbo.ng4c.launchpad.notice {
     import Storage = sap.sbo.ng4c.app.Storage;
 
     export interface NoticeScope extends Scope {
+        notices: NoticeData[];
+        switchTab: Function;
+        currentIndex: number;
+    }
+
+    export interface NoticeData {
     }
 
     export class Notice extends BaseController {
@@ -23,15 +29,24 @@ module sap.sbo.ng4c.launchpad.notice {
             this.storage = storage;
 
             this.buildScope();
+
+            this.scope.$on("focusChangeBroadcast", $.proxy(this.onFocusChange, this));
+            this.scope.switchTab = $.proxy(this.onSwitchTab, this);
         }
 
         private buildScope(): void {
             this.scope.elementIndex = Notice.ELEMTNT_INDEX;
 
-            this.scope.$on("focusChangeBroadcast", $.proxy(this.onFocusChange, this));
+            this.scope.notices = [{}, {}, {}, {}];
+            this.scope.currentIndex = 0;
         }
 
-        public onFocusChange(event: ng.IAngularEvent, elementIndex: number): void {
+        private onFocusChange(event: ng.IAngularEvent, elementIndex: number): void {
         }
+
+        private onSwitchTab(index: number): void {
+            this.scope.currentIndex = index;
+        }
+
     }
 } 

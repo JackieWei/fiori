@@ -1,4 +1,4 @@
-﻿<div class="tileContainers" style="width:{{dashboardWidth}}%">
+﻿<div class="tileContainers">
     <div class="tileContainer">
         <ng4c-label class="label" text="My Home"></ng4c-label>
         <div class="container">
@@ -18,8 +18,8 @@
     </div>
 </div>
 
-<div class="notice" style="width:{{noticeWidth}}%; height: 100%;">
+<div class="notice">
     <div ng-repeat="data in notices" ng-controller="sap.sbo.ng4c.launchpad.dashboard.Notice" ng-include="template"
-         ng-class="className" style="position:absolute; transition: {{0.1 * ($index + 1)}}s;top:{{132 * $index}}px;left: {{noticeLeft}}; opacity: {{noticeOpacity}};">
+         ng-class="className" style="position:absolute; transition: {{0.15 * ($index + 1)}}s;top:{{132 * $index}}px;left: {{noticeLeft}}; opacity: {{noticeOpacity}};">
     </div>
 </div>

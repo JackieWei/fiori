@@ -1,4 +1,7 @@
-﻿module sap.sbo.ng4c.app {
+﻿/// <reference path="router.ts" />
+module sap.sbo.ng4c.app {
+
+    import Router = sap.sbo.ng4c.app.Router;
 
     export interface ListScope extends ng.IScope{
         action: string;
@@ -8,8 +11,7 @@
 
         private scope: ListScope;
 
-        public constructor($scope: ng.IScope, $route: ng.route.IRouteService) {
-            console.log($route.current.params.bo_abbr);
+        public constructor($scope: ng.IScope, $route: ng.route.IRouteService, router:Router) {
 
             this.scope = <ListScope>$scope;
 

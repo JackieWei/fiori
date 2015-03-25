@@ -1,0 +1,80 @@
+﻿[
+    {
+        "PageId": "20",
+        "Name": "My Home",
+        "Tiles": [
+            {
+                "TileId": "7170",
+                "Index": "4",
+                "Size": "2x2",
+                "Type": "recentc",
+                "WidgetEntry": "-28"
+            },
+            {
+                "TileId": "7172",
+                "Index": "6",
+                "Size": "1x2",
+                "Type": "incoming",
+                "WidgetEntry": "1"
+            },
+            {
+                "TileId": "7168",
+                "Index": "2",
+                "Size": "2x2",
+                "Type": "quotation",
+                "WidgetEntry": "-1"
+            },
+            {
+                "TileId": "7169",
+                "Index": "3",
+                "Size": "1x1",
+                "Type": "createq",
+                "WidgetEntry": "-6"
+            },
+            {
+                "TileId": "7170",
+                "Index": "4",
+                "Size": "1x1",
+                "Type": "creater",
+                "WidgetEntry": "-28"
+            },
+
+            {
+                "TileId": "7170",
+                "Index": "4",
+                "Size": "1x1",
+                "Type": "creates",
+                "WidgetEntry": "-28"
+            },
+            {
+                "TileId": "7170",
+                "Index": "4",
+                "Size": "1x1",
+                "Type": "createa",
+                "WidgetEntry": "-28"
+            },
+
+            {
+                "TileId": "7170",
+                "Index": "4",
+                "Size": "2x1",
+                "Type": "recenta",
+                "WidgetEntry": "-28"
+            },
+            {
+                "TileId": "7170",
+                "Index": "4",
+                "Size": "2x2",
+                "Type": "sofi",
+                "WidgetEntry": "-28"
+            },
+            {
+                "TileId": "7170",
+                "Index": "4",
+                "Size": "2x2",
+                "Type": "quickl",
+                "WidgetEntry": "-28"
+            }
+        ]
+    }
+]

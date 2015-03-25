@@ -6,42 +6,27 @@
         <div class="uname">
             <span>Jackie Wei</span>
         </div>
-        <div class="status">
-            <select>
-                <option>Online</option>
-                <option>Offline</option>
-                <option>Busy</option>
-            </select>
-        </div>
+        <ng4c-select></ng4c-select>
     </div>
 </div>
 <div class="tools">
-    <div class="finder">
-        <div>App Finder</div>
-    </div>
-    <div class="help">
-        <div>Help</div>
-    </div>
-    <div class="edit">
-        <div>Edit</div>
-    </div>
-    <div class="setting">
-        <div>Settings</div>
-    </div>
-    <div class="logout">
-        <div>Log Out</div>
-    </div>
+    <img src="resources/sap/sbo/ng4c/launchpad/aside/icons.png" />
 </div>
 <div ng-controller="sap.sbo.ng4c.launchpad.aside.Tab" ng-class="className">
     <div class="tab">
-        <a href="" ng-click="showTab(0)" style="background-color: {{currentIndex===0? '#007cc0' : '#333333'}}"><div>Lastest on top</div></a>
-        <a href="" ng-click="showTab(1)" style="background-color: {{currentIndex===1? '#007cc0' : '#333333'}}"><div>By Name</div></a>
+        <a href="" ng-click="showTab(0)"><div class="{{currentIndex === 0 ? 'light' : 'grey'}}">Lastest on top</div></a>
+        <a href="" ng-click="showTab(1)"><div class="{{currentIndex === 1 ? 'light' : 'grey'}}">By Name</div></a>
     </div>
     <div class="content">
-        <div style="display:{{currentIndex===0? 'block' : 'none'}}" ng-controller="sap.sbo.ng4c.launchpad.aside.Modules" ng-class="className">
-
+        <div class="date" style="display:{{currentIndex === 0 ? 'block' : 'none'}}">
+            <div class="item">
+                <img src="resources/sap/sbo/ng4c/launchpad/aside/message_1.png" />
+            </div>
+            <div class="item">
+                <img src="resources/sap/sbo/ng4c/launchpad/aside/message_2.png" />
+            </div>
         </div>
-        <div style="display:{{currentIndex===1? 'block' : 'none'}}" ng-controller="sap.sbo.ng4c.launchpad.aside.MyMenu" ng-class="className">
+        <div style="display:{{currentIndex === 1 ? 'block' : 'none'}}">
 
         </div>
     </div>

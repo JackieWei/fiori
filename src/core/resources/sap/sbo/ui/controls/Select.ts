@@ -10,9 +10,12 @@ module sap.sbo.ui.controls {
     }
 
     export interface SelectScope extends ControlScope {
+        
     }
 
     export interface SelectAttributes extends ControlAttributes {
+        index: number;
+        options: string;
     }
 
     export class Select extends BaseControl {

@@ -1,0 +1,17 @@
+﻿<header>
+    <div class="title">
+        <div class="text">My Machines & Part Distributtion</div>
+        <div class="icon" ng-click="showOrHideInfo()" style="transform:rotateZ({{infoOnTable ? 0 : 180}}deg)"></div>
+    </div>
+    <div class="info" ng-show="infoOnTable">
+        <ng4c-circle-progress progress="84" label="this week" suffix="" text="Incoming Sales Orders"></ng4c-circle-progress>
+        <ng4c-circle-progress progress="62" label="this week" suffix="%" text="Win Rate"></ng4c-circle-progress>
+        <ng4c-rate-star total="5" score="4" text="Customer Rating (Sentiment)"></ng4c-rate-star>
+        <ng4c-days-info></ng4c-days-info>
+    </div>
+</header>
+<section>
+    <div ng-repeat="data in tiles" ng-controller="sap.sbo.ng4c.launchpad.dashboard.Tile" ng-include="template"
+         ng-class="className" style="width:{{width}}em;height:{{height}}em">
+    </div>
+</section>

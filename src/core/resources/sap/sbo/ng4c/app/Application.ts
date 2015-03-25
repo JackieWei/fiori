@@ -39,7 +39,7 @@ module sap.sbo.ng4c.app {
             app.config(['$routeProvider', function ($routeProvider) {
                 $routeProvider.when('/', {
                     templateUrl: 'resources/sap/sbo/ng4c/app/Dashboard.html',
-                    controller: 'sap.sbo.ng4c.app.AppCtrl'
+                    controller: 'sap.sbo.ng4c.app.DashboardCtrl'
                 });
                 $routeProvider.when('/list/:bo_abbr', {
                     templateUrl: 'resources/sap/sbo/ng4c/app/List.html',
@@ -48,6 +48,14 @@ module sap.sbo.ng4c.app {
                 $routeProvider.when('/detail/:bo_abbr/:bo_idx', {
                     templateUrl: 'resources/sap/sbo/ng4c/app/Detail.html',
                     controller: 'sap.sbo.ng4c.app.DetailCtrl'
+                });
+                $routeProvider.when('/create/:bo_abbr', {
+                    templateUrl: 'resources/sap/sbo/ng4c/app/Create.html',
+                    controller: 'sap.sbo.ng4c.app.CreateCtrl'
+                });
+                $routeProvider.when('/overview/:bo_abbr', {
+                    templateUrl: 'resources/sap/sbo/ng4c/app/Overview.html',
+                    controller: 'sap.sbo.ng4c.app.OverviewCtrl'
                 });
                 $routeProvider.otherwise({
                     redirectTo: '/'

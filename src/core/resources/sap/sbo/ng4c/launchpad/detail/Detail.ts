@@ -7,7 +7,6 @@ module sap.sbo.ng4c.launchpad.detail {
     }
 
     export class Detail extends BaseController {
-
         private scope: DetailScope;
 
         public constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes) {

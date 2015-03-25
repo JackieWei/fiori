@@ -1,8 +1,14 @@
-﻿/// <reference path="../launchpad/dashboard/notice.ts" />
+﻿/// <reference path="../../ui/controls/checkbox.ts" />
+/// <reference path="../../ui/controls/circleprogress.ts" />
+/// <reference path="../launchpad/create/create.ts" />
+/// <reference path="../launchpad/overview/overview.ts" />
+/// <reference path="overview.ts" />
+/// <reference path="create.ts" />
+/// <reference path="../launchpad/dashboard/notice.ts" />
 /// <reference path="../launchpad/dashboard/tiles/dynamic.ts" />
 /// <reference path="../launchpad/notice/notice.ts" />
 /// <reference path="config.ts" />
-/// <reference path="appctrl.ts" />
+/// <reference path="DashboardCtrl.ts" />
 /// <reference path="listctrl.ts" />
 /// <reference path="eventroute.ts" />
 /// <reference path="../launchpad/dashboard/Tile.ts" />
@@ -26,6 +32,7 @@
 /// <reference path="../../ui/controls/TreeNode.ts" />
 /// <reference path="BodyCtrl.ts" />
 /// <reference path="storage.ts" />
+/// <reference path="../../ui/controls/slider.ts" />
 /// <reference path="backend.ts" />
 /// <reference path="Router.ts" />
 /// <reference path="../launchpad/list/List.ts" />
@@ -33,6 +40,7 @@
 /// <reference path="../launchpad/detail/detail.ts" />
 /// <reference path="../../ui/controls/button.ts" />
 /// <reference path="../../ui/controls/datepicker.ts" />
+/// <reference path="../launchpad/notice/item.ts" />
 /// <reference path="../../ui/controls/decimalinput.ts" />
 /// <reference path="../../ui/controls/input.ts" />
 /// <reference path="../../ui/controls/label.ts" />
@@ -40,6 +48,8 @@
 /// <reference path="../../ui/controls/numberinput.ts" />
 /// <reference path="../../ui/controls/select.ts" />
 /// <reference path="../../ui/controls/textarea.ts" />
+/// <reference path="../../ui/controls/ratestar.ts" />
+/// <reference path="../../ui/controls/daysinfo.ts" />
 
 module sap.sbo.ng4c.app {
 
@@ -111,10 +121,12 @@ module sap.sbo.ng4c.app {
 
             //system level
             collection.push({ name: "sap.sbo.ng4c.app.BodyCtrl", controller: sap.sbo.ng4c.app.BodyCtrl });
-            collection.push({ name: "sap.sbo.ng4c.app.AppCtrl", controller: sap.sbo.ng4c.app.AppCtrl });
+            collection.push({ name: "sap.sbo.ng4c.app.DashboardCtrl", controller: sap.sbo.ng4c.app.DashboardCtrl });
             collection.push({ name: "sap.sbo.ng4c.app.ListCtrl", controller: sap.sbo.ng4c.app.ListCtrl });
             collection.push({ name: "sap.sbo.ng4c.app.DetailCtrl", controller: sap.sbo.ng4c.app.DetailCtrl });
-            collection.push({ name: "sap.sbo.ng4c.app.EventRoute", controller: sap.sbo.ng4c.app.EventRoute });
+            collection.push({ name: "sap.sbo.ng4c.app.ListCtrl", controller: sap.sbo.ng4c.app.ListCtrl });
+            collection.push({ name: "sap.sbo.ng4c.app.CreateCtrl", controller: sap.sbo.ng4c.app.CreateCtrl });
+            collection.push({ name: "sap.sbo.ng4c.app.OverviewCtrl", controller: sap.sbo.ng4c.app.OverviewCtrl });
 
             //launchpad
             collection.push({ name: "sap.sbo.ng4c.launchpad.Launchpad", controller: sap.sbo.ng4c.launchpad.Launchpad });
@@ -135,10 +147,15 @@ module sap.sbo.ng4c.app {
             collection.push({ name: "sap.sbo.ng4c.launchpad.aside.SearchBar", controller: sap.sbo.ng4c.launchpad.aside.SearchBar });
             //--------notice
             collection.push({ name: "sap.sbo.ng4c.launchpad.notice.Notice", controller: sap.sbo.ng4c.launchpad.notice.Notice });
-            //list
+            collection.push({ name: "sap.sbo.ng4c.launchpad.notice.Item", controller: sap.sbo.ng4c.launchpad.notice.Item });
+            //----list
             collection.push({ name: "sap.sbo.ng4c.launchpad.list.List", controller: sap.sbo.ng4c.launchpad.list.List });
-            //detail
+            //----detail
             collection.push({ name: "sap.sbo.ng4c.launchpad.detail.Detail", controller: sap.sbo.ng4c.launchpad.detail.Detail });
+            //----create
+            collection.push({ name: "sap.sbo.ng4c.launchpad.create.Create", controller: sap.sbo.ng4c.launchpad.create.Create });
+            //----overview
+            collection.push({ name: "sap.sbo.ng4c.launchpad.overview.Overview", controller: sap.sbo.ng4c.launchpad.overview.Overview });
 
             //header
             collection.push({ name: "sap.sbo.ng4c.header.Begin", controller: sap.sbo.ng4c.header.Begin });
@@ -156,13 +173,18 @@ module sap.sbo.ng4c.app {
             //-- other controls
             
             collection.push({ name: "sap.sbo.ui.controls.Button", controller: sap.sbo.ui.controls.Button });
+            collection.push({ name: "sap.sbo.ui.controls.Checkbox", controller: sap.sbo.ui.controls.Checkbox });
+            collection.push({ name: "sap.sbo.ui.controls.CircleProgress", controller: sap.sbo.ui.controls.CircleProgress });
             collection.push({ name: "sap.sbo.ui.controls.DatePicker", controller: sap.sbo.ui.controls.DatePicker });
+            collection.push({ name: "sap.sbo.ui.controls.DaysInfo", controller: sap.sbo.ui.controls.DaysInfo });
             collection.push({ name: "sap.sbo.ui.controls.DecimalInput", controller: sap.sbo.ui.controls.DecimalInput });
             collection.push({ name: "sap.sbo.ui.controls.Input", controller: sap.sbo.ui.controls.Input });
             collection.push({ name: "sap.sbo.ui.controls.Label", controller: sap.sbo.ui.controls.Label });
             collection.push({ name: "sap.sbo.ui.controls.LinkedInput", controller: sap.sbo.ui.controls.LinkedInput });
             collection.push({ name: "sap.sbo.ui.controls.NumberInput", controller: sap.sbo.ui.controls.NumberInput });
+            collection.push({ name: "sap.sbo.ui.controls.RateStar", controller: sap.sbo.ui.controls.RateStar });
             collection.push({ name: "sap.sbo.ui.controls.Select", controller: sap.sbo.ui.controls.Select });
+            collection.push({ name: "sap.sbo.ui.controls.Slider", controller: sap.sbo.ui.controls.Slider });
             collection.push({ name: "sap.sbo.ui.controls.TextArea", controller: sap.sbo.ui.controls.TextArea });
 
             /* Registry Ends */
@@ -177,13 +199,18 @@ module sap.sbo.ng4c.app {
 
             collection.push({ name: "ng4cTree", directive: sap.sbo.ui.controls.TreeDirective });
             collection.push({ name: "ng4cButton", directive: sap.sbo.ui.controls.ButtonDirective });
+            collection.push({ name: "ng4cCheckbox", directive: sap.sbo.ui.controls.CheckboxDirective });
+            collection.push({ name: "ng4cCircleProgress", directive: sap.sbo.ui.controls.CircleProgressDirective });
             collection.push({ name: "ng4cDatePicker", directive: sap.sbo.ui.controls.DatePickerDirective });
+            collection.push({ name: "ng4cDaysInfo", directive: sap.sbo.ui.controls.DaysInfoDirective });
             collection.push({ name: "ng4cDecimalInput", directive: sap.sbo.ui.controls.DecimalInputDirective });
             collection.push({ name: "ng4cInput", directive: sap.sbo.ui.controls.InputDirective });
             collection.push({ name: "ng4cLabel", directive: sap.sbo.ui.controls.LabelDirective });
             collection.push({ name: "ng4cLinkedInput", directive: sap.sbo.ui.controls.LinkedInputDirective });
             collection.push({ name: "ng4cNumberInput", directive: sap.sbo.ui.controls.NumberInputDirective });
+            collection.push({ name: "ng4cRateStar", directive: sap.sbo.ui.controls.RateStarDirective });
             collection.push({ name: "ng4cSelect", directive: sap.sbo.ui.controls.SelectDirective });
+            collection.push({ name: "ng4cSlider", directive: sap.sbo.ui.controls.SliderDirective });
             collection.push({ name: "ng4cTextArea", directive: sap.sbo.ui.controls.TextAreaDirective });
 
             /* Registry Ends */

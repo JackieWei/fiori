@@ -11,6 +11,7 @@
         height: number;
         left: number;
         top: number;
+        $index: number;
 
         css: CssProps;
 
