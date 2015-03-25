@@ -1,6 +1,8 @@
-﻿/// <reference path="../../../basecontroller.ts" />
+﻿/// <reference path="../../../scope.ts" />
+/// <reference path="../../../basecontroller.ts" />
 module sap.sbo.ng4c.launchpad.dashboard.tiles {
     import BaseController = sap.sbo.ng4c.BaseController;
+    import Scope = sap.sbo.ng4c.Scope;
 
     export interface DynamicProps extends Scope {
         rawData: TileData;

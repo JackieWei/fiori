@@ -1647,7 +1647,34 @@ var sap;
                         function Detail($scope, $element, $attrs) {
                             _super.call(this, $scope, $element, $attrs, "sap.sbo.ng4c.launchpad.detail.Detail");
                             this.scope = this.$scope;
+                            this.scope.currentHash = 0;
+                            this.scope.switchHash = $.proxy(this.switchHash, this);
+                            this.scope.onContentScroll = $.proxy(this.onContentScroll, this);
                         }
+                        Detail.prototype.switchHash = function (hash) {
+                            this.scope.currentHash = hash;
+                            var content = this.$element.next().find(".content");
+                            var children = content.children();
+                            var currentChild = children.get(hash);
+                            content.animate({
+                                scrollTop: currentChild.offsetTop - currentChild.parentElement.offsetTop,
+                                duration: 0.05
+                            });
+                        };
+                        Detail.prototype.onContentScroll = function () {
+                            var content = this.$element.next().find(".content");
+                            var children = content.children();
+                            var total = children.length;
+                            var top = content[0].scrollTop, child, next, curTop;
+                            for (var i = 0; i < total; i++) {
+                                child = children.get(i);
+                                curTop = child.offsetTop - child.parentElement.offsetTop;
+                                if (top <= curTop) {
+                                    break;
+                                }
+                            }
+                            console.log(i);
+                        };
                         return Detail;
                     })(BaseController);
                     detail.Detail = Detail;

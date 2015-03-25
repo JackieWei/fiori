@@ -1,1 +1,98 @@
-﻿<img src="resources/sap/sbo/ng4c/launchpad/detail/detail.png" />
+﻿<header class="{{currentHash === 0 ? '' : 'small'}}">
+    <div class="logo">
+        <img src="resources/sap/sbo/ng4c/launchpad/detail/compny.png" />
+    </div>
+    <div class="info">
+        <div class="name">Yando</div>
+        <div class="others">
+            <div class="info">
+                <div class="website">www.yando.net</div>
+                <div class="street">900 Saginaw Drive</div>
+                <div class="city">Redwood City, CA 94063</div>
+                <div class="nation">United States</div>
+            </div>
+            <div class="contacts">
+                <div class="phone">
+                    <div class="label">Phone: </div>
+                    <div class="val">+1 518 482-483</div>
+                </div>
+                <div class="fax">
+                    <div class="label">Fax: </div>
+                    <div class="val">+1 518 482-497</div>
+                </div>
+                <div class="industry">
+                    <div class="label">Industry: </div>
+                    <div class="val">Manufacturing</div>
+                </div>
+                <div class="status">
+                    <div class="label">Status: </div>
+                    <div class="val">Active</div>
+                </div>
+            </div>
+            <div class="account">
+                <div class="name">A-Account</div>
+                <div class="level">ABC Classification</div>
+            </div>
+            <div class="user">
+                <div class="name">
+                    <img src="resources/sap/sbo/ng4c/header/avatar_2.png" />
+                </div>
+                <div class="info">
+                    <div class="name">Mike Jannsen</div>
+                    <div class="level">Primary Contact</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+<section>
+    <div class="tab">
+        <div class="item {{currentHash === 0 ? 'selected' : ''}}" ng-click="switchHash(0)">Charts</div>
+        <div class="item {{currentHash === 1 ? 'selected' : ''}}" ng-click="switchHash(1)">Account Team</div>
+        <div class="item {{currentHash === 2 ? 'selected' : ''}}" ng-click="switchHash(2)">Credit Limit</div>
+        <div class="item {{currentHash === 3 ? 'selected' : ''}}" ng-click="switchHash(3)">Addresses</div>
+        <div class="item {{currentHash === 4 ? 'selected' : ''}}" ng-click="switchHash(4)">Contacts</div>
+        <div class="item {{currentHash === 5 ? 'selected' : ''}}" ng-click="switchHash(5)">Compaigns</div>
+        <div class="item {{currentHash === 6 ? 'selected' : ''}}" ng-click="switchHash(6)">Leads</div>
+        <div class="item {{currentHash === 7 ? 'selected' : ''}}" ng-click="switchHash(7)">Opportunities</div>
+        <div class="item {{currentHash === 8 ? 'selected' : ''}}" ng-click="switchHash(8)">Open Orders</div>
+    </div>
+    <div class="content" onscroll="{{onContentScroll()}}">
+        <div class="charts">
+            <img src="resources/sap/sbo/ng4c/launchpad/detail/charts.png" />
+        </div>
+        <div class="accountteam">
+            <div class="label">Account Team</div>
+            <img src="resources/sap/sbo/ng4c/launchpad/detail/accountteam.png" />
+        </div>
+        <div class="creaditlimit">
+            <div class="label">Credit Limit</div>
+            <img src="resources/sap/sbo/ng4c/launchpad/detail/creditlimit.png" />
+        </div>
+        <div class="addresses">
+            <div class="label">Addresses</div>
+            <img src="resources/sap/sbo/ng4c/launchpad/detail/addresses.png" />
+        </div>
+        <div class="contacts">
+            <div class="label">Contacts</div>
+            <img src="resources/sap/sbo/ng4c/launchpad/detail/contacts.png" />
+        </div>
+        <div class="compaigns">
+            <div class="label">Compaigns</div>
+            <img src="resources/sap/sbo/ng4c/launchpad/detail/compaigns.png" />
+        </div>
+        <div class="leads">
+            <div class="label">Leads</div>
+            <img src="resources/sap/sbo/ng4c/launchpad/detail/leads.png" />
+        </div>
+        <div class="opportunities">
+            <div class="label">Opportunities</div>
+            <img src="resources/sap/sbo/ng4c/launchpad/detail/opportunities.png" />
+        </div>
+        <div class="openorders">
+            <div class="label">Open Orders</div>
+            <img src="resources/sap/sbo/ng4c/launchpad/detail/openorders.png" />
+        </div>
+    </div>
+</section>

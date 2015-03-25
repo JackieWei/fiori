@@ -284,6 +284,7 @@ declare module sap.sbo.ng4c.launchpad.dashboard {
 }
 declare module sap.sbo.ng4c.launchpad.dashboard.tiles {
     import BaseController = sap.sbo.ng4c.BaseController;
+    import Scope = sap.sbo.ng4c.Scope;
     interface DynamicProps extends Scope {
         rawData: TileData;
         url: string;
@@ -680,10 +681,16 @@ declare module sap.sbo.ng4c.launchpad.aside {
 declare module sap.sbo.ng4c.launchpad.detail {
     import BaseController = sap.sbo.ng4c.BaseController;
     interface DetailScope extends Scope {
+        currentHash: number;
+        scrollTop: number;
+        switchHash: Function;
+        onContentScroll: Function;
     }
     class Detail extends BaseController {
         private scope;
         constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes);
+        private switchHash(hash);
+        private onContentScroll();
     }
 }
 declare module sap.sbo.ui.controls {
