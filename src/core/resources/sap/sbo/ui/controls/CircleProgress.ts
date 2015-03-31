@@ -29,12 +29,18 @@ module sap.sbo.ui.controls {
     }
 
     export interface CircleProgressScope extends ControlScope {
-        progress: number;
-        imgIndex: number;
+        degree: number;
+        percent: string;
+        text: string;
+        label: string;
+        suffix: string;
     }
 
     export interface CircleProgressAttributes extends ng.IAttributes {
-        progress: string;
+        percent: string;
+        label: string;
+        suffix: string;
+        text: string;
     }
 
     export class CircleProgress extends BaseControl {
@@ -52,12 +58,11 @@ module sap.sbo.ui.controls {
         }
 
         private buildScope() {
-            this.scope.progress = parseFloat(this.attrs.progress);
-            if (this.scope.progress === 84) {
-                this.scope.imgIndex = 1;
-            } else if (this.scope.progress === 62) {
-                this.scope.imgIndex = 2;
-            }
+            this.scope.percent = this.attrs.percent;
+            this.scope.degree = parseInt(String(parseFloat(this.attrs.percent) * 360), 10) / 100 ;
+            this.scope.text = this.attrs.text;
+            this.scope.label = this.attrs.label;
+            this.scope.suffix = this.attrs.suffix;
         }
     }
 }

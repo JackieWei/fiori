@@ -1,4 +1,17 @@
 /// <reference path="../../thirdparty/resources/thirdparty.d/tsd.d.ts" />
+declare module sap.cloud.core.util {
+    class NamingUtil {
+        private static DOT_REG;
+        private static SLASH;
+        private static DOT;
+        private static HYPHEN;
+        private static EMPTY;
+        static toCssName(packageName: string): string;
+        static toPath(packageName: string): string;
+        static toDirective(packageName: string): string;
+        static uppercaseFirstChar(str: string): string;
+    }
+}
 declare module sap.cloud.logging {
     interface Logger {
         info(msg: string): void;
@@ -24,19 +37,6 @@ declare module sap.cloud.core {
         process<T>(num: T): T;
     }
 }
-declare module sap.cloud.core.util {
-    class NamingUtil {
-        private static DOT_REG;
-        private static SLASH;
-        private static DOT;
-        private static HYPHEN;
-        private static EMPTY;
-        static toCssName(packageName: string): string;
-        static toPath(packageName: string): string;
-        static toDirective(packageName: string): string;
-        static uppercaseFirstChar(str: string): string;
-    }
-}
 declare module sap.sbo.ng4c {
     interface CssProps {
         name: string;
@@ -52,6 +52,7 @@ declare module sap.sbo.ng4c {
         css: CssProps;
         data: any;
         elementIndex: number;
+        scroll: Function;
     }
 }
 declare module sap.sbo.ng4c {
@@ -69,6 +70,52 @@ declare module sap.sbo.ng4c {
         constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes, $package: string);
         protected registerTemplate(templatePackage: string): void;
         protected registerCssName(packageName: any): void;
+    }
+}
+declare module sap.sbo.ng4c.app {
+    class Router {
+        private static HASH;
+        private static SLASH;
+        private static EMPTY;
+        private static DOT;
+        static LIST: string;
+        static DETAIL: string;
+        static OVERVIEW: string;
+        static CREATE: string;
+        private _hash;
+        constructor();
+        private hashTo(fragments);
+        hashToList(boAbbr: string): void;
+        hashToDetail(boAbbr: string, boIdx: string): void;
+        hashToDashboard(): void;
+        hashToOverview(boAbbr: string): void;
+        hashToCreate(boAbbr: string): void;
+        hash: string;
+    }
+}
+declare module sap.sbo.ng4c.launchpad.message {
+    import BaseController = sap.sbo.ng4c.BaseController;
+    import Config = sap.sbo.ng4c.app.Config;
+    import Storage = sap.sbo.ng4c.app.Storage;
+    import Router = sap.sbo.ng4c.app.Router;
+    interface MessageScope extends Scope {
+        messages: MessageData[];
+        messageLeft: number;
+        clickHandler: Function;
+    }
+    interface MessageData {
+    }
+    class Message extends BaseController {
+        static ELEMTNT_INDEX: number;
+        private scope;
+        private router;
+        private config;
+        private storage;
+        constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes, config: Config, storage: Storage, router: Router);
+        private buildScope();
+        private onFocusChange(event, elementIndex);
+        private onMessage(event, show);
+        private clickHandler($event);
     }
 }
 declare module sap.sbo.ui {
@@ -120,11 +167,17 @@ declare module sap.sbo.ui.controls {
     import BaseControl = sap.sbo.ui.BaseControl;
     function CircleProgressDirective(): Object;
     interface CircleProgressScope extends ControlScope {
-        progress: number;
-        imgIndex: number;
+        degree: number;
+        percent: string;
+        text: string;
+        label: string;
+        suffix: string;
     }
     interface CircleProgressAttributes extends ng.IAttributes {
-        progress: string;
+        percent: string;
+        label: string;
+        suffix: string;
+        text: string;
     }
     class CircleProgress extends BaseControl {
         private scope;
@@ -141,6 +194,7 @@ declare module sap.sbo.ng4c.launchpad.create {
         drafts: DraftData[];
         switchTab: Function;
         currentIndex: number;
+        products: Object[];
     }
     interface DraftData {
         salesOrderName: string;
@@ -211,27 +265,6 @@ declare module sap.sbo.ng4c.app {
     class OverviewCtrl {
         private scope;
         constructor($scope: ng.IScope, $route: ng.route.IRouteService);
-    }
-}
-declare module sap.sbo.ng4c.app {
-    class Router {
-        private static HASH;
-        private static SLASH;
-        private static EMPTY;
-        private static DOT;
-        static LIST: string;
-        static DETAIL: string;
-        static OVERVIEW: string;
-        static CREATE: string;
-        private _hash;
-        constructor();
-        private hashTo(fragments);
-        hashToList(boAbbr: string): void;
-        hashToDetail(boAbbr: string, boIdx: string): void;
-        hashToDashboard(): void;
-        hashToOverview(boAbbr: string): void;
-        hashToCreate(boAbbr: string): void;
-        hash: string;
     }
 }
 declare module sap.sbo.ng4c.app {
@@ -315,6 +348,9 @@ declare module sap.sbo.ng4c.launchpad.notice {
         private onFocusChange(event, elementIndex);
         private onSwitchTab(index);
     }
+}
+declare module sap.sbo.ui.attrs {
+    function ScrollDirective(): Object;
 }
 declare module sap.sbo.ng4c.app {
     import Router = sap.sbo.ng4c.app.Router;
@@ -541,10 +577,14 @@ declare module sap.sbo.ng4c.launchpad.dashboard {
     }
 }
 declare module sap.sbo.ng4c.app {
+    interface BodyScope extends ng.IScope {
+        onBodyKeyDown: Function;
+    }
     class BodyCtrl {
         private scope;
         private router;
-        constructor($scope: ng.IScope, router: Router);
+        constructor($scope: ng.IScope, $element: JQuery, router: Router);
+        private onBodyKeyDown($event);
         private readyForChange(event, elementIndex);
         private focusChange(event, elementIndex);
     }

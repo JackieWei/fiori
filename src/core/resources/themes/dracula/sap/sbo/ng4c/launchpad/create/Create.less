@@ -59,6 +59,7 @@
             margin: 0 1rem 0 0;
             float: left;
             border-radius: 0.3rem;
+
             > .panel {
                 > .vals {
                     border-bottom: 2px solid #cccccc;
@@ -81,6 +82,7 @@
 
                 > .form {
                     margin: 2rem;
+
                     > .sub {
                         width: 48%;
                         float: left;
@@ -104,12 +106,29 @@
             }
         }
 
-        .right {
+        > .right {
             background: white;
             width: 25%;
             height: 100%;
             float: right;
             border-radius: 0.3rem;
+
+            > .title {
+                color: #000000;
+                font-size: 1rem;
+                margin: 1rem;
+            }
+
+            > .item {
+                margin: 1rem;
+                cursor: pointer;
+
+                > img {
+                    width: 95%;
+                    border-radius: .5rem;
+                    height: 6rem;
+                }
+            }
         }
     }
 }

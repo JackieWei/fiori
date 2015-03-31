@@ -1,5 +1,80 @@
 ﻿@import "../../config";
 
+@circle_cize: 8rem;
+@circle_inner: 6rem;
+@circle_margin: 1rem;
+
 .sap-sbo-ui-controls-CircleProgress {
     display: inline-block;
+    vertical-align: top;
+
+    > .circle {
+        width: @circle_cize;
+        height: @circle_cize;
+        position: absolute;
+        border-radius: 50%;
+        background: #0cc;
+        top: 4rem;
+
+        .pie_left, .pie_right {
+            width: @circle_cize;
+            height: @circle_cize;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .left, .right {
+            display: block;
+            width: @circle_cize;
+            height: @circle_cize;
+            background: #2A635E;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .pie_right, .right {
+            clip: rect(0,auto,auto,100px);
+        }
+
+        .pie_left, .left {
+            clip: rect(0,100px,auto,0);
+        }
+
+        .mask {
+            width: @circle_inner;
+            height: @circle_inner;
+            border-radius: 50%;
+            left: @circle_margin;
+            top: @circle_margin;
+            background: #338990;
+            position: absolute;
+            text-align: center;
+            line-height: @circle_inner;
+            font-size: 16px;
+
+            > div {
+                color: @color_001;
+                word-spacing: 0;
+                &.percent {
+                    font-size: 1.2rem;
+                }
+
+                &.label {
+                    font-size: .5rem;
+                    margin-top: -4.5rem;
+                }
+            }
+        }
+    }
+
+    > .label {
+        font-size: 1.2rem;
+        width: 10rem;
+        color: @color_001;
+        margin-left: 10rem;
+        margin-top: 3rem;
+    }
 }

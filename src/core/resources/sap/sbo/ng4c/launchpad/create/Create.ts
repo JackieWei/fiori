@@ -8,6 +8,7 @@ module sap.sbo.ng4c.launchpad.create {
         drafts: DraftData[];
         switchTab: Function;
         currentIndex: number;
+        products: Object[];
     }
 
     export interface DraftData {
@@ -63,7 +64,10 @@ module sap.sbo.ng4c.launchpad.create {
                     tax: '0.00',
                     grand: '0.00'
                 }];
+            this.scope.products = [{}, {}, {}];
             this.scope.currentIndex = 0;
+
+            this.scope.$applyAsync();
         }
 
         private onFocusChange(event: ng.IAngularEvent, elementIndex: number): void {

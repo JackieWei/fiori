@@ -2,6 +2,45 @@ var sap;
 (function (sap) {
     var cloud;
     (function (cloud) {
+        var core;
+        (function (core) {
+            var util;
+            (function (util) {
+                var NamingUtil = (function () {
+                    function NamingUtil() {
+                    }
+                    NamingUtil.toCssName = function (packageName) {
+                        return packageName.replace(NamingUtil.DOT_REG, NamingUtil.HYPHEN);
+                    };
+                    NamingUtil.toPath = function (packageName) {
+                        return packageName.replace(NamingUtil.DOT_REG, NamingUtil.SLASH);
+                    };
+                    NamingUtil.toDirective = function (packageName) {
+                        var names = packageName.split(NamingUtil.DOT);
+                        for (var i = 1, total = names.length; i < total; i++) {
+                            names[i] = NamingUtil.uppercaseFirstChar(names[i]);
+                        }
+                        return names.join(NamingUtil.EMPTY);
+                    };
+                    NamingUtil.uppercaseFirstChar = function (str) {
+                        return str.charAt(0).toUpperCase() + str.slice(1);
+                    };
+                    NamingUtil.DOT_REG = /\./gi;
+                    NamingUtil.SLASH = '/';
+                    NamingUtil.DOT = '.';
+                    NamingUtil.HYPHEN = '-';
+                    NamingUtil.EMPTY = '';
+                    return NamingUtil;
+                })();
+                util.NamingUtil = NamingUtil;
+            })(util = core.util || (core.util = {}));
+        })(core = cloud.core || (cloud.core = {}));
+    })(cloud = sap.cloud || (sap.cloud = {}));
+})(sap || (sap = {}));
+var sap;
+(function (sap) {
+    var cloud;
+    (function (cloud) {
         var logging;
         (function (logging) {
             var SimpleLogger = (function () {
@@ -63,45 +102,6 @@ var sap;
 })(sap || (sap = {}));
 var sap;
 (function (sap) {
-    var cloud;
-    (function (cloud) {
-        var core;
-        (function (core) {
-            var util;
-            (function (util) {
-                var NamingUtil = (function () {
-                    function NamingUtil() {
-                    }
-                    NamingUtil.toCssName = function (packageName) {
-                        return packageName.replace(NamingUtil.DOT_REG, NamingUtil.HYPHEN);
-                    };
-                    NamingUtil.toPath = function (packageName) {
-                        return packageName.replace(NamingUtil.DOT_REG, NamingUtil.SLASH);
-                    };
-                    NamingUtil.toDirective = function (packageName) {
-                        var names = packageName.split(NamingUtil.DOT);
-                        for (var i = 1, total = names.length; i < total; i++) {
-                            names[i] = NamingUtil.uppercaseFirstChar(names[i]);
-                        }
-                        return names.join(NamingUtil.EMPTY);
-                    };
-                    NamingUtil.uppercaseFirstChar = function (str) {
-                        return str.charAt(0).toUpperCase() + str.slice(1);
-                    };
-                    NamingUtil.DOT_REG = /\./gi;
-                    NamingUtil.SLASH = '/';
-                    NamingUtil.DOT = '.';
-                    NamingUtil.HYPHEN = '-';
-                    NamingUtil.EMPTY = '';
-                    return NamingUtil;
-                })();
-                util.NamingUtil = NamingUtil;
-            })(util = core.util || (core.util = {}));
-        })(core = cloud.core || (cloud.core = {}));
-    })(cloud = sap.cloud || (sap.cloud = {}));
-})(sap || (sap = {}));
-var sap;
-(function (sap) {
     var sbo;
     (function (sbo) {
         var ng4c;
@@ -138,12 +138,115 @@ var sap;
         })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
     })(sbo = sap.sbo || (sap.sbo = {}));
 })(sap || (sap = {}));
+var sap;
+(function (sap) {
+    var sbo;
+    (function (sbo) {
+        var ng4c;
+        (function (ng4c) {
+            var app;
+            (function (app) {
+                var Router = (function () {
+                    function Router() {
+                    }
+                    Router.prototype.hashTo = function (fragments) {
+                        var hash = [Router.HASH];
+                        for (var i = 0, total = fragments.length; i < total; i++) {
+                            hash.push(fragments[i]);
+                        }
+                        location.hash = hash.join(Router.SLASH);
+                    };
+                    Router.prototype.hashToList = function (boAbbr) {
+                        this.hashTo([Router.LIST, boAbbr]);
+                    };
+                    Router.prototype.hashToDetail = function (boAbbr, boIdx) {
+                        this.hashTo([Router.DETAIL, boAbbr, boIdx]);
+                    };
+                    Router.prototype.hashToDashboard = function () {
+                        location.hash = Router.HASH + Router.SLASH;
+                    };
+                    Router.prototype.hashToOverview = function (boAbbr) {
+                        this.hashTo([Router.OVERVIEW, boAbbr]);
+                    };
+                    Router.prototype.hashToCreate = function (boAbbr) {
+                        this.hashTo([Router.CREATE, boAbbr]);
+                    };
+                    Object.defineProperty(Router.prototype, "hash", {
+                        get: function () {
+                            return this._hash;
+                        },
+                        set: function (value) {
+                            this._hash = value;
+                        },
+                        enumerable: true,
+                        configurable: true
+                    });
+                    Router.HASH = '#';
+                    Router.SLASH = '/';
+                    Router.EMPTY = '';
+                    Router.DOT = '.';
+                    Router.LIST = 'list';
+                    Router.DETAIL = 'detail';
+                    Router.OVERVIEW = 'overview';
+                    Router.CREATE = 'create';
+                    return Router;
+                })();
+                app.Router = Router;
+            })(app = ng4c.app || (ng4c.app = {}));
+        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
+    })(sbo = sap.sbo || (sap.sbo = {}));
+})(sap || (sap = {}));
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     __.prototype = b.prototype;
     d.prototype = new __();
 };
+var sap;
+(function (sap) {
+    var sbo;
+    (function (sbo) {
+        var ng4c;
+        (function (ng4c) {
+            var launchpad;
+            (function (launchpad) {
+                var message;
+                (function (message) {
+                    var BaseController = sap.sbo.ng4c.BaseController;
+                    var Message = (function (_super) {
+                        __extends(Message, _super);
+                        function Message($scope, $element, $attrs, config, storage, router) {
+                            _super.call(this, $scope, $element, $attrs, "sap.sbo.ng4c.launchpad.message.Message");
+                            this.scope = this.$scope;
+                            this.config = config;
+                            this.storage = storage;
+                            this.router = router;
+                            this.buildScope();
+                            this.scope.$on("focusChangeBroadcast", $.proxy(this.onFocusChange, this));
+                            this.scope.$on("messageBroadcast", $.proxy(this.onMessage, this));
+                        }
+                        Message.prototype.buildScope = function () {
+                            this.scope.messageLeft = 0;
+                            this.scope.clickHandler = $.proxy(this.clickHandler, this);
+                        };
+                        Message.prototype.onFocusChange = function (event, elementIndex) {
+                        };
+                        Message.prototype.onMessage = function (event, show) {
+                            this.scope.messageLeft = show ? -100 : 0;
+                        };
+                        Message.prototype.clickHandler = function ($event) {
+                            this.router.hashToDetail("OCRD", '1');
+                            this.scope.messageLeft = 0;
+                        };
+                        Message.ELEMTNT_INDEX = 2;
+                        return Message;
+                    })(BaseController);
+                    message.Message = Message;
+                })(message = launchpad.message || (launchpad.message = {}));
+            })(launchpad = ng4c.launchpad || (ng4c.launchpad = {}));
+        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
+    })(sbo = sap.sbo || (sap.sbo = {}));
+})(sap || (sap = {}));
 var sap;
 (function (sap) {
     var sbo;
@@ -282,13 +385,11 @@ var sap;
                         this.buildScope();
                     }
                     CircleProgress.prototype.buildScope = function () {
-                        this.scope.progress = parseFloat(this.attrs.progress);
-                        if (this.scope.progress === 84) {
-                            this.scope.imgIndex = 1;
-                        }
-                        else if (this.scope.progress === 62) {
-                            this.scope.imgIndex = 2;
-                        }
+                        this.scope.percent = this.attrs.percent;
+                        this.scope.degree = parseInt(String(parseFloat(this.attrs.percent) * 360), 10) / 100;
+                        this.scope.text = this.attrs.text;
+                        this.scope.label = this.attrs.label;
+                        this.scope.suffix = this.attrs.suffix;
                     };
                     return CircleProgress;
                 })(BaseControl);
@@ -345,7 +446,9 @@ var sap;
                                 tax: '0.00',
                                 grand: '0.00'
                             }];
+                            this.scope.products = [{}, {}, {}];
                             this.scope.currentIndex = 0;
+                            this.scope.$applyAsync();
                         };
                         Create.prototype.onFocusChange = function (event, elementIndex) {
                         };
@@ -428,64 +531,6 @@ var sap;
                     return OverviewCtrl;
                 })();
                 app.OverviewCtrl = OverviewCtrl;
-            })(app = ng4c.app || (ng4c.app = {}));
-        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
-    })(sbo = sap.sbo || (sap.sbo = {}));
-})(sap || (sap = {}));
-var sap;
-(function (sap) {
-    var sbo;
-    (function (sbo) {
-        var ng4c;
-        (function (ng4c) {
-            var app;
-            (function (app) {
-                var Router = (function () {
-                    function Router() {
-                    }
-                    Router.prototype.hashTo = function (fragments) {
-                        var hash = [Router.HASH];
-                        for (var i = 0, total = fragments.length; i < total; i++) {
-                            hash.push(fragments[i]);
-                        }
-                        location.hash = hash.join(Router.SLASH);
-                    };
-                    Router.prototype.hashToList = function (boAbbr) {
-                        this.hashTo([Router.LIST, boAbbr]);
-                    };
-                    Router.prototype.hashToDetail = function (boAbbr, boIdx) {
-                        this.hashTo([Router.DETAIL, boAbbr, boIdx]);
-                    };
-                    Router.prototype.hashToDashboard = function () {
-                        location.hash = Router.HASH + Router.SLASH;
-                    };
-                    Router.prototype.hashToOverview = function (boAbbr) {
-                        this.hashTo([Router.OVERVIEW, boAbbr]);
-                    };
-                    Router.prototype.hashToCreate = function (boAbbr) {
-                        this.hashTo([Router.CREATE, boAbbr]);
-                    };
-                    Object.defineProperty(Router.prototype, "hash", {
-                        get: function () {
-                            return this._hash;
-                        },
-                        set: function (value) {
-                            this._hash = value;
-                        },
-                        enumerable: true,
-                        configurable: true
-                    });
-                    Router.HASH = '#';
-                    Router.SLASH = '/';
-                    Router.EMPTY = '';
-                    Router.DOT = '.';
-                    Router.LIST = 'list';
-                    Router.DETAIL = 'detail';
-                    Router.OVERVIEW = 'overview';
-                    Router.CREATE = 'create';
-                    return Router;
-                })();
-                app.Router = Router;
             })(app = ng4c.app || (ng4c.app = {}));
         })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
     })(sbo = sap.sbo || (sap.sbo = {}));
@@ -686,6 +731,43 @@ var sap;
                 })(notice = launchpad.notice || (launchpad.notice = {}));
             })(launchpad = ng4c.launchpad || (ng4c.launchpad = {}));
         })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
+    })(sbo = sap.sbo || (sap.sbo = {}));
+})(sap || (sap = {}));
+var sap;
+(function (sap) {
+    var sbo;
+    (function (sbo) {
+        var ui;
+        (function (ui) {
+            var attrs;
+            (function (attrs) {
+                function ScrollDirective() {
+                    return {
+                        restrict: "A",
+                        priority: 0,
+                        scope: true,
+                        transclude: true,
+                        compile: function ($element, $attrs, $transclude) {
+                            return {
+                                pre: function ($scope, $element, $attrs, $controller) {
+                                    console.log("Directive Pre");
+                                },
+                                post: function ($scope, $element, $attrs, $controller) {
+                                    console.log("Directive Post");
+                                }
+                            };
+                        },
+                        link: function ($scope, $element, $attrs, $controller) {
+                            angular.element(window).bind("scroll", function () {
+                                $scope.scroll();
+                                $scope.$applyAsync();
+                            });
+                        }
+                    };
+                }
+                attrs.ScrollDirective = ScrollDirective;
+            })(attrs = ui.attrs || (ui.attrs = {}));
+        })(ui = sbo.ui || (sbo.ui = {}));
     })(sbo = sap.sbo || (sap.sbo = {}));
 })(sap || (sap = {}));
 var sap;
@@ -1262,12 +1344,21 @@ var sap;
             var app;
             (function (app) {
                 var BodyCtrl = (function () {
-                    function BodyCtrl($scope, router) {
+                    function BodyCtrl($scope, $element, router) {
                         this.scope = $scope;
                         this.router = router;
                         this.scope.$on("focusChange", $.proxy(this.focusChange, this));
                         this.scope.$on("readyForChange", $.proxy(this.readyForChange, this));
+                        this.scope.onBodyKeyDown = $.proxy(this.onBodyKeyDown, this);
                     }
+                    BodyCtrl.prototype.onBodyKeyDown = function ($event) {
+                        if ($event.keyCode === 83 || $event.keyCode === 13) {
+                            this.scope.$broadcast("messageBroadcast", true);
+                        }
+                        else {
+                            this.scope.$broadcast("messageBroadcast", false);
+                        }
+                    };
                     BodyCtrl.prototype.readyForChange = function (event, elementIndex) {
                         if (location.hash.length <= 2 && elementIndex !== 1) {
                             this.scope.$broadcast("readyForChangeBroadcast", elementIndex);
@@ -2259,6 +2350,7 @@ var sap;
                             collection.push({ name: "sap.sbo.ng4c.launchpad.detail.Detail", controller: sap.sbo.ng4c.launchpad.detail.Detail });
                             collection.push({ name: "sap.sbo.ng4c.launchpad.create.Create", controller: sap.sbo.ng4c.launchpad.create.Create });
                             collection.push({ name: "sap.sbo.ng4c.launchpad.overview.Overview", controller: sap.sbo.ng4c.launchpad.overview.Overview });
+                            collection.push({ name: "sap.sbo.ng4c.launchpad.message.Message", controller: sap.sbo.ng4c.launchpad.message.Message });
                             collection.push({ name: "sap.sbo.ng4c.header.Begin", controller: sap.sbo.ng4c.header.Begin });
                             collection.push({ name: "sap.sbo.ng4c.header.End", controller: sap.sbo.ng4c.header.End });
                             collection.push({ name: "sap.sbo.ng4c.header.Center", controller: sap.sbo.ng4c.header.Center });
@@ -2305,6 +2397,7 @@ var sap;
                             collection.push({ name: "ng4cSelect", directive: sap.sbo.ui.controls.SelectDirective });
                             collection.push({ name: "ng4cSlider", directive: sap.sbo.ui.controls.SliderDirective });
                             collection.push({ name: "ng4cTextArea", directive: sap.sbo.ui.controls.TextAreaDirective });
+                            collection.push({ name: "scroll", directive: sap.sbo.ui.attrs.ScrollDirective });
                             return collection;
                         },
                         enumerable: true,

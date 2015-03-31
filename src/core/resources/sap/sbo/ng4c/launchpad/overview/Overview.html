@@ -4,8 +4,8 @@
         <div class="icon" ng-click="showOrHideInfo()" style="transform:rotateZ({{infoOnTable ? 0 : 180}}deg)"></div>
     </div>
     <div class="info" ng-show="infoOnTable">
-        <ng4c-circle-progress progress="84" label="this week" suffix="" text="Incoming Sales Orders"></ng4c-circle-progress>
-        <ng4c-circle-progress progress="62" label="this week" suffix="%" text="Win Rate"></ng4c-circle-progress>
+        <ng4c-circle-progress percent="84" label="this week" suffix="" text="Incoming Sales Orders"></ng4c-circle-progress>
+        <ng4c-circle-progress percent="62" label="this week" suffix="%" text="Win Rate"></ng4c-circle-progress>
         <ng4c-rate-star total="5" score="4" text="Customer Rating (Sentiment)"></ng4c-rate-star>
         <ng4c-days-info></ng4c-days-info>
     </div>

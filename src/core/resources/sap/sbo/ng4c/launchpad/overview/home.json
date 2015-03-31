@@ -3,6 +3,7 @@
         "PageId": "20",
         "Name": "My Home",
         "Tiles": [
+            
             {
                 "TileId": "7170",
                 "Index": "4",
@@ -13,7 +14,7 @@
             {
                 "TileId": "7172",
                 "Index": "6",
-                "Size": "1x2",
+                "Size": "2x2",
                 "Type": "incoming",
                 "WidgetEntry": "1"
             },
@@ -23,6 +24,13 @@
                 "Size": "2x2",
                 "Type": "quotation",
                 "WidgetEntry": "-1"
+            },
+            {
+                "TileId": "7170",
+                "Index": "4",
+                "Size": "2x1",
+                "Type": "recenta",
+                "WidgetEntry": "-28"
             },
             {
                 "TileId": "7169",
@@ -54,13 +62,7 @@
                 "WidgetEntry": "-28"
             },
 
-            {
-                "TileId": "7170",
-                "Index": "4",
-                "Size": "2x1",
-                "Type": "recenta",
-                "WidgetEntry": "-28"
-            },
+
             {
                 "TileId": "7170",
                 "Index": "4",

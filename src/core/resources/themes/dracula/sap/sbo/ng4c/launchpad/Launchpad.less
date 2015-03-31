@@ -10,30 +10,27 @@
 
     > div {
         transition: 0.3s;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
 
         &.content {
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
             overflow-y: auto;
         }
 
         &.aside {
-            position: absolute;
-            left: 0;
-            width: 0;
-            top: 0;
-            bottom: 0;
         }
 
         &.notice {
-            position: absolute;
-            width: 0;
-            top: 0;
-            bottom: 0;
-            right: 0;
+        }
+
+        &.message {
+            left: auto;
+            width: 18rem;
+            right: -18rem;
+            overflow: visible;
         }
     }
 }

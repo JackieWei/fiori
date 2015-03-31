@@ -1,4 +1,5 @@
-﻿/// <reference path="../../ui/controls/checkbox.ts" />
+﻿/// <reference path="../launchpad/message/message.ts" />
+/// <reference path="../../ui/controls/checkbox.ts" />
 /// <reference path="../../ui/controls/circleprogress.ts" />
 /// <reference path="../launchpad/create/create.ts" />
 /// <reference path="../launchpad/overview/overview.ts" />
@@ -7,6 +8,7 @@
 /// <reference path="../launchpad/dashboard/notice.ts" />
 /// <reference path="../launchpad/dashboard/tiles/dynamic.ts" />
 /// <reference path="../launchpad/notice/notice.ts" />
+/// <reference path="../../ui/attrs/scroll.ts" />
 /// <reference path="config.ts" />
 /// <reference path="DashboardCtrl.ts" />
 /// <reference path="listctrl.ts" />
@@ -156,6 +158,8 @@ module sap.sbo.ng4c.app {
             collection.push({ name: "sap.sbo.ng4c.launchpad.create.Create", controller: sap.sbo.ng4c.launchpad.create.Create });
             //----overview
             collection.push({ name: "sap.sbo.ng4c.launchpad.overview.Overview", controller: sap.sbo.ng4c.launchpad.overview.Overview });
+            //----message
+            collection.push({ name: "sap.sbo.ng4c.launchpad.message.Message", controller: sap.sbo.ng4c.launchpad.message.Message });
 
             //header
             collection.push({ name: "sap.sbo.ng4c.header.Begin", controller: sap.sbo.ng4c.header.Begin });
@@ -196,7 +200,7 @@ module sap.sbo.ng4c.app {
 
             var collection: IControl[] = [];
             /* Registry begins. Onlt register directive, no controller here. Controller in in controllers*/
-
+            //----controls
             collection.push({ name: "ng4cTree", directive: sap.sbo.ui.controls.TreeDirective });
             collection.push({ name: "ng4cButton", directive: sap.sbo.ui.controls.ButtonDirective });
             collection.push({ name: "ng4cCheckbox", directive: sap.sbo.ui.controls.CheckboxDirective });
@@ -212,6 +216,9 @@ module sap.sbo.ng4c.app {
             collection.push({ name: "ng4cSelect", directive: sap.sbo.ui.controls.SelectDirective });
             collection.push({ name: "ng4cSlider", directive: sap.sbo.ui.controls.SliderDirective });
             collection.push({ name: "ng4cTextArea", directive: sap.sbo.ui.controls.TextAreaDirective });
+
+            //attributes
+            collection.push({ name: "scroll", directive: sap.sbo.ui.attrs.ScrollDirective });
 
             /* Registry Ends */
             return collection;

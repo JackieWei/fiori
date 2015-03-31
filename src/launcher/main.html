@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="resources/thirdparty/angularjs/angular.js"></script>
+    <script src="resources/thirdparty/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script>
+        var myApp = angular.module("myApp", ['ui.router']);
+
+        myApp.config(function ($stateProvider, $urlRouterProvider) {
+
+            $urlRouterProvider.when("", "/PageTab");
+
+            $stateProvider
+               .state("PageTab", {
+                   url: "/PageTab",
+                   templateUrl: "PageTab.html"
+               })
+               .state("PageTab.Page1", {
+                   url: "/Page1",
+                   templateUrl: "Page1.html"
+               })
+               .state("PageTab.Page2", {
+                   url: "/Page2",
+                   templateUrl: "Page2.html"
+               })
+               .state("PageTab.Page3", {
+                   url: "/Page3",
+                   templateUrl: "Page3.html"
+               });
+        });
+    </script>
+
+</head>
+<body data-ng-app="myApp">
+    <h1>AngularJS Home Page (Ui-router Demonstration)</h1>
+    <div data-ui-view=""></div>
+</body>
+</html>

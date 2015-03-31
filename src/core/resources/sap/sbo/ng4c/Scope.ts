@@ -18,5 +18,7 @@
         data: any;//raw object
 
         elementIndex: number;
+
+        scroll: Function;
     }
 } 
