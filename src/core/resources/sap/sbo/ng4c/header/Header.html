@@ -13,8 +13,11 @@
 </div>
 <div ng-controller="sap.sbo.ng4c.header.End" ng-class="className">
     <div class="container">
-        <div class="search" table-index="0"></div>
-        <div class="setting" tabindex="0"></div>
         <div class="notice" tabindex="0" ng-click="focusOnNotice()"></div>
+        <div class="setting" tabindex="0"></div>
+        <div class="search {{meta.search ? 'active' : ''}}" ng-controller="sap.sbo.ng4c.header.Searchbar" ng-class="className">
+            <input type="search" placeholder="{{meta.placeholder}}" />
+            <div class="icon" table-index="0" ng-click="extendSearch($event)" ></div>
+        </div>
     </div>
 </div>

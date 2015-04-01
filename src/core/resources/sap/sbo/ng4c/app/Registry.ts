@@ -1,4 +1,5 @@
-﻿/// <reference path="../launchpad/message/message.ts" />
+﻿/// <reference path="../header/searchbar.ts" />
+/// <reference path="../launchpad/message/message.ts" />
 /// <reference path="../../ui/controls/checkbox.ts" />
 /// <reference path="../../ui/controls/circleprogress.ts" />
 /// <reference path="../launchpad/create/create.ts" />
@@ -166,6 +167,7 @@ module sap.sbo.ng4c.app {
             collection.push({ name: "sap.sbo.ng4c.header.End", controller: sap.sbo.ng4c.header.End });
             collection.push({ name: "sap.sbo.ng4c.header.Center", controller: sap.sbo.ng4c.header.Center });
             collection.push({ name: "sap.sbo.ng4c.header.Header", controller: sap.sbo.ng4c.header.Header });
+            collection.push({ name: "sap.sbo.ng4c.header.Searchbar", controller: sap.sbo.ng4c.header.Searchbar });
 
             //footer
             collection.push({ name: "sap.sbo.ng4c.footer.Footer", controller: sap.sbo.ng4c.footer.Footer });

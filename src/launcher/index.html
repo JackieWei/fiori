@@ -17,7 +17,7 @@
     <!--source-->
     <script src="resources/core.js"></script>
 </head>
-<body ng-controller="sap.sbo.ng4c.app.BodyCtrl" ng-keydown="onBodyKeyDown($event)">
+<body ng-controller="sap.sbo.ng4c.app.BodyCtrl" ng-keydown="onBodyKeyDown($event)" ng-click="onBodyClick($event)">
     <header ng-controller="sap.sbo.ng4c.header.Header" ng-include="template" ng-class="className"></header>
     <section ng-controller="sap.sbo.ng4c.launchpad.Launchpad" ng-class="className">
         <div class="aside" style="left:{{asideLeft}}%; right:{{asideRight}}%; transform: scaleX({{asideScaleX}})scaleY({{asideScaleY}}); width: {{asideWidth}}%;">

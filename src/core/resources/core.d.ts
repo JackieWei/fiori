@@ -1,17 +1,4 @@
 /// <reference path="../../thirdparty/resources/thirdparty.d/tsd.d.ts" />
-declare module sap.cloud.core.util {
-    class NamingUtil {
-        private static DOT_REG;
-        private static SLASH;
-        private static DOT;
-        private static HYPHEN;
-        private static EMPTY;
-        static toCssName(packageName: string): string;
-        static toPath(packageName: string): string;
-        static toDirective(packageName: string): string;
-        static uppercaseFirstChar(str: string): string;
-    }
-}
 declare module sap.cloud.logging {
     interface Logger {
         info(msg: string): void;
@@ -35,6 +22,19 @@ declare module sap.cloud.core {
         render(): void;
         dummy(): number;
         process<T>(num: T): T;
+    }
+}
+declare module sap.cloud.core.util {
+    class NamingUtil {
+        private static DOT_REG;
+        private static SLASH;
+        private static DOT;
+        private static HYPHEN;
+        private static EMPTY;
+        static toCssName(packageName: string): string;
+        static toPath(packageName: string): string;
+        static toDirective(packageName: string): string;
+        static uppercaseFirstChar(str: string): string;
     }
 }
 declare module sap.sbo.ng4c {
@@ -70,6 +70,45 @@ declare module sap.sbo.ng4c {
         constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes, $package: string);
         protected registerTemplate(templatePackage: string): void;
         protected registerCssName(packageName: any): void;
+    }
+}
+declare module sap.sbo.ng4c.launchpad.notice {
+    import BaseController = sap.sbo.ng4c.BaseController;
+    import Config = sap.sbo.ng4c.app.Config;
+    import Storage = sap.sbo.ng4c.app.Storage;
+    interface NoticeScope extends Scope {
+        notices: NoticeData[];
+        switchTab: Function;
+        currentIndex: number;
+    }
+    interface NoticeData {
+    }
+    class Notice extends BaseController {
+        static ELEMTNT_INDEX: number;
+        private scope;
+        private config;
+        private storage;
+        constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes, config: Config, storage: Storage);
+        private buildScope();
+        private onFocusChange(event, elementIndex);
+        private onSwitchTab(index);
+    }
+}
+declare module sap.sbo.ng4c.header {
+    import BaseController = sap.sbo.ng4c.BaseController;
+    interface SearchbarScope extends Scope {
+        meta: SearchbarMeta;
+        extendSearch: Function;
+    }
+    interface SearchbarMeta {
+        placeholder: string;
+        search: boolean;
+    }
+    class Searchbar extends BaseController {
+        private scope;
+        constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes);
+        private extendSearch(event);
+        private onClickOutside(event, clickEvent);
     }
 }
 declare module sap.sbo.ng4c.app {
@@ -327,28 +366,6 @@ declare module sap.sbo.ng4c.launchpad.dashboard.tiles {
         constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes);
     }
 }
-declare module sap.sbo.ng4c.launchpad.notice {
-    import BaseController = sap.sbo.ng4c.BaseController;
-    import Config = sap.sbo.ng4c.app.Config;
-    import Storage = sap.sbo.ng4c.app.Storage;
-    interface NoticeScope extends Scope {
-        notices: NoticeData[];
-        switchTab: Function;
-        currentIndex: number;
-    }
-    interface NoticeData {
-    }
-    class Notice extends BaseController {
-        static ELEMTNT_INDEX: number;
-        private scope;
-        private config;
-        private storage;
-        constructor($scope: Scope, $element: JQuery, $attrs: ng.IAttributes, config: Config, storage: Storage);
-        private buildScope();
-        private onFocusChange(event, elementIndex);
-        private onSwitchTab(index);
-    }
-}
 declare module sap.sbo.ui.attrs {
     function ScrollDirective(): Object;
 }
@@ -579,6 +596,7 @@ declare module sap.sbo.ng4c.launchpad.dashboard {
 declare module sap.sbo.ng4c.app {
     interface BodyScope extends ng.IScope {
         onBodyKeyDown: Function;
+        onBodyClick: Function;
     }
     class BodyCtrl {
         private scope;
@@ -587,6 +605,7 @@ declare module sap.sbo.ng4c.app {
         private onBodyKeyDown($event);
         private readyForChange(event, elementIndex);
         private focusChange(event, elementIndex);
+        private onBodyClick(event);
     }
 }
 declare module sap.sbo.ng4c.launchpad {

@@ -5,6 +5,7 @@ module sap.sbo.ng4c.app {
 
     export interface BodyScope extends ng.IScope {
         onBodyKeyDown: Function;
+        onBodyClick: Function;
     }
 
     export class BodyCtrl {
@@ -19,13 +20,14 @@ module sap.sbo.ng4c.app {
             this.scope.$on("readyForChange", $.proxy(this.readyForChange, this));
 
             this.scope.onBodyKeyDown = $.proxy(this.onBodyKeyDown, this);
+            this.scope.onBodyClick = $.proxy(this.onBodyClick, this);
         }
 
         private onBodyKeyDown($event: JQueryEventObject): void {
             //Press s or enter
-            if ($event.keyCode === 83 || $event.keyCode === 13) {
+            if ($event.keyCode === 13) {
                 this.scope.$broadcast("messageBroadcast", true);
-            } else {
+            } else if ($event.keyCode === 27 || $event.keyCode === 32){
                 this.scope.$broadcast("messageBroadcast", false);
             }
         }
@@ -40,6 +42,10 @@ module sap.sbo.ng4c.app {
 
         private focusChange(event: ng.IAngularEvent, elementIndex: number): void {
             this.scope.$broadcast("focusChangeBroadcast", elementIndex);
+        }
+
+        private onBodyClick(event: ng.IAngularEvent): void {
+            this.scope.$broadcast("bodyClickBroadcast", event);
         }
     }
 } 
