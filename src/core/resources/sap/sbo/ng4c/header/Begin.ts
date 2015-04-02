@@ -1,9 +1,9 @@
-﻿/// <reference path="../app/storage.ts" />
+﻿/// <reference path="../app/service/storage.ts" />
 /// <reference path="../basecontroller.ts" />
 module sap.sbo.ng4c.header {
     import BaseController = sap.sbo.ng4c.BaseController;
-    import Storage = sap.sbo.ng4c.app.Storage;
-    import Router = sap.sbo.ng4c.app.Router;
+    import Storage = sap.sbo.ng4c.app.service.Storage;
+    import Router = sap.sbo.ng4c.app.service.Router;
 
     export interface BeginScope extends Scope {
         focusOnHome: Function;

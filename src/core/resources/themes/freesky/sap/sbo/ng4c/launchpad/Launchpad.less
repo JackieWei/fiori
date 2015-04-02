@@ -1,0 +1,36 @@
+﻿.sap-sbo-ng4c-launchpad-Launchpad {
+    position: absolute;
+    top: 50px;
+    bottom: 50px;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    background: transparent;
+    box-sizing: border-box;
+
+    > div {
+        transition: 0.3s;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+
+        &.content {
+            overflow-y: auto;
+        }
+
+        &.aside {
+        }
+
+        &.notice {
+        }
+
+        &.message {
+            left: auto;
+            width: 18rem;
+            right: -18rem;
+            overflow: visible;
+        }
+    }
+}

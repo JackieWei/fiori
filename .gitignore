@@ -5,6 +5,8 @@
 *.csproj
 *.map
 *.suo
+*.css
+*.usr
 
 *.7z
 
@@ -17,3 +19,6 @@ thirdparty/
 bower_components/
 tsd_modules/
 node_modules/
+
+*.d.ts
+*.js

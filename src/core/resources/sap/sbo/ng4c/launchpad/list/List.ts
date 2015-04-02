@@ -1,9 +1,9 @@
-﻿/// <reference path="../../app/router.ts" />
+﻿/// <reference path="../../app/service/router.ts" />
 /// <reference path="../../basecontroller.ts" />
 module sap.sbo.ng4c.launchpad.list {
 
     import BaseController = sap.sbo.ng4c.BaseController;
-    import Router = sap.sbo.ng4c.app.Router;
+    import Router = sap.sbo.ng4c.app.service.Router;
 
     export interface ListScope extends Scope {
         action: string;

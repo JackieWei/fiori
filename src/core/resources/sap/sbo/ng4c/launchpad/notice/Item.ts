@@ -2,7 +2,7 @@
 module sap.sbo.ng4c.launchpad.notice {
     import BaseController = sap.sbo.ng4c.BaseController;
     import Config = sap.sbo.ng4c.app.Config;
-    import Storage = sap.sbo.ng4c.app.Storage;
+    import Storage = sap.sbo.ng4c.app.service.Storage;
 
     export interface ItemScope extends Scope {
         url: string;

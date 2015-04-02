@@ -1,0 +1,51 @@
+﻿@import "../../../config";
+
+.sap-sbo-ng4c-launchpad-aside-Tab {
+    margin: 3rem 0;
+    .tab {
+        border-bottom: 1px solid #aaaaaa;
+        padding: 0 3rem;
+        > a {
+            > div {
+                height: 30px;
+                cursor: pointer;
+                outline: none;
+                display: inline-block;
+                line-height: 30px;
+                vertical-align: middle;
+                text-align: left;
+                margin: 0 1rem;
+                font-size: 1rem;
+
+                &.light {
+                    color: @color_001;
+                    border-bottom: 1px solid #EEEEEE;
+                }
+
+                &.grey {
+                    color: @color_002;
+                }
+            }
+        }
+    }
+
+    .content {
+        top: 32px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        .date {
+            .item {
+                cursor: pointer;
+                margin: 1rem 3rem;
+                >img {
+                    width: 80%;
+                    margin: 0 2rem;
+                }
+            }
+        }
+    }
+}

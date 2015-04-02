@@ -1,0 +1,53 @@
+﻿@import "../../config";
+
+.sap-sbo-ui-controls-LinkedInput {
+    display: inline-block;
+    height: @input_height;
+    line-height: @input_height;
+
+    > .input {
+        -webkit-appearance: none;
+        border-radius: 0;
+        color: #000000;
+        background-color: #ffffff;
+        border: 1px solid #bfbfbf;
+        margin: 0;
+        font-size: 0.875rem;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: normal;
+        height: @input_height;
+        vertical-align: top;
+        padding: 0;
+        -moz-appearance: textfield;
+        width: 100%;
+    }
+
+    > .icon {
+        text-align: center;
+        display: inline-block;
+        vertical-align: baseline;
+        height: @input_height;
+        width: @input_height;
+        line-height: @input_height;
+        position: absolute;
+        right: 0;
+        top: 0.25rem;
+        cursor: pointer;
+        speak: none;
+        color: #666666;
+
+        &:before {
+            content: attr(data-icon-content);
+            speak: none;
+            font-weight: normal;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        &.select {
+        }
+
+        &.indicator {
+            left: 0;
+        }
+    }
+}

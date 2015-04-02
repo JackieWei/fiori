@@ -152,6 +152,409 @@ var sap;
         (function (ng4c) {
             var launchpad;
             (function (launchpad) {
+                var dashboard;
+                (function (dashboard) {
+                    var BaseController = sap.sbo.ng4c.BaseController;
+                    var Dashboard = (function (_super) {
+                        __extends(Dashboard, _super);
+                        function Dashboard($scope, $element, $attrs) {
+                            _super.call(this, $scope, $element, $attrs, "sap.sbo.ng4c.launchpad.dashboard.Dashboard");
+                            this.scope = this.$scope;
+                            this.buildScope();
+                            this.scope.$on("focusChangeBroadcast", $.proxy(this.onShowOrHideMenuBroadcast, this));
+                            this.scope.$on("readyForChangeBroadcast", $.proxy(this.onQuickNoticeBroadcast, this));
+                        }
+                        Dashboard.prototype.buildScope = function () {
+                            if (this.homePage) {
+                                this.onHomeTilesLoaded(this.homePage);
+                            }
+                            else {
+                                $.ajax('resources/sap/sbo/ng4c/launchpad/dashboard/home.json', {
+                                    success: $.proxy(this.onHomeTilesLoaded, this)
+                                });
+                            }
+                        };
+                        Dashboard.prototype.onHomeTilesLoaded = function (data) {
+                            this.homePage = data;
+                            this.scope.homeTiles = data[0].Tiles;
+                            if (this.salesPage) {
+                                this.onSalesTilesLoaded(this.salesPage);
+                            }
+                            else {
+                                $.ajax('resources/sap/sbo/ng4c/launchpad/dashboard/sales.json', {
+                                    async: true,
+                                    success: $.proxy(this.onSalesTilesLoaded, this)
+                                });
+                            }
+                        };
+                        Dashboard.prototype.onSalesTilesLoaded = function (data) {
+                            this.salesPage = data;
+                            this.scope.salesTiles = data[0].Tiles;
+                            this.scope.notices = [{ entry: 1 }, { entry: 2 }, { entry: 3 }, { entry: 4 }];
+                            this.scope.noticeLeft = "100%";
+                            this.scope.noticeOpacity = 0;
+                            this.focusOnElement(1);
+                        };
+                        Dashboard.prototype.onShowOrHideMenuBroadcast = function (event, elementIndex) {
+                            this.focusOnElement(elementIndex);
+                        };
+                        Dashboard.prototype.focusOnElement = function (elementIndex) {
+                            if (elementIndex === 1) {
+                                this.token = setTimeout($.proxy(this.showNotice, this), 100);
+                            }
+                        };
+                        Dashboard.prototype.showNotice = function () {
+                            clearTimeout(this.token);
+                            this.scope.noticeLeft = '0';
+                            this.scope.noticeOpacity = 1;
+                            this.scope.$applyAsync();
+                        };
+                        Dashboard.prototype.hideNotice = function () {
+                            clearTimeout(this.token);
+                            this.scope.noticeLeft = '100%';
+                            this.scope.noticeOpacity = 0;
+                            this.scope.$applyAsync();
+                            setTimeout($.proxy(this.onNoticeHide, this), 600);
+                        };
+                        Dashboard.prototype.onNoticeHide = function () {
+                        };
+                        Dashboard.prototype.onQuickNoticeBroadcast = function (event, elementIndex) {
+                            this.hideNotice();
+                            this.token = setTimeout($.proxy(this.onHideNoticeDone, this), 500, elementIndex);
+                        };
+                        Dashboard.prototype.onHideNoticeDone = function (elementIndex) {
+                            this.scope.$emit("focusChange", elementIndex);
+                        };
+                        return Dashboard;
+                    })(BaseController);
+                    dashboard.Dashboard = Dashboard;
+                })(dashboard = launchpad.dashboard || (launchpad.dashboard = {}));
+            })(launchpad = ng4c.launchpad || (ng4c.launchpad = {}));
+        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
+    })(sbo = sap.sbo || (sap.sbo = {}));
+})(sap || (sap = {}));
+var sap;
+(function (sap) {
+    var sbo;
+    (function (sbo) {
+        var ng4c;
+        (function (ng4c) {
+            var app;
+            (function (app) {
+                var AppCtrl = (function () {
+                    function AppCtrl($scope, $element) {
+                        this.scope = $scope;
+                        this.scope.$on("switchTheme", $.proxy(this.switchTheme, this));
+                    }
+                    AppCtrl.prototype.switchTheme = function (event, theme) {
+                        this.scope.$broadcast("switchThemeBroadcast", theme);
+                    };
+                    return AppCtrl;
+                })();
+                app.AppCtrl = AppCtrl;
+            })(app = ng4c.app || (ng4c.app = {}));
+        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
+    })(sbo = sap.sbo || (sap.sbo = {}));
+})(sap || (sap = {}));
+var sap;
+(function (sap) {
+    var sbo;
+    (function (sbo) {
+        var ng4c;
+        (function (ng4c) {
+            var app;
+            (function (app) {
+                var service;
+                (function (service) {
+                    'use strict';
+                    var Layout = (function () {
+                        function Layout() {
+                        }
+                        Layout.prototype.Layout = function () {
+                        };
+                        Layout.prototype.doLayout = function (tiles, parent, width, height, marginLeft, marginTop, rightToLeft) {
+                            function getRemSize() {
+                                var p = document.createElement("div");
+                                p.className = 'basicRem';
+                                p.innerHTML = "A";
+                                document.body.appendChild(p);
+                                console.log(p.clientHeight);
+                                document.body.removeChild(p);
+                            }
+                            getRemSize();
+                            function parseSize(size) {
+                                var sizes = size.split('x');
+                                return { w: parseInt(sizes[0], 10), h: parseInt(sizes[1], 10) };
+                            }
+                            function calculateTilesInRow(container, width, marginLeft) {
+                                var containerWidth = container.clientWidth;
+                                var tilesInRow = Math.floor(containerWidth / (width + marginLeft)) / 12;
+                                return Math.floor(tilesInRow);
+                            }
+                            function tryPlaceAt(row, col, tile) {
+                                var w = tile.size.w;
+                                var h = tile.size.h;
+                                for (var r = row; r < row + h; r++) {
+                                    for (var c = col; c < col + w; c++) {
+                                        if (matrix[r][c] !== -1) {
+                                            return false;
+                                        }
+                                    }
+                                }
+                                return true;
+                            }
+                            function palceAt(row, col, tile) {
+                                var w = tile.size.w;
+                                var h = tile.size.h;
+                                for (var r = row; r < row + h; r++) {
+                                    for (var c = col; c < col + w; c++) {
+                                        matrix[r][c] = tile.index;
+                                    }
+                                }
+                                return true;
+                            }
+                            function findFirstFitPositionAndSet(tile) {
+                                for (var row = 0; row < totalRows; row++) {
+                                    for (var col = 0; col < tilesInRow; col++) {
+                                        if (tryPlaceAt(row, col, tile)) {
+                                            palceAt(row, col, tile);
+                                            return true;
+                                        }
+                                    }
+                                }
+                                return false;
+                            }
+                            function trimMatrix() {
+                                var colEmpty = false, copy = matrix.concat();
+                                matrix = [];
+                                for (var row = 0; row < totalRows; row++) {
+                                    colEmpty = true;
+                                    for (var col = 0; col < tilesInRow; col++) {
+                                        if (copy[row][col] !== -1) {
+                                            colEmpty = false;
+                                        }
+                                    }
+                                    if (colEmpty === true) {
+                                        totalRows = row;
+                                        break;
+                                    }
+                                    else {
+                                        matrix.push(copy[row]);
+                                    }
+                                }
+                            }
+                            function applyTilesPositions() {
+                                var positionedTiles = [], tile;
+                                for (var i = 0; i < matrix.length; i++) {
+                                    for (var j = 0; j < matrix[0].length; j++) {
+                                        if (matrix[i][j] !== -1 && positionedTiles.indexOf(matrix[i][j]) < 0) {
+                                            tile = tiles[matrix[i][j]];
+                                            tile.left = j * width + j * marginLeft;
+                                            tile.top = i * height + i * marginTop;
+                                            positionedTiles.push(tile.index);
+                                        }
+                                    }
+                                }
+                            }
+                            tiles = tiles.slice(0);
+                            var i = 0, j = 0, total = 0, totalCount = 0;
+                            var rowInit = null, tilesInRow = calculateTilesInRow(parent, width, marginLeft);
+                            var rate = 1.2, w = 0, h = 0, matrix = [];
+                            for (i = 0, total = tiles.length; i < total; i++) {
+                                tiles[i].size = parseSize(tiles[i].Size);
+                                w = tiles[i].size.w;
+                                h = tiles[i].size.h;
+                                tiles[i].index = i;
+                                totalCount += w * h;
+                            }
+                            var totalRows = Math.ceil(totalCount * rate / tilesInRow);
+                            for (i = 0; i < totalRows; i++) {
+                                rowInit = [];
+                                for (j = 0; j < tilesInRow; j++) {
+                                    rowInit.push(-1);
+                                }
+                                matrix.push(rowInit);
+                            }
+                            for (i = 0, total = tiles.length; i < total; i++) {
+                                findFirstFitPositionAndSet(tiles[i]);
+                            }
+                            if (rightToLeft) {
+                                for (var i = 0; i < matrix.length; i++) {
+                                    matrix[i].reverse();
+                                }
+                            }
+                            trimMatrix();
+                            applyTilesPositions();
+                            var str = [], index;
+                            for (var row = 0; row < totalRows; row++) {
+                                str.push("Row -->" + row + ": ");
+                                for (var col = 0; col < tilesInRow; col++) {
+                                    index = matrix[row][col];
+                                    str.push(index < 10 ? "0" + index : index);
+                                    str.push(" ");
+                                }
+                                str.push("\n ");
+                            }
+                            console.log(str.join(""));
+                            str = [];
+                            for (i = 0; i < tiles.length; i++) {
+                                str.push("Tile -->" + i + ": ");
+                                str.push(tiles[i].Size + " left: " + tiles[i].left + ", top: " + tiles[i].top);
+                                str.push("\n ");
+                            }
+                            console.log(str.join(""));
+                            return tiles;
+                        };
+                        return Layout;
+                    })();
+                    service.Layout = Layout;
+                })(service = app.service || (app.service = {}));
+            })(app = ng4c.app || (ng4c.app = {}));
+        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
+    })(sbo = sap.sbo || (sap.sbo = {}));
+})(sap || (sap = {}));
+var sap;
+(function (sap) {
+    var sbo;
+    (function (sbo) {
+        var ng4c;
+        (function (ng4c) {
+            var app;
+            (function (app) {
+                var service;
+                (function (service) {
+                    var Router = (function () {
+                        function Router() {
+                        }
+                        Router.prototype.hashTo = function (fragments) {
+                            var hash = [Router.HASH];
+                            for (var i = 0, total = fragments.length; i < total; i++) {
+                                hash.push(fragments[i]);
+                            }
+                            location.hash = hash.join(Router.SLASH);
+                        };
+                        Router.prototype.hashToList = function (boAbbr) {
+                            this.hashTo([Router.LIST, boAbbr]);
+                        };
+                        Router.prototype.hashToDetail = function (boAbbr, boIdx) {
+                            this.hashTo([Router.DETAIL, boAbbr, boIdx]);
+                        };
+                        Router.prototype.hashToDashboard = function () {
+                            location.hash = Router.HASH + Router.SLASH;
+                        };
+                        Router.prototype.hashToOverview = function (boAbbr) {
+                            this.hashTo([Router.OVERVIEW, boAbbr]);
+                        };
+                        Router.prototype.hashToCreate = function (boAbbr) {
+                            this.hashTo([Router.CREATE, boAbbr]);
+                        };
+                        Object.defineProperty(Router.prototype, "hash", {
+                            get: function () {
+                                return this._hash;
+                            },
+                            set: function (value) {
+                                this._hash = value;
+                            },
+                            enumerable: true,
+                            configurable: true
+                        });
+                        Router.HASH = '#';
+                        Router.SLASH = '/';
+                        Router.EMPTY = '';
+                        Router.DOT = '.';
+                        Router.LIST = 'list';
+                        Router.DETAIL = 'detail';
+                        Router.OVERVIEW = 'overview';
+                        Router.CREATE = 'create';
+                        return Router;
+                    })();
+                    service.Router = Router;
+                })(service = app.service || (app.service = {}));
+            })(app = ng4c.app || (ng4c.app = {}));
+        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
+    })(sbo = sap.sbo || (sap.sbo = {}));
+})(sap || (sap = {}));
+var sap;
+(function (sap) {
+    var sbo;
+    (function (sbo) {
+        var ng4c;
+        (function (ng4c) {
+            var app;
+            (function (app) {
+                var service;
+                (function (service) {
+                    'use strict';
+                    var Storage = (function () {
+                        function Storage() {
+                        }
+                        Storage.prototype.get = function (key, defaultValue) {
+                            return localStorage.getItem(key) || defaultValue;
+                        };
+                        Storage.prototype.set = function (key, value) {
+                            localStorage.setItem(key, value);
+                        };
+                        Storage.prototype.getBoolean = function (key, defaultValue) {
+                            return this.get(key, defaultValue ? Storage.VAL_TRUE : Storage.VAL_FLASH) === Storage.VAL_TRUE;
+                        };
+                        Storage.prototype.setBoolean = function (key, value) {
+                            return this.set(key, value ? Storage.VAL_TRUE : Storage.VAL_FLASH);
+                        };
+                        Storage.VAL_TRUE = '1';
+                        Storage.VAL_FLASH = '0';
+                        return Storage;
+                    })();
+                    service.Storage = Storage;
+                })(service = app.service || (app.service = {}));
+            })(app = ng4c.app || (ng4c.app = {}));
+        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
+    })(sbo = sap.sbo || (sap.sbo = {}));
+})(sap || (sap = {}));
+var sap;
+(function (sap) {
+    var sbo;
+    (function (sbo) {
+        var ng4c;
+        (function (ng4c) {
+            var header;
+            (function (header) {
+                var BaseController = sap.sbo.ng4c.BaseController;
+                var Setting = (function (_super) {
+                    __extends(Setting, _super);
+                    function Setting($scope, $element, $attrs, storage, router) {
+                        _super.call(this, $scope, $element, $attrs, "sap.sbo.ng4c.header.Setting");
+                        this.scope = $scope;
+                        this.storage = storage;
+                        this.router = router;
+                        this.scope.focusOnHome = $.proxy(this.focusOnHome, this);
+                        this.scope.focusOnPersonal = $.proxy(this.focusOnPersonal, this);
+                    }
+                    Setting.prototype.focusOnHome = function () {
+                        this.$scope.$emit("focusChange", 1);
+                    };
+                    Setting.prototype.focusOnPersonal = function () {
+                        if (location.hash.length <= 2) {
+                            this.$scope.$emit("readyForChange", 0);
+                        }
+                        else {
+                            this.$scope.$emit("focusChange", 0);
+                        }
+                    };
+                    return Setting;
+                })(BaseController);
+                header.Setting = Setting;
+            })(header = ng4c.header || (ng4c.header = {}));
+        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
+    })(sbo = sap.sbo || (sap.sbo = {}));
+})(sap || (sap = {}));
+var sap;
+(function (sap) {
+    var sbo;
+    (function (sbo) {
+        var ng4c;
+        (function (ng4c) {
+            var launchpad;
+            (function (launchpad) {
                 var notice;
                 (function (notice) {
                     var BaseController = sap.sbo.ng4c.BaseController;
@@ -216,64 +619,6 @@ var sap;
                 })(BaseController);
                 header.Searchbar = Searchbar;
             })(header = ng4c.header || (ng4c.header = {}));
-        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
-    })(sbo = sap.sbo || (sap.sbo = {}));
-})(sap || (sap = {}));
-var sap;
-(function (sap) {
-    var sbo;
-    (function (sbo) {
-        var ng4c;
-        (function (ng4c) {
-            var app;
-            (function (app) {
-                var Router = (function () {
-                    function Router() {
-                    }
-                    Router.prototype.hashTo = function (fragments) {
-                        var hash = [Router.HASH];
-                        for (var i = 0, total = fragments.length; i < total; i++) {
-                            hash.push(fragments[i]);
-                        }
-                        location.hash = hash.join(Router.SLASH);
-                    };
-                    Router.prototype.hashToList = function (boAbbr) {
-                        this.hashTo([Router.LIST, boAbbr]);
-                    };
-                    Router.prototype.hashToDetail = function (boAbbr, boIdx) {
-                        this.hashTo([Router.DETAIL, boAbbr, boIdx]);
-                    };
-                    Router.prototype.hashToDashboard = function () {
-                        location.hash = Router.HASH + Router.SLASH;
-                    };
-                    Router.prototype.hashToOverview = function (boAbbr) {
-                        this.hashTo([Router.OVERVIEW, boAbbr]);
-                    };
-                    Router.prototype.hashToCreate = function (boAbbr) {
-                        this.hashTo([Router.CREATE, boAbbr]);
-                    };
-                    Object.defineProperty(Router.prototype, "hash", {
-                        get: function () {
-                            return this._hash;
-                        },
-                        set: function (value) {
-                            this._hash = value;
-                        },
-                        enumerable: true,
-                        configurable: true
-                    });
-                    Router.HASH = '#';
-                    Router.SLASH = '/';
-                    Router.EMPTY = '';
-                    Router.DOT = '.';
-                    Router.LIST = 'list';
-                    Router.DETAIL = 'detail';
-                    Router.OVERVIEW = 'overview';
-                    Router.CREATE = 'create';
-                    return Router;
-                })();
-                app.Router = Router;
-            })(app = ng4c.app || (ng4c.app = {}));
         })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
     })(sbo = sap.sbo || (sap.sbo = {}));
 })(sap || (sap = {}));
@@ -551,13 +896,15 @@ var sap;
                     var BaseController = sap.sbo.ng4c.BaseController;
                     var Overview = (function (_super) {
                         __extends(Overview, _super);
-                        function Overview($scope, $element, $attrs, config, storage) {
+                        function Overview($scope, $element, $attrs, config, storage, layout) {
                             _super.call(this, $scope, $element, $attrs, "sap.sbo.ng4c.launchpad.overview.Overview");
                             this.scope = this.$scope;
                             this.config = config;
                             this.storage = storage;
+                            this.layout = layout;
                             this.buildScope();
                             this.scope.$on("focusChangeBroadcast", $.proxy(this.onFocusChange, this));
+                            this.scope.$on("bodyResizeBroadcast", $.proxy(this.onBodyResize, this));
                             this.scope.switchTab = $.proxy(this.onSwitchTab, this);
                             this.scope.showOrHideInfo = $.proxy(this.showOrHideInfo, this);
                         }
@@ -570,7 +917,8 @@ var sap;
                             });
                         };
                         Overview.prototype.onPageDone = function (page) {
-                            this.scope.tiles = page[0].Tiles;
+                            this.tiles = page[0].Tiles;
+                            this.scope.tiles = this.layout.doLayout(this.tiles, document.body, this.config.ui.tileBasicWidth, this.config.ui.tileBasicHeight, this.config.ui.tileBasicGap, this.config.ui.tileBasicGap, false);
                             this.scope.$applyAsync();
                         };
                         Overview.prototype.onFocusChange = function (event, elementIndex) {
@@ -580,6 +928,10 @@ var sap;
                         };
                         Overview.prototype.showOrHideInfo = function () {
                             this.scope.infoOnTable = !this.scope.infoOnTable;
+                        };
+                        Overview.prototype.onBodyResize = function (event, resizeEvent) {
+                            this.scope.tiles = this.layout.doLayout(this.tiles, document.body, this.config.ui.tileBasicWidth, this.config.ui.tileBasicHeight, this.config.ui.tileBasicGap, this.config.ui.tileBasicGap, false);
+                            this.scope.$broadcast("tileUpdateBroadcast");
                         };
                         return Overview;
                     })(BaseController);
@@ -888,8 +1240,11 @@ var sap;
                             this.scope.sizeH = parseInt(size[1], 10);
                             this.scope.width = this.scope.sizeW * this.config.ui.tileBasicWidth + (this.scope.sizeW - 1) * this.config.ui.tileBasicGap;
                             this.scope.height = this.scope.sizeH * this.config.ui.tileBasicHeight + (this.scope.sizeH - 1) * this.config.ui.tileBasicGap;
+                            this.scope.left = this.scope.rawData.left;
+                            this.scope.top = this.scope.rawData.top;
                             this.scope.innerTemplate = 'resources/sap/sbo/ng4c/launchpad/dashboard/tiles/' + this.config.tile.getTileTemplateByName(this.scope.rawData.Type) + '.html';
                             this.scope.onTap = $.proxy(this.onTap, this);
+                            this.scope.$on("tileUpdateBroadcast", $.proxy(this.onTileUpdate, this));
                         }
                         Tile.prototype.onTap = function () {
                             switch (this.scope.rawData.Type) {
@@ -907,6 +1262,11 @@ var sap;
                                     break;
                                 default: break;
                             }
+                        };
+                        Tile.prototype.onTileUpdate = function (event) {
+                            this.scope.left = this.scope.rawData.left;
+                            this.scope.top = this.scope.rawData.top;
+                            this.scope.$apply();
                         };
                         Tile.SPLIT = 'x';
                         return Tile;
@@ -1019,27 +1379,20 @@ var sap;
         (function (ng4c) {
             var app;
             (function (app) {
-                'use strict';
-                var Storage = (function () {
-                    function Storage() {
+                var HeadCtrl = (function () {
+                    function HeadCtrl($scope, $element) {
+                        this.scope = $scope;
+                        this.dracula = true;
+                        this.theme = document.getElementById("theme");
+                        this.scope.$on("switchThemeBroadcast", $.proxy(this.switchTheme, this));
                     }
-                    Storage.prototype.get = function (key, defaultValue) {
-                        return localStorage.getItem(key) || defaultValue;
+                    HeadCtrl.prototype.switchTheme = function (event, theme) {
+                        this.dracula = !this.dracula;
+                        this.theme.href = "resources/themes/" + (!this.dracula ? theme : 'dracula') + "/library.css";
                     };
-                    Storage.prototype.set = function (key, value) {
-                        localStorage.setItem(key, value);
-                    };
-                    Storage.prototype.getBoolean = function (key, defaultValue) {
-                        return this.get(key, defaultValue ? Storage.VAL_TRUE : Storage.VAL_FLASH) === Storage.VAL_TRUE;
-                    };
-                    Storage.prototype.setBoolean = function (key, value) {
-                        return this.set(key, value ? Storage.VAL_TRUE : Storage.VAL_FLASH);
-                    };
-                    Storage.VAL_TRUE = '1';
-                    Storage.VAL_FLASH = '0';
-                    return Storage;
+                    return HeadCtrl;
                 })();
-                app.Storage = Storage;
+                app.HeadCtrl = HeadCtrl;
             })(app = ng4c.app || (ng4c.app = {}));
         })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
     })(sbo = sap.sbo || (sap.sbo = {}));
@@ -1286,105 +1639,16 @@ var sap;
     (function (sbo) {
         var ng4c;
         (function (ng4c) {
-            var launchpad;
-            (function (launchpad) {
-                var dashboard;
-                (function (dashboard) {
-                    var BaseController = sap.sbo.ng4c.BaseController;
-                    var Dashboard = (function (_super) {
-                        __extends(Dashboard, _super);
-                        function Dashboard($scope, $element, $attrs) {
-                            _super.call(this, $scope, $element, $attrs, "sap.sbo.ng4c.launchpad.dashboard.Dashboard");
-                            this.scope = this.$scope;
-                            this.buildScope();
-                            this.scope.$on("focusChangeBroadcast", $.proxy(this.onShowOrHideMenuBroadcast, this));
-                            this.scope.$on("readyForChangeBroadcast", $.proxy(this.onQuickNoticeBroadcast, this));
-                        }
-                        Dashboard.prototype.buildScope = function () {
-                            if (this.homePage) {
-                                this.onHomeTilesLoaded(this.homePage);
-                            }
-                            else {
-                                $.ajax('resources/sap/sbo/ng4c/launchpad/dashboard/home.json', {
-                                    success: $.proxy(this.onHomeTilesLoaded, this)
-                                });
-                            }
-                        };
-                        Dashboard.prototype.onHomeTilesLoaded = function (data) {
-                            this.homePage = data;
-                            this.scope.homeTiles = data[0].Tiles;
-                            if (this.salesPage) {
-                                this.onSalesTilesLoaded(this.salesPage);
-                            }
-                            else {
-                                $.ajax('resources/sap/sbo/ng4c/launchpad/dashboard/sales.json', {
-                                    async: true,
-                                    success: $.proxy(this.onSalesTilesLoaded, this)
-                                });
-                            }
-                        };
-                        Dashboard.prototype.onSalesTilesLoaded = function (data) {
-                            this.salesPage = data;
-                            this.scope.salesTiles = data[0].Tiles;
-                            this.scope.notices = [{ entry: 1 }, { entry: 2 }, { entry: 3 }, { entry: 4 }];
-                            this.scope.noticeLeft = "100%";
-                            this.scope.noticeOpacity = 0;
-                            this.focusOnElement(1);
-                        };
-                        Dashboard.prototype.onShowOrHideMenuBroadcast = function (event, elementIndex) {
-                            this.focusOnElement(elementIndex);
-                        };
-                        Dashboard.prototype.focusOnElement = function (elementIndex) {
-                            if (elementIndex === 1) {
-                                this.token = setTimeout($.proxy(this.showNotice, this), 100);
-                            }
-                        };
-                        Dashboard.prototype.showNotice = function () {
-                            clearTimeout(this.token);
-                            this.scope.noticeLeft = '0';
-                            this.scope.noticeOpacity = 1;
-                            this.scope.$applyAsync();
-                        };
-                        Dashboard.prototype.hideNotice = function () {
-                            clearTimeout(this.token);
-                            this.scope.noticeLeft = '100%';
-                            this.scope.noticeOpacity = 0;
-                            this.scope.$applyAsync();
-                            setTimeout($.proxy(this.onNoticeHide, this), 600);
-                        };
-                        Dashboard.prototype.onNoticeHide = function () {
-                        };
-                        Dashboard.prototype.onQuickNoticeBroadcast = function (event, elementIndex) {
-                            this.hideNotice();
-                            this.token = setTimeout($.proxy(this.onHideNoticeDone, this), 500, elementIndex);
-                        };
-                        Dashboard.prototype.onHideNoticeDone = function (elementIndex) {
-                            this.scope.$emit("focusChange", elementIndex);
-                        };
-                        return Dashboard;
-                    })(BaseController);
-                    dashboard.Dashboard = Dashboard;
-                })(dashboard = launchpad.dashboard || (launchpad.dashboard = {}));
-            })(launchpad = ng4c.launchpad || (ng4c.launchpad = {}));
-        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
-    })(sbo = sap.sbo || (sap.sbo = {}));
-})(sap || (sap = {}));
-var sap;
-(function (sap) {
-    var sbo;
-    (function (sbo) {
-        var ng4c;
-        (function (ng4c) {
             var app;
             (function (app) {
                 var BodyCtrl = (function () {
-                    function BodyCtrl($scope, $element, router) {
+                    function BodyCtrl($scope, $element) {
                         this.scope = $scope;
-                        this.router = router;
                         this.scope.$on("focusChange", $.proxy(this.focusChange, this));
                         this.scope.$on("readyForChange", $.proxy(this.readyForChange, this));
                         this.scope.onBodyKeyDown = $.proxy(this.onBodyKeyDown, this);
                         this.scope.onBodyClick = $.proxy(this.onBodyClick, this);
+                        window.onresize = $.proxy(this.onBodyResize, this);
                     }
                     BodyCtrl.prototype.onBodyKeyDown = function ($event) {
                         if ($event.keyCode === 13) {
@@ -1392,6 +1656,9 @@ var sap;
                         }
                         else if ($event.keyCode === 27 || $event.keyCode === 32) {
                             this.scope.$broadcast("messageBroadcast", false);
+                        }
+                        else if ($event.keyCode === 17 && $event.ctrlKey) {
+                            this.scope.$emit("switchTheme", "freesky");
                         }
                     };
                     BodyCtrl.prototype.readyForChange = function (event, elementIndex) {
@@ -1407,6 +1674,9 @@ var sap;
                     };
                     BodyCtrl.prototype.onBodyClick = function (event) {
                         this.scope.$broadcast("bodyClickBroadcast", event);
+                    };
+                    BodyCtrl.prototype.onBodyResize = function (event) {
+                        this.scope.$broadcast("bodyResizeBroadcast", event);
                     };
                     return BodyCtrl;
                 })();
@@ -1521,31 +1791,6 @@ var sap;
                         tiles.Kpi = Kpi;
                     })(tiles = dashboard.tiles || (dashboard.tiles = {}));
                 })(dashboard = launchpad.dashboard || (launchpad.dashboard = {}));
-            })(launchpad = ng4c.launchpad || (ng4c.launchpad = {}));
-        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
-    })(sbo = sap.sbo || (sap.sbo = {}));
-})(sap || (sap = {}));
-var sap;
-(function (sap) {
-    var sbo;
-    (function (sbo) {
-        var ng4c;
-        (function (ng4c) {
-            var launchpad;
-            (function (launchpad) {
-                var aside;
-                (function (aside) {
-                    var BaseController = sap.sbo.ng4c.BaseController;
-                    var SearchBar = (function (_super) {
-                        __extends(SearchBar, _super);
-                        function SearchBar($scope, $element, $attrs) {
-                            _super.call(this, $scope, $element, $attrs, "sap.sbo.ng4c.launchpad.aside.SearchBar");
-                            this.scope = this.$scope;
-                        }
-                        return SearchBar;
-                    })(BaseController);
-                    aside.SearchBar = SearchBar;
-                })(aside = launchpad.aside || (launchpad.aside = {}));
             })(launchpad = ng4c.launchpad || (ng4c.launchpad = {}));
         })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
     })(sbo = sap.sbo || (sap.sbo = {}));
@@ -1691,12 +1936,15 @@ var sap;
         (function (ng4c) {
             var app;
             (function (app) {
-                var Backend = (function () {
-                    function Backend() {
-                    }
-                    return Backend;
-                })();
-                app.Backend = Backend;
+                var service;
+                (function (service) {
+                    var Backend = (function () {
+                        function Backend() {
+                        }
+                        return Backend;
+                    })();
+                    service.Backend = Backend;
+                })(service = app.service || (app.service = {}));
             })(app = ng4c.app || (ng4c.app = {}));
         })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
     })(sbo = sap.sbo || (sap.sbo = {}));
@@ -2349,9 +2597,10 @@ var sap;
                             if (Registry._services.length > 0)
                                 return Registry._services;
                             var services = Registry._services;
-                            services.push({ name: "storage", service: sap.sbo.ng4c.app.Storage });
-                            services.push({ name: "router", service: sap.sbo.ng4c.app.Router });
-                            services.push({ name: "backend", service: sap.sbo.ng4c.app.Backend });
+                            services.push({ name: "storage", service: sap.sbo.ng4c.app.service.Storage });
+                            services.push({ name: "router", service: sap.sbo.ng4c.app.service.Router });
+                            services.push({ name: "backend", service: sap.sbo.ng4c.app.service.Backend });
+                            services.push({ name: "layout", service: sap.sbo.ng4c.app.service.Layout });
                             return services;
                         },
                         enumerable: true,
@@ -2362,6 +2611,8 @@ var sap;
                             if (Registry._controllers.length > 0)
                                 return Registry._controllers;
                             var collection = Registry._controllers;
+                            collection.push({ name: "sap.sbo.ng4c.app.AppCtrl", controller: sap.sbo.ng4c.app.AppCtrl });
+                            collection.push({ name: "sap.sbo.ng4c.app.HeadCtrl", controller: sap.sbo.ng4c.app.HeadCtrl });
                             collection.push({ name: "sap.sbo.ng4c.app.BodyCtrl", controller: sap.sbo.ng4c.app.BodyCtrl });
                             collection.push({ name: "sap.sbo.ng4c.app.DashboardCtrl", controller: sap.sbo.ng4c.app.DashboardCtrl });
                             collection.push({ name: "sap.sbo.ng4c.app.ListCtrl", controller: sap.sbo.ng4c.app.ListCtrl });
@@ -2381,7 +2632,6 @@ var sap;
                             collection.push({ name: "sap.sbo.ng4c.launchpad.aside.Modules", controller: sap.sbo.ng4c.launchpad.aside.Modules });
                             collection.push({ name: "sap.sbo.ng4c.launchpad.aside.MyMenu", controller: sap.sbo.ng4c.launchpad.aside.MyMenu });
                             collection.push({ name: "sap.sbo.ng4c.launchpad.aside.Tab", controller: sap.sbo.ng4c.launchpad.aside.Tab });
-                            collection.push({ name: "sap.sbo.ng4c.launchpad.aside.SearchBar", controller: sap.sbo.ng4c.launchpad.aside.SearchBar });
                             collection.push({ name: "sap.sbo.ng4c.launchpad.notice.Notice", controller: sap.sbo.ng4c.launchpad.notice.Notice });
                             collection.push({ name: "sap.sbo.ng4c.launchpad.notice.Item", controller: sap.sbo.ng4c.launchpad.notice.Item });
                             collection.push({ name: "sap.sbo.ng4c.launchpad.list.List", controller: sap.sbo.ng4c.launchpad.list.List });
@@ -2394,6 +2644,7 @@ var sap;
                             collection.push({ name: "sap.sbo.ng4c.header.Center", controller: sap.sbo.ng4c.header.Center });
                             collection.push({ name: "sap.sbo.ng4c.header.Header", controller: sap.sbo.ng4c.header.Header });
                             collection.push({ name: "sap.sbo.ng4c.header.Searchbar", controller: sap.sbo.ng4c.header.Searchbar });
+                            collection.push({ name: "sap.sbo.ng4c.header.Setting", controller: sap.sbo.ng4c.header.Setting });
                             collection.push({ name: "sap.sbo.ng4c.footer.Footer", controller: sap.sbo.ng4c.footer.Footer });
                             collection.push({ name: "sap.sbo.ui.controls.Tree", controller: sap.sbo.ui.controls.Tree });
                             collection.push({ name: "sap.sbo.ui.controls.TreeNode", controller: sap.sbo.ui.controls.TreeNode });

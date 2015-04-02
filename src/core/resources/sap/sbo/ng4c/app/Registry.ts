@@ -1,4 +1,6 @@
-﻿/// <reference path="../header/searchbar.ts" />
+﻿/// <reference path="service/layout.ts" />
+/// <reference path="../header/setting.ts" />
+/// <reference path="../header/searchbar.ts" />
 /// <reference path="../launchpad/message/message.ts" />
 /// <reference path="../../ui/controls/checkbox.ts" />
 /// <reference path="../../ui/controls/circleprogress.ts" />
@@ -19,25 +21,26 @@
 /// <reference path="../header/header.ts" />
 /// <reference path="../header/center.ts" />
 /// <reference path="detailctrl.ts" />
+/// <reference path="headctrl.ts" />
 /// <reference path="../header/begin.ts" />
 /// <reference path="../footer/footer.ts" />
 /// <reference path="../launchpad/aside/aside.ts" />
 /// <reference path="../launchpad/aside/User.ts" />
+/// <reference path="appctrl.ts" />
 /// <reference path="../launchpad/aside/modules.ts" />
 /// <reference path="../launchpad/aside/menu.ts" />
 /// <reference path="../launchpad/launchpad.ts" />
 /// <reference path="../launchpad/dashboard/tiles/kpi.ts" />
-/// <reference path="../launchpad/aside/searchbar.ts" />
 /// <reference path="../../../cloud/core/util/namingutil.ts" />
 /// <reference path="../launchpad/aside/tab.ts" />
 /// <reference path="../../ui/controls/tree.ts" />
 /// <reference path="../launchpad/dashboard/dashboard.ts" />
 /// <reference path="../../ui/controls/TreeNode.ts" />
 /// <reference path="BodyCtrl.ts" />
-/// <reference path="storage.ts" />
+/// <reference path="service/storage.ts" />
 /// <reference path="../../ui/controls/slider.ts" />
-/// <reference path="backend.ts" />
-/// <reference path="Router.ts" />
+/// <reference path="service/backend.ts" />
+/// <reference path="service/Router.ts" />
 /// <reference path="../launchpad/list/List.ts" />
 /// <reference path="../launchpad/aside/MyMenu.ts" />
 /// <reference path="../launchpad/detail/detail.ts" />
@@ -107,9 +110,10 @@ module sap.sbo.ng4c.app {
             /* Registry begins */
             //never name a service or any directive like route/router
             //It will cause angular confuse and everything will be a mess.
-            services.push({ name: "storage", service: sap.sbo.ng4c.app.Storage });
-            services.push({ name: "router", service: sap.sbo.ng4c.app.Router });
-            services.push({ name: "backend", service: sap.sbo.ng4c.app.Backend });
+            services.push({ name: "storage", service: sap.sbo.ng4c.app.service.Storage });
+            services.push({ name: "router", service: sap.sbo.ng4c.app.service.Router });
+            services.push({ name: "backend", service: sap.sbo.ng4c.app.service.Backend });
+            services.push({ name: "layout", service: sap.sbo.ng4c.app.service.Layout});
             
             /* Registry ends */
 
@@ -123,6 +127,8 @@ module sap.sbo.ng4c.app {
             /* Registry begins */
 
             //system level
+            collection.push({ name: "sap.sbo.ng4c.app.AppCtrl", controller: sap.sbo.ng4c.app.AppCtrl });
+            collection.push({ name: "sap.sbo.ng4c.app.HeadCtrl", controller: sap.sbo.ng4c.app.HeadCtrl });
             collection.push({ name: "sap.sbo.ng4c.app.BodyCtrl", controller: sap.sbo.ng4c.app.BodyCtrl });
             collection.push({ name: "sap.sbo.ng4c.app.DashboardCtrl", controller: sap.sbo.ng4c.app.DashboardCtrl });
             collection.push({ name: "sap.sbo.ng4c.app.ListCtrl", controller: sap.sbo.ng4c.app.ListCtrl });
@@ -147,7 +153,6 @@ module sap.sbo.ng4c.app {
             collection.push({ name: "sap.sbo.ng4c.launchpad.aside.Modules", controller: sap.sbo.ng4c.launchpad.aside.Modules });
             collection.push({ name: "sap.sbo.ng4c.launchpad.aside.MyMenu", controller: sap.sbo.ng4c.launchpad.aside.MyMenu });
             collection.push({ name: "sap.sbo.ng4c.launchpad.aside.Tab", controller: sap.sbo.ng4c.launchpad.aside.Tab });
-            collection.push({ name: "sap.sbo.ng4c.launchpad.aside.SearchBar", controller: sap.sbo.ng4c.launchpad.aside.SearchBar });
             //--------notice
             collection.push({ name: "sap.sbo.ng4c.launchpad.notice.Notice", controller: sap.sbo.ng4c.launchpad.notice.Notice });
             collection.push({ name: "sap.sbo.ng4c.launchpad.notice.Item", controller: sap.sbo.ng4c.launchpad.notice.Item });
@@ -168,6 +173,7 @@ module sap.sbo.ng4c.app {
             collection.push({ name: "sap.sbo.ng4c.header.Center", controller: sap.sbo.ng4c.header.Center });
             collection.push({ name: "sap.sbo.ng4c.header.Header", controller: sap.sbo.ng4c.header.Header });
             collection.push({ name: "sap.sbo.ng4c.header.Searchbar", controller: sap.sbo.ng4c.header.Searchbar });
+            collection.push({ name: "sap.sbo.ng4c.header.Setting", controller: sap.sbo.ng4c.header.Setting });
 
             //footer
             collection.push({ name: "sap.sbo.ng4c.footer.Footer", controller: sap.sbo.ng4c.footer.Footer });

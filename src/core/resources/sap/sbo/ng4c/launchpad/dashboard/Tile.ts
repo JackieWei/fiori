@@ -1,10 +1,10 @@
 ﻿/// <reference path="../../basecontroller.ts" />
 /// <reference path="../../app/config.ts" />
-/// <reference path="../../app/router.ts" />
+/// <reference path="../../app/service/router.ts" />
 module sap.sbo.ng4c.launchpad.dashboard {
     import BaseController = sap.sbo.ng4c.BaseController;
     import Config = sap.sbo.ng4c.app.Config;
-    import Router = sap.sbo.ng4c.app.Router;
+    import Router = sap.sbo.ng4c.app.service.Router;
 
     export interface TileScope extends Scope {
         rawData: TileData;
@@ -38,9 +38,13 @@ module sap.sbo.ng4c.launchpad.dashboard {
 
             this.scope.width = this.scope.sizeW * this.config.ui.tileBasicWidth + (this.scope.sizeW - 1) * this.config.ui.tileBasicGap;
             this.scope.height = this.scope.sizeH * this.config.ui.tileBasicHeight + (this.scope.sizeH - 1) * this.config.ui.tileBasicGap;
+            this.scope.left = this.scope.rawData.left;
+            this.scope.top = this.scope.rawData.top;
 
             this.scope.innerTemplate = 'resources/sap/sbo/ng4c/launchpad/dashboard/tiles/' + this.config.tile.getTileTemplateByName(this.scope.rawData.Type) + '.html';
             this.scope.onTap = $.proxy(this.onTap, this);
+
+            this.scope.$on("tileUpdateBroadcast", $.proxy(this.onTileUpdate, this));
         }
 
         private onTap(): void {
@@ -59,6 +63,12 @@ module sap.sbo.ng4c.launchpad.dashboard {
                     break;
                 default: break;
             }
+        }
+
+        private onTileUpdate(event: ng.IAngularEvent): void {
+            this.scope.left = this.scope.rawData.left;
+            this.scope.top = this.scope.rawData.top;
+            this.scope.$apply();
         }
     }
 } 

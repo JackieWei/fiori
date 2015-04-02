@@ -1,4 +1,4 @@
-﻿module sap.sbo.ng4c.app {
+﻿module sap.sbo.ng4c.app.service {
     export class Router {
         private static HASH: string = '#';
         private static SLASH: string = '/';

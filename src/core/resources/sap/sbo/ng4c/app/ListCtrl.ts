@@ -1,7 +1,7 @@
-﻿/// <reference path="router.ts" />
+﻿/// <reference path="service/router.ts" />
 module sap.sbo.ng4c.app {
 
-    import Router = sap.sbo.ng4c.app.Router;
+    import Router = sap.sbo.ng4c.app.service.Router;
 
     export interface ListScope extends ng.IScope{
         action: string;

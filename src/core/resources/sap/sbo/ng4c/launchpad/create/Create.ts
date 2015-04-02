@@ -1,8 +1,9 @@
-﻿/// <reference path="../../basecontroller.ts" />
+﻿/// <reference path="../../app/service/storage.ts" />
+/// <reference path="../../basecontroller.ts" />
 module sap.sbo.ng4c.launchpad.create {
     import BaseController = sap.sbo.ng4c.BaseController;
     import Config = sap.sbo.ng4c.app.Config;
-    import Storage = sap.sbo.ng4c.app.Storage;
+    import Storage = sap.sbo.ng4c.app.service.Storage;
 
     export interface CreateScope extends Scope {
         drafts: DraftData[];

@@ -1,0 +1,201 @@
+﻿.sap-sbo-ng4c-launchpad-dashboard-tiles-Kpi {
+    .sapUshellTileInner {
+        height: 100%;
+        display: block;
+        position: relative;
+        overflow: hidden;
+
+        &:hover {
+            z-index: 1;
+        }
+
+        .sapUshellTileBase {
+            margin: 0;
+            padding: 0.5rem 0.5rem;
+            color: #333333;
+            height: 100%;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -ms-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            border-radius: 4px;
+
+            .sapUshellTileBaseHeader {
+                .sapUshellTileBaseTitle {
+                    font-size: 1rem;
+                    max-height: 2.5rem;
+                    padding-bottom: 0;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    font-weight: normal;
+                    font-family: Arial,Helvetica,sansSerif;
+                    color: #333333;
+                    word-wrap: break-word;
+                }
+
+                .sapUshellDynamicTileDescription {
+                    position: relative;
+                    z-index: 100;
+                    border: 1px solid #b7b7b7;
+                    padding-left: 5px;
+                    word-wrap: break-word;
+                    padding: 20px;
+                    font-size: 14px;
+                    line-height: 14px;
+                    color: #333;
+                    background-color: #fff;
+                    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.4);
+                    -webkit-box-shadow: 0 4px 17px rgba(0, 0, 0, 0.4);
+                }
+            }
+
+            .sapUshellDynamicTile {
+                .sapUshellDynamicTileData {
+                    bottom: 50px;
+                    color: #d32030;
+                    right: 0.5rem;
+                    width: 11rem;
+                    overflow: hidden;
+
+                    .sapUshellDynamicTileDataDown {
+                        border-left: 0.6rem solid transparent;
+                        border-right: 0.6rem solid transparent;
+                        border-top: 0.65rem solid;
+                        font-size: 45px;
+                        display: inline-block;
+                        margin: 1.9rem 0.1rem 0 5px;
+                        float: left;
+                    }
+
+                    .sapUshellDynamicTileNumber {
+                        float: left;
+                        font-size: 45px;
+                        margin-left: 4px;
+                        margin-right: 4px;
+                        font-weight: normal;
+                    }
+
+                    .sapUshellDynamicTileNumberFactor {
+                        display: inline-block;
+                        float: left;
+                        font-weight: bold;
+                        font-size: 30px;
+                        position: relative;
+                        top: 13px;
+                    }
+
+                    .sapUshellDynamicTileNumberUnit {
+                        font-weight: bold;
+                        font-size: 15px;
+                        position: relative;
+                        top: 26px;
+                        float: left;
+                    }
+
+                    .sapUshellDynamicTileDetail {
+                        width: 200px;
+                        clear: both;
+                        display: none;
+                        position: absolute;
+                        z-index: 100;
+                        left: 0px;
+                        top: 54px;
+                        padding: 20px;
+                        font-size: 14px;
+                        line-height: 18px;
+                        color: #333;
+                        background-color: #fff;
+                        border: 1px solid #BFBFBF;
+                        box-shadow: 0 4px 17px rgba(0, 0, 0, 0.4);
+                        -webkit-box-shadow: 0 4px 17px rgba(0, 0, 0, 0.4);
+
+                        .sapUshellDynamicTileKpiValuePreciseTitle {
+                            color: #999;
+                        }
+
+                        .sapUshellDynamicTileKpiValuePrecise {
+                            font-weight: bold;
+                            margin-bottom: 10px;
+                        }
+
+                        .sapUshellDynamicTileGoalName {
+                            color: #999;
+                        }
+
+                        .sapUshellDynamicTileGoalValue {
+                            font-weight: bold;
+                            margin-bottom: 10px;
+                        }
+
+                        .sapUshellDynamicTileTrendType {
+                            color: #999;
+                        }
+
+                        .sapUshellDynamicTileTrendArrow {
+                            display: inline-block;
+                            float: left;
+                            background-repeat: no-repeat;
+                            background-position: center center;
+                            height: 20px;
+                            width: 9%;
+                            margin-right: 2%;
+                            background-image: url(resources/themes/dracula/images/trendArrowDown.png);
+                        }
+
+                        .sapUshellDynamicTileTrendValue {
+                            font-weight: bold;
+                            margin-bottom: 10px;
+                            display: inline-block;
+                            float: left;
+                        }
+                    }
+                }
+            }
+
+            .sapUshellTileBaseInfo {
+                font-weight: normal;
+                font-family: Arial,Helvetica,sans-serif;
+                color: #666666;
+                text-overflow: ellipsis;
+                -o-text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+                bottom: 4px;
+                width: 94%;
+                position: absolute;
+                color: #666666;
+                bottom: 0.125rem;
+                font-size: 0.875rem;
+                line-height: 1.38rem;
+                text-align: right;
+                right: 0.5rem;
+
+                .sapUshellDynamicTileDate {
+                    display: inline-block;
+                    float: left;
+                    margin-left: 5px;
+                }
+
+                .sapUshellDynamicTileTrendValue {
+                    display: inline-block;
+                    float: right;
+                    margin-right: 15px;
+                }
+
+                .sapUshellDynamicTileTrendObliqueArrow {
+                    background-size: 14px;
+                    display: inline-block;
+                    float: right;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    width: 20px;
+                    height: 20px;
+                    background-image: url(resources/themes/dracula/images/trendInfoUp.png);
+                }
+            }
+        }
+    }
+}

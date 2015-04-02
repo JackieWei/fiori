@@ -1,0 +1,316 @@
+﻿@import "../../../config";
+
+.sap-sbo-ng4c-launchpad-detail-Detail {
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden;
+
+    > header {
+        padding: 1rem;
+
+        &.small {
+            > div {
+                &.logo {
+                    width: 4rem;
+                    height: 4rem;
+
+
+                    > img {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 2rem;
+                    }
+                }
+
+                &.info {
+                    > .name {
+                        float: left;
+                    }
+
+                    > .others {
+                        width: 80%;
+                        float: right;
+                        display: inline-block;
+
+                        > .info {
+                            width: 20%;
+
+                            > :not(.website) {
+                                display: none;
+                            }
+
+                            > .website {
+                                margin-top: .5rem;
+                            }
+                        }
+
+                        > .contacts {
+                            width: 70%;
+
+                            > .industry, > .status {
+                                display: none;
+                            }
+
+                            > .phone, > .fax {
+                                white-space: nowrap;
+                                display: inline-block;
+                                margin-left: 2rem;
+                                margin-top: .5rem;
+                            }
+                        }
+
+                        > .account {
+                            display: none;
+                        }
+
+                        > .user {
+                            display: none;
+                        }
+
+                        > .industry {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        > div {
+            display: inline-block;
+            font-size: 1rem;
+            color: @color_001;
+            margin: 0.25rem 1rem;
+
+            &.logo {
+                text-align: center;
+                border-radius: 5rem;
+                width: 8rem;
+                height: 8rem;
+                transition: 0.2s;
+
+                > img {
+                    transition: 0.2s;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 4rem;
+                }
+            }
+
+            &.info {
+                width: ~"calc(100% - 13rem)";
+                vertical-align: top;
+
+                > .name {
+                    font-size: 1.8rem;
+                }
+
+                > .others {
+                    width: 100%;
+                    vertical-align: top;
+
+                    > div {
+                        display: inline-block;
+                        vertical-align: top;
+
+                        &.info {
+                            height: 100%;
+                            width: 16%;
+                            vertical-align: top;
+
+                            > div {
+                                margin: 0.3rem 0;
+
+                                &.name {
+                                }
+
+                                &.website {
+                                    font-style: italic;
+                                }
+
+                                &.street {
+                                }
+
+                                &.city {
+                                }
+
+                                &.nation {
+                                }
+                            }
+                        }
+
+                        &.contacts {
+                            width: 48%;
+
+                            > div {
+
+                                > .label {
+                                    width: 48%;
+                                    text-align: right;
+                                    display: inline-block;
+                                    color: @color_002;
+                                }
+
+                                > .val {
+                                    width: 48%;
+                                    display: inline-block;
+                                    white-space: nowrap;
+                                }
+
+                                &.phone {
+                                }
+
+                                &.fax {
+                                }
+
+                                &.industry {
+                                }
+
+                                &.status {
+                                }
+                            }
+                        }
+
+                        &.account {
+                            width: 16%;
+
+                            > .name {
+                            }
+
+                            > .level {
+                            }
+                        }
+
+                        &.user {
+                            width: 16%;
+
+                            > .name {
+                                display: inline-block;
+                                width: 4rem;
+
+                                > img {
+                                    width: 100%;
+                                    border-radius: 2rem;
+                                }
+                            }
+
+                            > .info {
+                                display: inline-block;
+                                vertical-align: top;
+                                margin: 1rem 0;
+
+                                > .name {
+                                }
+
+                                > .level {
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    > section {
+        height: ~"calc(100% - 11.5rem)";
+
+        > .tab {
+            background: #2c837c;
+            padding: .5rem 0.8rem;
+
+            > div {
+                display: inline-block;
+                font-size: 1.2rem;
+                color: @color_002;
+                margin: 0.5rem 0.3rem;
+                padding: 0 0.6rem;
+                cursor: pointer;
+
+                &.item {
+                    font-size: 1.2rem;
+                }
+
+                &.selected {
+                    color: @color_001;
+                    border-bottom: 2px solid @color_001;
+                }
+            }
+        }
+
+        > .content {
+            overflow-y: auto;
+            height: ~"calc(100% - 4rem)";
+
+            > div {
+                margin: 0.3rem 0 0.3rem 1rem;
+
+                > img {
+                    width: 98%;
+                    border-radius: 0.5rem;
+                }
+
+                > .label {
+                    font-size: 1.2rem;
+                    color: @color_001;
+                    margin: 0.5rem;
+                }
+
+                &.charts {
+                    padding-top: 1rem;
+
+                    > img {
+                        height: 298px;
+                    }
+                }
+
+                &.accountteam {
+                    > img {
+                        height: 135px;
+                    }
+                }
+
+                &.creaditlimit {
+                    > img {
+                        height: 224px;
+                    }
+                }
+
+                &.addresses {
+                    > img {
+                        height: 190px;
+                    }
+                }
+
+                &.contacts {
+                    > img {
+                        height: 190px;
+                    }
+                }
+
+                &.compaigns {
+                    > img {
+                        height: 190px;
+                    }
+                }
+
+                &.leads {
+                    > img {
+                        height: 190px;
+                    }
+                }
+
+                &.opportunities {
+                    > img {
+                        height: 190px;
+                    }
+                }
+
+                &.openorders {
+                    > img {
+                        height: 190px;
+                    }
+                }
+            }
+        }
+    }
+}

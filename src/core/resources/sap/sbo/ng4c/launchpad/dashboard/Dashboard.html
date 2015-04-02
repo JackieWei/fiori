@@ -12,7 +12,7 @@
         </ng4c-label>
         <div class="container">
             <div ng-repeat="data in salesTiles" ng-controller="sap.sbo.ng4c.launchpad.dashboard.Tile" ng-include="template"
-                 ng-class="className" style="width:{{width}}em;height:{{height}}em">
+                 ng-class="className" style="width:{{width}}em;height:{{height}}em;transform: translate({{left}}em,{{top}}em);transition: {{0.2 + 0.02 * ($index + 1)}}">
             </div>
         </div>
     </div>

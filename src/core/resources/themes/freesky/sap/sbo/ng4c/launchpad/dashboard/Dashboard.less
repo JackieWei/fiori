@@ -1,0 +1,87 @@
+﻿@import "../../../config";
+
+@keyframes interwalk {
+    0% {
+        border: 0 solid #22aae2;
+        opacity: 0;
+        //box-shadow: inset 0 4px 0 @color_1, 0 2px 4px @color_1, 0 2px 0 @color_1;
+    }
+
+    20% {
+        border: .5px solid #22aae2;
+        opacity: .2;
+        //box-shadow: inset 0 4px 0 @color_2, 0 4px 6px @color_2, 0 4px 0 @color_2;
+    }
+
+    40% {
+        border: 1px solid #22aae2;
+        opacity: .4;
+        //box-shadow: inset 0 4px 0 @color_3, 0 6px 10px @color_3, 0 6px 0 @color_3;
+    }
+
+    60% {
+        border: 1.5px solid #22aae2;
+        opacity: .6;
+        //box-shadow: inset 0 4px 0 @color_4, 0 6px 6px @color_4, 0 6px 0 @color_4;
+    }
+
+    80% {
+        border: 2px solid #22aae2;
+        opacity: .8;
+        //box-shadow: inset 0 4px 0 @color_5, 0 4px 4px @color_5, 0 4px 0 @color_5;
+    }
+
+    100% {
+        border: 2.5px solid #22aae2;
+        opacity: 1;
+        //box-shadow: inset 0 4px 0 @color_6, 0 2px 4px @color_6, 0 2px 0 @color_6;
+    }
+}
+
+.sap-sbo-ng4c-launchpad-dashboard-Dashboard {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: transparent;
+    box-sizing: border-box;
+    overflow-y: auto;
+
+    > div {
+        position: absolute;
+
+        .label {
+            font-size: 1.2rem;
+            color: @color_001;
+
+            &:after {
+                content: '';
+            }
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+        }
+
+        &.tileContainers {
+            margin: 1rem;
+            width: 70%;
+
+            > .tileContainer {
+                width: 100%;
+            }
+        }
+
+        &.notice {
+            margin: 1rem;
+            width: 25%;
+            right: 0;
+
+            &.noticeEffect {
+                //animation: interwalk 0.3s infinite;
+                //animation-direction: alternate-reverse;
+                //animation-timing-function: ease-in-out;
+            }
+        }
+    }
+}

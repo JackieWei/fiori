@@ -1,7 +1,7 @@
 ﻿/**
 * Control all storage including local storage, memeory storage, backend storage - persistence
 */
-module sap.sbo.ng4c.app {
+module sap.sbo.ng4c.app.service {
     'use strict';
 
     export class Storage {

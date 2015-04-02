@@ -1,9 +1,9 @@
 ﻿/// <reference path="../../../ui/controls/treenode.ts" />
-/// <reference path="../../app/Router.ts" />
+/// <reference path="../../app/service/Router.ts" />
 /// <reference path="../../basecontroller.ts" />
 module sap.sbo.ng4c.launchpad.aside {
     import BaseController = sap.sbo.ng4c.BaseController;
-    import Router = sap.sbo.ng4c.app.Router;
+    import Router = sap.sbo.ng4c.app.service.Router;
     import NodeData = sap.sbo.ui.controls.NodeData;
 
     export interface ModulesProps extends Scope {

@@ -1,10 +1,10 @@
 ﻿/// <reference path="../../basecontroller.ts" />
-/// <reference path="../../app/router.ts" />
+/// <reference path="../../app/service/router.ts" />
 module sap.sbo.ng4c.launchpad.message {
     import BaseController = sap.sbo.ng4c.BaseController;
     import Config = sap.sbo.ng4c.app.Config;
-    import Storage = sap.sbo.ng4c.app.Storage;
-    import Router = sap.sbo.ng4c.app.Router;
+    import Storage = sap.sbo.ng4c.app.service.Storage;
+    import Router = sap.sbo.ng4c.app.service.Router;
 
     export interface MessageScope extends Scope {
         messages: MessageData[];

@@ -1,0 +1,29 @@
+﻿@import "../../../config";
+
+.sap-sbo-ng4c-launchpad-notice-Notice {
+    > .tab {
+        font-size: 1rem;
+        color: white;
+        border-bottom: 1px solid #aaaaaa;
+        padding: 1rem 3rem 0 3rem;
+
+        > div {
+            display: inline-block;
+            margin: 0 1rem;
+            cursor: pointer;
+
+            &.light {
+                color: @color_001;
+                border-bottom: 1px solid white;
+            }
+
+            &.grey {
+                color: @color_002;
+            }
+        }
+    }
+
+    > .content {
+        margin: 2rem;
+    }
+}
