@@ -7,8 +7,14 @@ module sap.sbo.ng4c.header {
     import Router = sap.sbo.ng4c.app.service.Router;
 
     export interface SettingScope extends Scope {
-        focusOnHome: Function;
-        focusOnPersonal: boolean;
+        onThemeChange: Function;
+        settingPress: Function;
+        meta: SettingMeta;
+        select: string;
+    }
+
+    export interface SettingMeta {
+        setting: boolean;
     }
 
     export class Setting extends BaseController {
@@ -22,20 +28,23 @@ module sap.sbo.ng4c.header {
             this.storage = storage;
             this.router = router;
 
-            this.scope.focusOnHome = $.proxy(this.focusOnHome, this);
-            this.scope.focusOnPersonal = $.proxy(this.focusOnPersonal, this);
+            this.scope.onThemeChange = $.proxy(this.onThemeChange, this);
+
+            this.scope.meta = { setting: false };
+            this.scope.settingPress = $.proxy(this.settingPress, this);
+            this.scope.$on("bodyClickBroadcast", $.proxy(this.onPressOutside, this));
         }
 
-        public focusOnHome(): void {
-            this.$scope.$emit("focusChange", 1);
+        public onThemeChange($event: JQueryEventObject): void {
+            this.scope.$emit("switchTheme", this.scope.select);
         }
 
-        public focusOnPersonal(): void {
-            if (location.hash.length <= 2) {
-                this.$scope.$emit("readyForChange", 0);
-            } else {
-                this.$scope.$emit("focusChange", 0);
-            }
+        private settingPress($event: JQueryEventObject): void {
+            this.scope.meta.setting = true;
+        }
+
+        private onPressOutside(event: ng.IAngularEvent): void {
+            
         }
     }
 }

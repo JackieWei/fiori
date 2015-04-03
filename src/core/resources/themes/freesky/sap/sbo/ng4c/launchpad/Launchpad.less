@@ -17,13 +17,49 @@
         bottom: 0;
 
         &.content {
+            width: 100%;
             overflow-y: auto;
+            transform: scaleX(1)scaleY(1) translate(0, 0);
+
+            &.focus {
+                transform: scaleX(1)scaleY(1) translate(0, 0);
+            }
+
+            &.right {
+                transform: scaleX(.7)scaleY(.7) translate(50%, 0);
+            }
+
+            &.left {
+                transform: scaleX(.7)scaleY(.7) translate(-50%, 0);
+            }
         }
 
         &.aside {
+            transform: scaleX(.8)scaleY(.8) translate(-50%, 0);
+            width: 50%;
+
+            &.focus {
+                //transform: matrix(1, -0.2, .2, 1, 0, 0) scaleX(.8)scaleY(.8) translate(-50%, 0);
+                transform: scaleX(1)scaleY(1) translate(0, 0);
+            }
+
+            &.hide {
+                transform: scaleX(.8)scaleY(.8) translate(-50%, 0);
+            }
         }
 
         &.notice {
+            transform: scaleX(.8)scaleY(.8) translate(100%, 0);
+            width: 70%;
+
+            &.focus {
+                //transform: matrix(1, -0.2, .2, 1, 0, 0) scaleX(.8)scaleY(.8) translate(-50%, 0);
+                transform: scaleX(1)scaleY(1) translate(30%, 0);
+            }
+
+            &.hide {
+                transform: scaleX(.8)scaleY(.8) translate(100%, 0);
+            }
         }
 
         &.message {

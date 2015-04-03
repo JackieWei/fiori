@@ -526,19 +526,18 @@ var sap;
                         this.scope = $scope;
                         this.storage = storage;
                         this.router = router;
-                        this.scope.focusOnHome = $.proxy(this.focusOnHome, this);
-                        this.scope.focusOnPersonal = $.proxy(this.focusOnPersonal, this);
+                        this.scope.onThemeChange = $.proxy(this.onThemeChange, this);
+                        this.scope.meta = { setting: false };
+                        this.scope.settingPress = $.proxy(this.settingPress, this);
+                        this.scope.$on("bodyClickBroadcast", $.proxy(this.onPressOutside, this));
                     }
-                    Setting.prototype.focusOnHome = function () {
-                        this.$scope.$emit("focusChange", 1);
+                    Setting.prototype.onThemeChange = function ($event) {
+                        this.scope.$emit("switchTheme", this.scope.select);
                     };
-                    Setting.prototype.focusOnPersonal = function () {
-                        if (location.hash.length <= 2) {
-                            this.$scope.$emit("readyForChange", 0);
-                        }
-                        else {
-                            this.$scope.$emit("focusChange", 0);
-                        }
+                    Setting.prototype.settingPress = function ($event) {
+                        this.scope.meta.setting = true;
+                    };
+                    Setting.prototype.onPressOutside = function (event) {
                     };
                     return Setting;
                 })(BaseController);
@@ -1708,6 +1707,9 @@ var sap;
                         this.focusOnElement(elementIndex);
                     };
                     Launchpad.prototype.focusOnElement = function (elementIndex) {
+                        this.scope.elementIndex = elementIndex;
+                        this.scope.$applyAsync();
+                        return;
                         if (elementIndex === 0) {
                             this.scope.asideLeft = 0;
                             this.scope.asideRight = 50;

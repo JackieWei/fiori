@@ -20,13 +20,13 @@
 <body ng-controller="sap.sbo.ng4c.app.BodyCtrl" ng-keydown="onBodyKeyDown($event)" ng-click="onBodyClick($event)">
     <header ng-controller="sap.sbo.ng4c.header.Header" ng-include="template" ng-class="className"></header>
     <section ng-controller="sap.sbo.ng4c.launchpad.Launchpad" ng-class="className">
-        <div class="aside" style="left:{{asideLeft}}%; right:{{asideRight}}%; transform: scaleX({{asideScaleX}})scaleY({{asideScaleY}}); width: {{asideWidth}}%;">
+        <div class="aside {{elementIndex === 0 ? 'focus' : 'hide'}}">
             <div ng-controller="sap.sbo.ng4c.launchpad.aside.Aside" ng-include="template" ng-class="className"></div>
         </div>
-        <div class="content" style="left:{{contentLeft}}%; right:{{contentRight}}%; transform: scaleX({{contentScaleX}})scaleY({{contentScaleY}}); width: {{contentWidth}}%;">
+        <div class="content {{elementIndex === 1 ? 'focus' : (elementIndex === 0 ? 'right' : 'left')}}">
             <ng-view ng-animate="enter"></ng-view>
         </div>
-        <div class="notice" style="left: {{noticeLeft}}%; right:{{noticeRight}}%; transform: scaleX({{noticeScaleX}})scaleY({{noticeScaleY}}); width: {{noticeWidth}}%;">
+        <div class="notice {{elementIndex === 2 ? 'focus' : 'hide'}}">
             <div ng-controller="sap.sbo.ng4c.launchpad.notice.Notice" ng-include="template" ng-class="className"></div>
         </div>
         <div class="message">

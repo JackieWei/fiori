@@ -24,6 +24,8 @@ module sap.sbo.ng4c.launchpad {
         contentScaleY: number;
         noticeScaleX: number;
         noticeScaleY: number;
+
+        elementIndex: number;
     }
 
     export class Launchpad extends BaseController {
@@ -49,7 +51,9 @@ module sap.sbo.ng4c.launchpad {
         }
 
         private focusOnElement(elementIndex: number): void {
-
+            this.scope.elementIndex = elementIndex;
+            this.scope.$applyAsync();
+            return;
             if (elementIndex === 0) {
                 this.scope.asideLeft = 0;
                 this.scope.asideRight = 50;

@@ -14,9 +14,15 @@
 <div ng-controller="sap.sbo.ng4c.header.End" ng-class="className">
     <div class="container">
         <div class="notice" tabindex="0" ng-click="focusOnNotice()"></div>
-        <div class="setting">
-            <div class="icon" tabindex="0"></div>
-            <div class="setting" ng-controller="sap.sbo.ng4c.header.Setting" ng-class="className" ng-include="template"></div>
+        <div class="setting {{meta.setting ? 'active' : ''}}" ng-controller="sap.sbo.ng4c.header.Setting" ng-class="className">
+            <div class="icon" tabindex="0" ng-click="settingPress($event)"></div>
+            <div class="setting">
+                <select ng-model="select" ng-change="onThemeChange($event)">
+                    <option>Dracula</option>
+                    <option>Freesky</option>
+                    <option>Blue Crystal</option>
+                </select>
+            </div>
         </div>
         <div class="search {{meta.search ? 'active' : ''}}" ng-controller="sap.sbo.ng4c.header.Searchbar" ng-class="className">
             <input type="search" placeholder="{{meta.placeholder}}" />

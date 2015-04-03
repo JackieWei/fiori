@@ -64,6 +64,16 @@
             &.setting {
                 margin-top: .5rem;
 
+                &.active {
+                    > .icon {
+                        display: none;
+                    }
+
+                    > .setting {
+                        display: block;
+                    }
+                }
+
                 > .icon {
                     font-family: SAP-icons;
                     float: left;
@@ -71,12 +81,23 @@
 
                 > .setting {
                     width: 15rem;
-                    background: #ffffff;
+                    background: transparent;
                     height: 15rem;
                     display: inline-block;
                     float: left;
                     margin-left: 1rem;
                     display: none;
+
+                    > select {
+                        background: transparent;
+                        border: 1px solid #cccccc;
+                        border-radius: 1rem;
+                        width: 15rem;
+                        height: 1.5rem;
+                        margin: 0;
+                        vertical-align: middle;
+                        padding: 0 0.5rem;
+                    }
                 }
             }
 
