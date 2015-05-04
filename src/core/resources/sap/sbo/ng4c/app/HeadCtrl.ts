@@ -26,7 +26,7 @@ module sap.sbo.ng4c.app {
 
             this.dracula = !this.dracula;
 
-            this.theme.href = "resources/themes/" + (!this.dracula ? theme : 'dracula') + "/library.css"
+            this.theme.href = "resources/themes/" + (!this.dracula ? theme : '1') + "/library.css"
         }
     }
 }  

@@ -26,33 +26,6 @@ module sap.sbo.ui {
 
     export class BaseControl extends BaseController {
 
-        private static DIRECTIVE: DirectiveConfig = {
-            restrict: "E",
-            priority: 0,
-            replace: true,
-            scope: true,
-            transclude: true,
-            templateUrl: '',
-            compile: function ($element, $attrs, $transclude) {
-                return {
-                    pre: function ($scope, $element, $attrs, $controller) {
-                        console.log("Control Pre");
-                    },
-                    post: function ($scope, $element, $attrs, $controller) {
-                        console.log("Control Post");
-                    }
-
-                }
-            },
-            link: function ($scope, $element, $attrs, $controller): void {
-                console.log("Control Linked!");
-            }
-        }
-
-        public static makeDirective(directive: DirectiveConfig): any {
-            return $.extend(BaseControl.DIRECTIVE, directive);
-        }
-
         public constructor($scope: ControlScope, $element: JQuery, $attrs: ng.IAttributes, $package: string) {
             super($scope, $element, $attrs, $package);
         }

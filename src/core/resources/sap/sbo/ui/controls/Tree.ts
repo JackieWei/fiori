@@ -5,9 +5,28 @@ module sap.sbo.ui.controls {
     import BaseControl = sap.sbo.ui.BaseControl;
 
     export function TreeDirective() {
-        return BaseControl.makeDirective({
-            templateUrl: 'resources/sap/sbo/ui/controls/Tree.html'
-        });
+        return {
+            restrict: "E",
+            priority: 0,
+            replace: true,
+            scope: true,
+            transclude: true,
+            templateUrl: 'resources/sap/sbo/ui/controls/Tree.html',
+            compile: function ($element, $attrs, $transclude) {
+                return {
+                    pre: function ($scope, $element, $attrs, $controller) {
+                        console.log("Control Pre");
+                    },
+                    post: function ($scope, $element, $attrs, $controller) {
+                        console.log("Control Post");
+                    }
+
+                }
+            },
+            link: function ($scope, $element, $attrs, $controller): void {
+                console.log("Control Linked!");
+            }
+        };
     }
 
     export interface TreeScope extends ControlScope {

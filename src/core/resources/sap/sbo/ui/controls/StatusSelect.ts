@@ -3,14 +3,14 @@ module sap.sbo.ui.controls {
 
     import BaseControl = sap.sbo.ui.BaseControl;
 
-    export function SelectDirective(): Object {
+    export function StatusSelectDirective(): Object {
         return {
             restrict: "E",
             priority: 0,
             replace: true,
             scope: true,
             transclude: true,
-            templateUrl: 'resources/sap/sbo/ui/controls/Select.html',
+            templateUrl: 'resources/sap/sbo/ui/controls/StatusSelect.html',
             compile: function ($element, $attrs, $transclude) {
                 return {
                     pre: function ($scope, $element, $attrs, $controller) {
@@ -28,25 +28,24 @@ module sap.sbo.ui.controls {
         };
     }
 
-    export interface SelectScope extends ControlScope {
-        
+    export interface StatusSelectScope extends ControlScope {
     }
 
-    export interface SelectAttributes extends ControlAttributes {
+    export interface StatusSelectAttributes extends ControlAttributes {
         index: number;
         options: string;
     }
 
-    export class Select extends BaseControl {
+    export class StatusSelect extends BaseControl {
 
-        private scope: SelectScope;
-        private attrs: SelectAttributes;
+        private scope: StatusSelectScope;
+        private attrs: StatusSelectAttributes;
 
         public constructor($scope: ControlScope, $element: JQuery, $attrs: ControlAttributes) {
-            super($scope, $element, $attrs, "sap.sbo.ui.controls.Select");
+            super($scope, $element, $attrs, "sap.sbo.ui.controls.StatusSelect");
 
-            this.scope = <SelectScope>this.$scope;
-            this.attrs = <SelectAttributes> $attrs;
+            this.scope = <StatusSelectScope>this.$scope;
+            this.attrs = <StatusSelectAttributes> $attrs;
 
             this.buildScope();
         }

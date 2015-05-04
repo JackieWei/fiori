@@ -678,30 +678,6 @@ var sap;
                 function BaseControl($scope, $element, $attrs, $package) {
                     _super.call(this, $scope, $element, $attrs, $package);
                 }
-                BaseControl.makeDirective = function (directive) {
-                    return $.extend(BaseControl.DIRECTIVE, directive);
-                };
-                BaseControl.DIRECTIVE = {
-                    restrict: "E",
-                    priority: 0,
-                    replace: true,
-                    scope: true,
-                    transclude: true,
-                    templateUrl: '',
-                    compile: function ($element, $attrs, $transclude) {
-                        return {
-                            pre: function ($scope, $element, $attrs, $controller) {
-                                console.log("Control Pre");
-                            },
-                            post: function ($scope, $element, $attrs, $controller) {
-                                console.log("Control Post");
-                            }
-                        };
-                    },
-                    link: function ($scope, $element, $attrs, $controller) {
-                        console.log("Control Linked!");
-                    }
-                };
                 return BaseControl;
             })(BaseController);
             ui.BaseControl = BaseControl;
@@ -1387,7 +1363,7 @@ var sap;
                     }
                     HeadCtrl.prototype.switchTheme = function (event, theme) {
                         this.dracula = !this.dracula;
-                        this.theme.href = "resources/themes/" + (!this.dracula ? theme : 'dracula') + "/library.css";
+                        this.theme.href = "resources/themes/" + (!this.dracula ? theme : '1') + "/library.css";
                     };
                     return HeadCtrl;
                 })();
@@ -1839,9 +1815,27 @@ var sap;
             (function (controls) {
                 var BaseControl = sap.sbo.ui.BaseControl;
                 function TreeDirective() {
-                    return BaseControl.makeDirective({
-                        templateUrl: 'resources/sap/sbo/ui/controls/Tree.html'
-                    });
+                    return {
+                        restrict: "E",
+                        priority: 0,
+                        replace: true,
+                        scope: true,
+                        transclude: true,
+                        templateUrl: 'resources/sap/sbo/ui/controls/Tree.html',
+                        compile: function ($element, $attrs, $transclude) {
+                            return {
+                                pre: function ($scope, $element, $attrs, $controller) {
+                                    console.log("Control Pre");
+                                },
+                                post: function ($scope, $element, $attrs, $controller) {
+                                    console.log("Control Post");
+                                }
+                            };
+                        },
+                        link: function ($scope, $element, $attrs, $controller) {
+                            console.log("Control Linked!");
+                        }
+                    };
                 }
                 controls.TreeDirective = TreeDirective;
                 var Tree = (function (_super) {
@@ -1903,10 +1897,79 @@ var sap;
             var controls;
             (function (controls) {
                 var BaseControl = sap.sbo.ui.BaseControl;
+                function StatusSelectDirective() {
+                    return {
+                        restrict: "E",
+                        priority: 0,
+                        replace: true,
+                        scope: true,
+                        transclude: true,
+                        templateUrl: 'resources/sap/sbo/ui/controls/StatusSelect.html',
+                        compile: function ($element, $attrs, $transclude) {
+                            return {
+                                pre: function ($scope, $element, $attrs, $controller) {
+                                    console.log("Control Pre");
+                                },
+                                post: function ($scope, $element, $attrs, $controller) {
+                                    console.log("Control Post");
+                                }
+                            };
+                        },
+                        link: function ($scope, $element, $attrs, $controller) {
+                            console.log("Control Linked!");
+                        }
+                    };
+                }
+                controls.StatusSelectDirective = StatusSelectDirective;
+                var StatusSelect = (function (_super) {
+                    __extends(StatusSelect, _super);
+                    function StatusSelect($scope, $element, $attrs) {
+                        _super.call(this, $scope, $element, $attrs, "sap.sbo.ui.controls.StatusSelect");
+                        this.scope = this.$scope;
+                        this.attrs = $attrs;
+                        this.buildScope();
+                    }
+                    StatusSelect.prototype.buildScope = function () {
+                        this.scope.value = this.attrs.ngValue;
+                    };
+                    return StatusSelect;
+                })(BaseControl);
+                controls.StatusSelect = StatusSelect;
+            })(controls = ui.controls || (ui.controls = {}));
+        })(ui = sbo.ui || (sbo.ui = {}));
+    })(sbo = sap.sbo || (sap.sbo = {}));
+})(sap || (sap = {}));
+var sap;
+(function (sap) {
+    var sbo;
+    (function (sbo) {
+        var ui;
+        (function (ui) {
+            var controls;
+            (function (controls) {
+                var BaseControl = sap.sbo.ui.BaseControl;
                 function SliderDirective() {
-                    return BaseControl.makeDirective({
-                        templateUrl: 'resources/sap/sbo/ui/controls/Slider.html'
-                    });
+                    return {
+                        restrict: "E",
+                        priority: 0,
+                        replace: true,
+                        scope: true,
+                        transclude: true,
+                        templateUrl: 'resources/sap/sbo/ui/controls/Slider.html',
+                        compile: function ($element, $attrs, $transclude) {
+                            return {
+                                pre: function ($scope, $element, $attrs, $controller) {
+                                    console.log("Control Pre");
+                                },
+                                post: function ($scope, $element, $attrs, $controller) {
+                                    console.log("Control Post");
+                                }
+                            };
+                        },
+                        link: function ($scope, $element, $attrs, $controller) {
+                            console.log("Control Linked!");
+                        }
+                    };
                 }
                 controls.SliderDirective = SliderDirective;
                 var Slider = (function (_super) {
@@ -2126,9 +2189,27 @@ var sap;
             (function (controls) {
                 var BaseControl = sap.sbo.ui.BaseControl;
                 function DatePickerDirective() {
-                    return BaseControl.makeDirective({
-                        templateUrl: 'resources/sap/sbo/ui/controls/DatePicker.html'
-                    });
+                    return {
+                        restrict: "E",
+                        priority: 0,
+                        replace: true,
+                        scope: true,
+                        transclude: true,
+                        templateUrl: 'resources/sap/sbo/ui/controls/DatePicker.html',
+                        compile: function ($element, $attrs, $transclude) {
+                            return {
+                                pre: function ($scope, $element, $attrs, $controller) {
+                                    console.log("Control Pre");
+                                },
+                                post: function ($scope, $element, $attrs, $controller) {
+                                    console.log("Control Post");
+                                }
+                            };
+                        },
+                        link: function ($scope, $element, $attrs, $controller) {
+                            console.log("Control Linked!");
+                        }
+                    };
                 }
                 controls.DatePickerDirective = DatePickerDirective;
                 var DatePicker = (function (_super) {
@@ -2245,9 +2326,27 @@ var sap;
             (function (controls) {
                 var BaseControl = sap.sbo.ui.BaseControl;
                 function InputDirective() {
-                    return BaseControl.makeDirective({
-                        templateUrl: 'resources/sap/sbo/ui/controls/Input.html'
-                    });
+                    return {
+                        restrict: "E",
+                        priority: 0,
+                        replace: true,
+                        scope: true,
+                        transclude: true,
+                        templateUrl: 'resources/sap/sbo/ui/controls/Input.html',
+                        compile: function ($element, $attrs, $transclude) {
+                            return {
+                                pre: function ($scope, $element, $attrs, $controller) {
+                                    console.log("Control Pre");
+                                },
+                                post: function ($scope, $element, $attrs, $controller) {
+                                    console.log("Control Post");
+                                }
+                            };
+                        },
+                        link: function ($scope, $element, $attrs, $controller) {
+                            console.log("Control Linked!");
+                        }
+                    };
                 }
                 controls.InputDirective = InputDirective;
                 var Input = (function (_super) {
@@ -2380,9 +2479,27 @@ var sap;
             (function (controls) {
                 var BaseControl = sap.sbo.ui.BaseControl;
                 function NumberInputDirective() {
-                    return BaseControl.makeDirective({
-                        templateUrl: 'resources/sap/sbo/ui/controls/NumberInput.html'
-                    });
+                    return {
+                        restrict: "E",
+                        priority: 0,
+                        replace: true,
+                        scope: true,
+                        transclude: true,
+                        templateUrl: 'resources/sap/sbo/ui/controls/NumberInput.html',
+                        compile: function ($element, $attrs, $transclude) {
+                            return {
+                                pre: function ($scope, $element, $attrs, $controller) {
+                                    console.log("Control Pre");
+                                },
+                                post: function ($scope, $element, $attrs, $controller) {
+                                    console.log("Control Post");
+                                }
+                            };
+                        },
+                        link: function ($scope, $element, $attrs, $controller) {
+                            console.log("Control Linked!");
+                        }
+                    };
                 }
                 controls.NumberInputDirective = NumberInputDirective;
                 var NumberInput = (function (_super) {
@@ -2413,9 +2530,27 @@ var sap;
             (function (controls) {
                 var BaseControl = sap.sbo.ui.BaseControl;
                 function SelectDirective() {
-                    return BaseControl.makeDirective({
-                        templateUrl: 'resources/sap/sbo/ui/controls/Select.html'
-                    });
+                    return {
+                        restrict: "E",
+                        priority: 0,
+                        replace: true,
+                        scope: true,
+                        transclude: true,
+                        templateUrl: 'resources/sap/sbo/ui/controls/Select.html',
+                        compile: function ($element, $attrs, $transclude) {
+                            return {
+                                pre: function ($scope, $element, $attrs, $controller) {
+                                    console.log("Control Pre");
+                                },
+                                post: function ($scope, $element, $attrs, $controller) {
+                                    console.log("Control Post");
+                                }
+                            };
+                        },
+                        link: function ($scope, $element, $attrs, $controller) {
+                            console.log("Control Linked!");
+                        }
+                    };
                 }
                 controls.SelectDirective = SelectDirective;
                 var Select = (function (_super) {
@@ -2446,9 +2581,27 @@ var sap;
             (function (controls) {
                 var BaseControl = sap.sbo.ui.BaseControl;
                 function TextAreaDirective() {
-                    return BaseControl.makeDirective({
-                        templateUrl: 'resources/sap/sbo/ui/controls/TextArea.html'
-                    });
+                    return {
+                        restrict: "E",
+                        priority: 0,
+                        replace: true,
+                        scope: true,
+                        transclude: true,
+                        templateUrl: 'resources/sap/sbo/ui/controls/TextArea.html',
+                        compile: function ($element, $attrs, $transclude) {
+                            return {
+                                pre: function ($scope, $element, $attrs, $controller) {
+                                    console.log("Control Pre");
+                                },
+                                post: function ($scope, $element, $attrs, $controller) {
+                                    console.log("Control Post");
+                                }
+                            };
+                        },
+                        link: function ($scope, $element, $attrs, $controller) {
+                            console.log("Control Linked!");
+                        }
+                    };
                 }
                 controls.TextAreaDirective = TextAreaDirective;
                 var TextArea = (function (_super) {
@@ -2663,6 +2816,7 @@ var sap;
                             collection.push({ name: "sap.sbo.ui.controls.RateStar", controller: sap.sbo.ui.controls.RateStar });
                             collection.push({ name: "sap.sbo.ui.controls.Select", controller: sap.sbo.ui.controls.Select });
                             collection.push({ name: "sap.sbo.ui.controls.Slider", controller: sap.sbo.ui.controls.Slider });
+                            collection.push({ name: "sap.sbo.ui.controls.StatusSelect", controller: sap.sbo.ui.controls.StatusSelect });
                             collection.push({ name: "sap.sbo.ui.controls.TextArea", controller: sap.sbo.ui.controls.TextArea });
                             return collection;
                         },
@@ -2688,6 +2842,7 @@ var sap;
                             collection.push({ name: "ng4cRateStar", directive: sap.sbo.ui.controls.RateStarDirective });
                             collection.push({ name: "ng4cSelect", directive: sap.sbo.ui.controls.SelectDirective });
                             collection.push({ name: "ng4cSlider", directive: sap.sbo.ui.controls.SliderDirective });
+                            collection.push({ name: "ng4cStatusSelect", directive: sap.sbo.ui.controls.StatusSelectDirective });
                             collection.push({ name: "ng4cTextArea", directive: sap.sbo.ui.controls.TextAreaDirective });
                             collection.push({ name: "scroll", directive: sap.sbo.ui.attrs.ScrollDirective });
                             return collection;

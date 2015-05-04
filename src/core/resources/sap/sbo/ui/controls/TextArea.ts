@@ -4,9 +4,28 @@ module sap.sbo.ui.controls {
     import BaseControl = sap.sbo.ui.BaseControl;
 
     export function TextAreaDirective(): Object {
-        return BaseControl.makeDirective({
-            templateUrl: 'resources/sap/sbo/ui/controls/TextArea.html'
-        });
+        return {
+            restrict: "E",
+            priority: 0,
+            replace: true,
+            scope: true,
+            transclude: true,
+            templateUrl: 'resources/sap/sbo/ui/controls/TextArea.html',
+            compile: function ($element, $attrs, $transclude) {
+                return {
+                    pre: function ($scope, $element, $attrs, $controller) {
+                        console.log("Control Pre");
+                    },
+                    post: function ($scope, $element, $attrs, $controller) {
+                        console.log("Control Post");
+                    }
+
+                }
+            },
+            link: function ($scope, $element, $attrs, $controller): void {
+                console.log("Control Linked!");
+            }
+        };
     }
 
     export interface TextAreaScope extends ControlScope {

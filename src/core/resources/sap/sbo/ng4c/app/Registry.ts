@@ -36,6 +36,7 @@
 /// <reference path="../../ui/controls/tree.ts" />
 /// <reference path="../launchpad/dashboard/dashboard.ts" />
 /// <reference path="../../ui/controls/TreeNode.ts" />
+/// <reference path="../../ui/controls/statusselect.ts" />
 /// <reference path="BodyCtrl.ts" />
 /// <reference path="service/storage.ts" />
 /// <reference path="../../ui/controls/slider.ts" />
@@ -113,7 +114,7 @@ module sap.sbo.ng4c.app {
             services.push({ name: "storage", service: sap.sbo.ng4c.app.service.Storage });
             services.push({ name: "router", service: sap.sbo.ng4c.app.service.Router });
             services.push({ name: "backend", service: sap.sbo.ng4c.app.service.Backend });
-            services.push({ name: "layout", service: sap.sbo.ng4c.app.service.Layout});
+            services.push({ name: "layout", service: sap.sbo.ng4c.app.service.Layout });
             
             /* Registry ends */
 
@@ -197,6 +198,7 @@ module sap.sbo.ng4c.app {
             collection.push({ name: "sap.sbo.ui.controls.RateStar", controller: sap.sbo.ui.controls.RateStar });
             collection.push({ name: "sap.sbo.ui.controls.Select", controller: sap.sbo.ui.controls.Select });
             collection.push({ name: "sap.sbo.ui.controls.Slider", controller: sap.sbo.ui.controls.Slider });
+            collection.push({ name: "sap.sbo.ui.controls.StatusSelect", controller: sap.sbo.ui.controls.StatusSelect });
             collection.push({ name: "sap.sbo.ui.controls.TextArea", controller: sap.sbo.ui.controls.TextArea });
 
             /* Registry Ends */
@@ -223,6 +225,7 @@ module sap.sbo.ng4c.app {
             collection.push({ name: "ng4cRateStar", directive: sap.sbo.ui.controls.RateStarDirective });
             collection.push({ name: "ng4cSelect", directive: sap.sbo.ui.controls.SelectDirective });
             collection.push({ name: "ng4cSlider", directive: sap.sbo.ui.controls.SliderDirective });
+            collection.push({ name: "ng4cStatusSelect", directive: sap.sbo.ui.controls.StatusSelectDirective });
             collection.push({ name: "ng4cTextArea", directive: sap.sbo.ui.controls.TextAreaDirective });
 
             //attributes
