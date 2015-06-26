@@ -19,4 +19,4 @@ module sap.sbo.ng4c.app {
             this.scope.idx = $route.current.params.bo_idx;
         }
     }
-} 
+}

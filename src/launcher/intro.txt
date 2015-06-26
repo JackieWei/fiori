@@ -1,0 +1,15 @@
+﻿1. Using AngularJS and TypeScript
+2. Use Visual Studio Community 2013.
+3. Steps for install all plugins.
+4. TypeScript --> 
+
+Agenda:
+1. Background, about AngularJS, TypeScript.
+2. AMD, TypeScript support AMD in compile time.
+3. Class, strong type system, package support, import orgnization. 
+4. Template, using html
+5. Most DOM operation in HTML tag expression
+6. Event broadcast and router system.
+7. Router in AngularJS. A little bit more: multiple layers router
+8. Controller, Directive
+9. Theme

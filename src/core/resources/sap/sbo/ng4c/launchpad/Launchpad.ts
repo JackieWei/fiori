@@ -7,7 +7,7 @@ module sap.sbo.ng4c.launchpad {
     import Storage = sap.sbo.ng4c.app.service.Storage;
     import BodyCtrl = sap.sbo.ng4c.app.BodyCtrl;
 
-    export interface LaunchpadScope extends Scope {
+    export interface LaunchpadScope extends Scope{
         asideLeft: number;
         asideRight: number;
         asideWidth: number;
@@ -43,11 +43,17 @@ module sap.sbo.ng4c.launchpad {
 
             this.scope.$on("focusChangeBroadcast", $.proxy(this.onShowOrHideMenuBroadcast, this));
 
+            //this.lalala(1,3,4);
+
             this.focusOnElement(1);
         }
 
         private onShowOrHideMenuBroadcast(event: ng.IAngularEvent, elementIndex: number): void {
             this.focusOnElement(elementIndex);
+        }
+
+        private lalala():void {
+            alert(arguments.length);
         }
 
         private focusOnElement(elementIndex: number): void {

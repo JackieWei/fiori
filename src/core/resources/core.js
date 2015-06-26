@@ -1682,6 +1682,9 @@ var sap;
                     Launchpad.prototype.onShowOrHideMenuBroadcast = function (event, elementIndex) {
                         this.focusOnElement(elementIndex);
                     };
+                    Launchpad.prototype.lalala = function () {
+                        alert(arguments.length);
+                    };
                     Launchpad.prototype.focusOnElement = function (elementIndex) {
                         this.scope.elementIndex = elementIndex;
                         this.scope.$applyAsync();
