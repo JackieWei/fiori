@@ -13,12 +13,17 @@ module sap.sbo.ng4c.app {
             ];
         */
         public static main(): void {
-            var app = angular.module('Application', ['ngRoute']);
+            var app = angular.module('Application', ['ngRoute', 'ngResource']);
 
             var modules: IController[] = Registry.controllers;
             var controls: IControl[] = Registry.controls;
             var services: IService[] = Registry.servies;
             var constants: IConstant[] = Registry.constants;
+            var factories: IFactory[] = Registry.factories;
+
+            factories.forEach((e) => {
+                app.factory(e.name, e.factory);
+            });
 
             modules.forEach((e) => {
                 app.controller(e.name, e.controller);

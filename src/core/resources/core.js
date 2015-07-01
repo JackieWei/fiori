@@ -1946,6 +1946,24 @@ var sap;
 (function (sap) {
     var sbo;
     (function (sbo) {
+        var ng4c;
+        (function (ng4c) {
+            var app;
+            (function (app) {
+                var ServerProxy = (function () {
+                    function ServerProxy($resource) {
+                    }
+                    return ServerProxy;
+                })();
+                app.ServerProxy = ServerProxy;
+            })(app = ng4c.app || (ng4c.app = {}));
+        })(ng4c = sbo.ng4c || (sbo.ng4c = {}));
+    })(sbo = sap.sbo || (sap.sbo = {}));
+})(sap || (sap = {}));
+var sap;
+(function (sap) {
+    var sbo;
+    (function (sbo) {
         var ui;
         (function (ui) {
             var controls;
@@ -2739,6 +2757,17 @@ var sap;
                 var Registry = (function () {
                     function Registry() {
                     }
+                    Object.defineProperty(Registry, "factories", {
+                        get: function () {
+                            if (Registry._factories.length > 0)
+                                return Registry._factories;
+                            var factories = Registry._factories;
+                            factories.push({ name: "ServerProxy", factory: sap.sbo.ng4c.app.ServerProxy });
+                            return factories;
+                        },
+                        enumerable: true,
+                        configurable: true
+                    });
                     Object.defineProperty(Registry, "constants", {
                         get: function () {
                             if (Registry._constants.length > 0)
@@ -2857,6 +2886,7 @@ var sap;
                     Registry._controls = [];
                     Registry._services = [];
                     Registry._constants = [];
+                    Registry._factories = [];
                     return Registry;
                 })();
                 app.Registry = Registry;
@@ -2877,11 +2907,15 @@ var sap;
                     function Application() {
                     }
                     Application.main = function () {
-                        var app = angular.module('Application', ['ngRoute']);
+                        var app = angular.module('Application', ['ngRoute', 'ngResource']);
                         var modules = _app.Registry.controllers;
                         var controls = _app.Registry.controls;
                         var services = _app.Registry.servies;
                         var constants = _app.Registry.constants;
+                        var factories = _app.Registry.factories;
+                        factories.forEach(function (e) {
+                            app.factory(e.name, e.factory);
+                        });
                         modules.forEach(function (e) {
                             app.controller(e.name, e.controller);
                         });

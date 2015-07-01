@@ -39,6 +39,7 @@
 /// <reference path="../../ui/controls/statusselect.ts" />
 /// <reference path="BodyCtrl.ts" />
 /// <reference path="service/storage.ts" />
+/// <reference path="serverproxy.ts" />
 /// <reference path="../../ui/controls/slider.ts" />
 /// <reference path="service/backend.ts" />
 /// <reference path="service/Router.ts" />
@@ -61,6 +62,11 @@
 module sap.sbo.ng4c.app {
 
     import NamingUtil = sap.cloud.core.util.NamingUtil;
+
+    export interface IFactory {
+        name: string;
+        factory: Function;
+    }
 
     export interface IController {
         name: string;
@@ -88,6 +94,16 @@ module sap.sbo.ng4c.app {
         private static _controls: IControl[] = [];
         private static _services: IService[] = [];
         private static _constants: IConstant[] = [];
+        private static _factories: IFactory[] = [];
+
+        public static get factories(): IFactory[]{
+            if (Registry._factories.length > 0) return Registry._factories;
+            var factories: IFactory[] = Registry._factories;
+
+            factories.push({ name: "ServerProxy", factory: sap.sbo.ng4c.app.ServerProxy });
+
+            return factories;
+        }
 
         public static get constants(): IConstant[] {
             if (Registry._constants.length > 0) return Registry._constants;
