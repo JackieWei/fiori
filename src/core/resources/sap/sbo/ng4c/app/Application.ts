@@ -69,7 +69,4 @@ module sap.sbo.ng4c.app {
         }
     }
     Application.main();
-
-
-
 }
